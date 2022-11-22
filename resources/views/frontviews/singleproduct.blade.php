@@ -55,29 +55,36 @@
                 <hr class="line-separator">
                 <form id="aux_form" name="aux_form"></form>
 
-                <!-- CHECKBOX -->
-                <input type="radio" id="regular-license" name="regular-license" form="aux_form" checked>
-                <label class="b-label linked-check" for="regular-license">
-                    <span class="checkbox primary"><span></span></span>
-                    Regular License
-                </label>
-                <!-- /CHECKBOX -->
-                <p class="license-text" data-license="regular-license" style="display: block;">Lorem ipsum dolor sit amet, sectetur adipisicing elit, sed do eiusmod tempor cididunt ut labore.</p>
 
-                <!-- CHECKBOX -->
-                <input type="radio" id="extended-license" name="extended-license" form="aux_form">
-                <label class="b-label linked-check" for="extended-license">
-                    <span class="checkbox primary"><span></span></span>
-                    Extended License
-                </label>
-                <!-- /CHECKBOX -->
-                <p class="license-text" data-license="extended-license">Lorem ipsum dolor sit amet, sectetur adipisicing elit, sed do eiusmod tempor cididunt ut labore.</p>
+                <p class="text" style="display: block;">World-class customer support. There’s customer support, and then there’s Acarty customer support. We take pride in going above and beyond to keep our community happy. </p>
+                <br/>
                 @if ($product->plantype_id == 7)
                     <a href="{{ $product->url }}" class="button mid dark spaced" target="_blank"><span class="primary">Get it Now!</span></a>
                 @else
-                    <a href="#" class="button mid dark spaced"><span class="primary">Purchase Now!</span></a>
-                    <a href="#" class="button mid primary half">Add to Cart</a>
-                    <a href="#" class="button mid secondary wicon half"><span class="icon-heart"></span>652</a>
+                <form action="{{ route('buy.now') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" value="{{ $product->id }}" name="id">
+                    <input type="hidden" value="{{ $product->name }}" name="name">
+                    <input type="hidden" value="{{ $productprice }}" name="price">
+                    <input type="hidden" value="{{ $product->slug }}" name="slug">
+                    <input type="hidden" value="{{ $product->type->name }}" name="type">
+                    <input type="hidden" value="{{ $product->featureimage }}"  name="image">
+                    <input type="hidden" value="1" name="quantity">
+                <button type="submit" class="button mid dark spaced"><span class="primary">Buy Now!</span></button>
+                </form>
+
+                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $product->id }}" name="id">
+                        <input type="hidden" value="{{ $product->name }}" name="name">
+                        <input type="hidden" value="{{ $productprice }}" name="price">
+                        <input type="hidden" value="{{ $product->slug }}" name="slug">
+                        <input type="hidden" value="{{ $product->type->name }}" name="type">
+                        <input type="hidden" value="{{ $product->featureimage }}"  name="image">
+                        <input type="hidden" value="1" name="quantity">
+                    <button type="submit" class="button mid primary">Add to Cart </button>
+                    </form>
+
                 @endif
 
 
@@ -108,7 +115,7 @@
                 <!-- /SHARE LINKS -->
                 @endif
 
-                <a href={{ route('account.page', ['username'=> $product->user->userdetail->username]) }}" class="button mid dark spaced">Go to <span class="primary">Profile Page</span></a>
+                <a href="{{ route('account.page', ['username'=> $product->user->userdetail->username]) }}" class="button mid dark spaced">Go to <span class="primary">Profile Page</span></a>
             </div>
             <!-- /SIDEBAR ITEM -->
 

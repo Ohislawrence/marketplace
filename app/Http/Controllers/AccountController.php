@@ -20,4 +20,40 @@ class AccountController extends Controller
         }
 
     }
+
+
+    public function accountsettings()
+    {
+
+
+            return view('application.accountsetting');
+
+
+    }
+
+
+    public function accountsettingsave(Request $request)
+    {
+        $this->validate($request, [
+            'username' => 'required|unique:userdetails,name',
+            'desc' => 'required',
+        ]);
+
+
+        $profileimage = time().'.'.$request->featuredimage->extension();
+        $request->featuredimage->move(public_path('users/profileimages'), $profileimage);
+
+        $productID = Userdetail::create([
+            'name' => $request->name,
+            'coverimage' => $request->desc,
+            'profileimage'=> $request->price,
+            'location'=> $request->discount,
+            'website'=> $request->discount,
+        ]);
+
+
+        return redirect()->back();
+
+
+    }
 }

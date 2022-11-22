@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Models\Type;
 
 class TypeController extends Controller
 {
+    public function items()
+    {
+        $products = Product::all();
+        return view('frontviews.items', compact('products'));
+    }
+
     public function software()
     {
         return view('frontviews.software');

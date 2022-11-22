@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductcategoryController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
@@ -26,7 +27,10 @@ use Spatie\Permission\Models\Role;
 */
 //frontpages
 Route::get('/', [FrontController::class, 'index'])->name('home.page');
+Route::get('/checkout', [FrontController::class, 'checkout'])->name('checkout.page');
+Route::get('/favourite', [FrontController::class, 'favourite'])->name('favourite.page');
 //types
+Route::get('/items', [TypeController::class, 'items'])->name('items.page');
 Route::get('/software', [TypeController::class, 'software'])->name('software.page');
 Route::get('/courses-and-learning', [TypeController::class, 'learning'])->name('learning.page');
 Route::get('/templates', [TypeController::class, 'templates'])->name('templates.page');
@@ -38,6 +42,11 @@ Route::get('/item/{productslug}', [FrontController::class, 'singleproduct'])->na
 
 //acounts
 Route::get('/user/{username}', [AccountController::class, 'account'])->name('account.page');
+
+
+//cart
+Route::post('buy-now', [FrontController::class, 'buynow'])->name('buy.now');
+Route::resource('cart', CartController::class);
 
 Route::get('/set', function () {
     //$adminRole = Role::create(['name' => 'general']);
@@ -64,4 +73,8 @@ Route::middleware([
     Route::resource('product-category', ProductcategoryController::class);
     Route::get('product-type/select', [ProductController::class, 'select'])->name('product.select');
     Route::resource('product', ProductController::class);
+
+    //acconts
+    Route::get('/account/settings', [AccountController::class, 'accountsettings'])->name('accountsetting.page');
+    Route::post('/account/settings/save', [AccountController::class, 'accountsettingsave'])->name('accountsetting.save');
 });

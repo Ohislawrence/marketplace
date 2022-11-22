@@ -15,4 +15,7 @@ class Type extends Model
         'icon',
         'desc',
     ];
+
+
+
 }

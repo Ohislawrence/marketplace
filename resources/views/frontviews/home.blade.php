@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="{{ asset('assets/css/vendor/owl.carousel.css') }}">
 @endsection
 
+
+@section('footer')
+
 @section('body')
 
 <!-- BANNER -->
@@ -168,34 +171,34 @@
                             <img src="{{ asset('products/featuredimage/' .$product->featureimage) }}" alt="product-image">
                         </figure>
                         <!-- /PRODUCT PREVIEW IMAGE -->
-
+                        @php
+                        $productprice0 = $product->price * ($product->discount/100);
+                        $productprice = $product->price - $productprice0;
+                        @endphp
                         <!-- PREVIEW ACTIONS -->
                         <div class="preview-actions">
                             <!-- PREVIEW ACTION -->
                             <div class="preview-action">
-                                <a href="item-v1.html">
+                                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                    <input type="hidden" value="{{ $product->name }}" name="name">
+                                    <input type="hidden" value="{{ $productprice }}" name="price">
+                                    <input type="hidden" value="{{ $product->slug }}" name="slug">
+                                    <input type="hidden" value="{{ $product->type->name }}" name="type">
+                                    <input type="hidden" value="{{ $product->featureimage }}"  name="image">
+                                    <input type="hidden" value="1" name="quantity">
+                                <button type="submit">
                                     <div class="circle tiny primary">
                                         <span class="icon-tag"></span>
                                     </div>
-                                </a>
-                                <a href="{{ route('singleproduct.page', ['productslug' => $product->slug ]) }}">
-                                    <p>Go to Item</p>
-                                </a>
+                                </button>
+                                </form>
+                                    <p>Add to Cart</p>
                             </div>
                             <!-- /PREVIEW ACTION -->
 
-                            <!-- PREVIEW ACTION -->
-                            <div class="preview-action">
-                                <a href="#">
-                                    <div class="circle tiny secondary">
-                                        <span class="icon-heart"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <p>Favourites +</p>
-                                </a>
-                            </div>
-                            <!-- /PREVIEW ACTION -->
+
                         </div>
                         <!-- /PREVIEW ACTIONS -->
                     </div>
@@ -206,11 +209,11 @@
                         <a href="{{ route('singleproduct.page', ['productslug' => $product->slug ]) }}">
                             <p class="text-header">{{ $product->name }}</p>
                         </a>
-                        <p class="product-description">Lorem ipsum dolor sit urarde...</p>
+                        <p class="product-description">{!! Str::limit($product->desc, 30) !!}</p>
                         <a href="shop-gridview-v1.html">
-                            <p class="category primary">PSD Templates</p>
+                            <p class="category primary">{{$product->type->name}}</p>
                         </a>
-                        <p class="price"><span>$</span>14</p>
+                        <p class="price">${{$productprice}} </p><p class="price primary"><span><del> ${{ $product->price }}</del></span></p>
                     </div>
                     <!-- /PRODUCT INFO -->
                     <hr class="line-separator">
@@ -223,7 +226,7 @@
                             </figure>
                         </a>
                         <a href="author-profile.html">
-                            <p class="text-header tiny">Johnny Fisher</p>
+                            <p class="text-header tiny">{{ $product->user->name }}</p>
                         </a>
                         <ul class="rating tooltip" title="Author's Reputation">
                             <li class="rating-item">

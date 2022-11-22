@@ -10,7 +10,12 @@ class FrontController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('frontviews.home', compact('products'));
+
+        $cart = session()->get('cart');
+        if ($cart == null)
+            $cart = [];
+
+        return view('frontviews.home', compact('products', 'cart'));
     }
 
 
@@ -24,5 +29,35 @@ class FrontController extends Controller
         }
 
 
+    }
+
+    public function checkout()
+    {
+        return view('frontviews.checkout');
+    }
+
+
+    public function buynow(Request $request)
+    {
+        $userId = auth()->user()->id;
+        \Cart::session($userId)->add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'attributes' => array(
+                'image' => $request->image,
+                'slug' => $request->slug,
+                'type' => $request->type,
+            )
+        ]);
+        session()->flash('success', 'Product is Added to Cart Successfully !');
+        return view('frontviews.checkout');
+    }
+
+
+    public function favourite()
+    {
+        return view('frontviews.favourite');
     }
 }

@@ -42,4 +42,10 @@ class Product extends Model
         return $this->hasMany('App\Models\Productimage');
     }
 
+
+    public function type()
+    {
+        return $this->belongsTo('App\Models\Type', 'plantype_id' );
+    }
+
 }

@@ -61,7 +61,7 @@
                         <a href="{{ route('account.page',['username'=> Auth::user()->userdetail->username]) }}">Profile Page</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="dashboard-settings.html">Account Settings</a>
+                        <a href="{{ route('accountsetting.page') }}">Account Settings</a>
                     </li>
                     <li class="dropdown-item">
                         <a href="dashboard-purchases.html">Your Purchases</a>
@@ -73,7 +73,7 @@
                         <a href="dashboard-withdrawals.html">Withdrawals</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="{{ route('product.select') }}l">Upload Item</a>
+                        <a href="{{ route('product.select') }}">Upload Item</a>
                     </li>
                     <li class="dropdown-item">
                         <a href="{{ route('product.index') }}">Manage Items</a>
@@ -90,90 +90,57 @@
             <div class="account-information">
 
                 <div class="account-cart-quickview">
-                    <span class="icon-basket">
+                    <span class="icon-present">
                         <!-- SVG ARROW -->
                         <svg class="svg-arrow">
                             <use xlink:href="#svg-arrow"></use>
                         </svg>
                         <!-- /SVG ARROW -->
                     </span>
-
-
                     <!-- PIN -->
-                    <span class="pin soft-edged secondary">7</span>
+                    <span class="pin soft-edged secondary">{{ Cart::session(Auth::user()->id)->getTotalQuantity()}}</span>
                     <!-- /PIN -->
 
                     <!-- DROPDOWN CART -->
                     <ul class="dropdown cart closed">
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="item-v1.html" class="link-to"></a>
-                            <!-- SVG PLUS -->
-                            <svg class="svg-plus">
-                                <use xlink:href="#svg-plus"></use>
-                            </svg>
-                            <!-- /SVG PLUS -->
-                            <div class="dropdown-triangle"></div>
-                            <figure class="product-preview-image tiny">
-                                <img src="images/items/pixel_s.jpg" alt="">
-                            </figure>
-                            <p class="text-header tiny">Pixel Diamond Gaming Shop</p>
-                            <p class="category tiny primary">Shopify</p>
-                            <p class="price tiny"><span>$</span>86</p>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
+                        @forelse ( Cart::session(Auth::user()->id)->getContent() as $item )
+                            <!-- DROPDOWN ITEM -->
+                                <li class="dropdown-item">
+                                    <a href="{{ route('singleproduct.page', ['productslug' => $item->attributes->slug ]) }}" class="link-to"></a>
+                                    <!-- SVG PLUS -->
+                                    <svg class="svg-plus">
+                                        <use xlink:href="#svg-plus"></use>
+                                    </svg>
+                                    <!-- /SVG PLUS -->
+                                    <div class="dropdown-triangle"></div>
+                                    <figure class="product-preview-image tiny">
+                                        <img src="{{ asset('products/featuredimage/' .$item->attributes->image) }}" alt="">
+                                    </figure>
+                                    <p class="text-header tiny">{{ $item->name }}<span> ( x{{ $item->quantity }} )</span></p>
+                                    <p class="category tiny primary">{{ $item->attributes->type }}</p>
+                                    <p class="price tiny"><span>$</span>{{ $item->price }}</p>
+                                </li>
+                            <!-- /DROPDOWN ITEM -->
+                        @empty
 
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="item-v1.html" class="link-to"></a>
-                            <!-- SVG PLUS -->
-                            <svg class="svg-plus">
-                                <use xlink:href="#svg-plus"></use>
-                            </svg>
-                            <!-- /SVG PLUS -->
-                            <figure class="product-preview-image tiny">
-                                <img src="assets/images/items/monsters_s.jpg" alt="">
-                            </figure>
-                            <p class="text-header tiny">Little Monsters - 40 Pack Button Badge Maker</p>
-                            <p class="category tiny primary">Graphics</p>
-                            <p class="price tiny"><span>$</span>10</p>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
+                        @endforelse
 
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="item-v1.html" class="link-to"></a>
-                            <!-- SVG PLUS -->
-                            <svg class="svg-plus">
-                                <use xlink:href="#svg-plus"></use>
-                            </svg>
-                            <!-- /SVG PLUS -->
-                            <figure class="product-preview-image tiny">
-                                <img src="assets/images/items/flat_s.jpg" alt="">
-                            </figure>
-                            <p class="text-header tiny">Flatland - Hero Image Composer</p>
-                            <p class="category tiny primary">Shopify</p>
-                            <p class="price tiny"><span>$</span>12</p>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
+
+
 
                         <!-- DROPDOWN ITEM -->
                         <li class="dropdown-item">
                             <p class="text-header tiny">Total</p>
-                            <p class="price"><span>$</span>108.00</p>
-                            <a href="cart.html" class="button primary half">Go to Cart</a>
-                            <a href="checkout.html" class="button secondary half">Go to Checkout</a>
+                            <p class="price"><span>$</span>{{ Cart::getTotal() }}</p>
+                            <a href="{{ route('cart.index') }}" class="button primary half">Go to Cart</a>
+                            <a href="{{ route('checkout.page') }}" class="button secondary half">Go to Checkout</a>
                         </li>
                         <!-- /DROPDOWN ITEM -->
                     </ul>
                     <!-- /DROPDOWN CART -->
                 </div>
                 @auth
-                <a href="favourites.html">
-                    <div class="account-wishlist-quickview">
-                        <span class="icon-heart"></span>
-                    </div>
-                </a>
+
 
                 <div class="account-email-quickview">
                     <span class="icon-envelope">
