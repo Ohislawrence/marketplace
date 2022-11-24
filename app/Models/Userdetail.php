@@ -16,6 +16,7 @@ class Userdetail extends Model
         'profileimage',
         'location',
         'website',
+        'user_id'
 
     ];
 
@@ -23,6 +24,6 @@ class Userdetail extends Model
 
     public function user()
     {
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -11,6 +11,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Overtrue\LaravelFollow\Traits\Follower;
+use Overtrue\LaravelFollow\Traits\Followable;
 
 class User extends Authenticatable
 {
@@ -20,6 +22,8 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use Followable;
+    use Follower;
 
 
     /**
@@ -73,6 +77,7 @@ class User extends Authenticatable
 
     public function userdetail()
     {
-        return $this->belongsTo('App\Models\Userdetail');
+        return $this->hasOne('App\Models\Userdetail');
     }
+
 }

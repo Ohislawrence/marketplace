@@ -1,3 +1,4 @@
+
 <div class="header-wrap">
     <header>
         <!-- LOGO -->
@@ -37,9 +38,14 @@
                 <a href="author-profile.html">
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
-                    <figure class="user-avatar">
-                        <img src="{{ asset('assets/images/avatars/avatar_01.jpg') }}" alt="avatar">
-                    </figure>
+
+                <figure class="user-avatar">
+                    @if (Auth::user()->userdetail->profileimage != 'profileimage.png')
+                        <img src="{{ asset('users/profileimages/'. Auth::user()->userdetail->profileimage ) }}" alt="{{ Auth::user()->userdetail->username }}">
+                    @else
+                    <img src="{{ asset('users/profileimages/profileimage.png') }}" alt="avatar">
+                    @endif
+                </figure>
                 </div>
                 </a>
                 <!-- /USER AVATAR -->
@@ -61,7 +67,7 @@
                         <a href="{{ route('account.page',['username'=> Auth::user()->userdetail->username]) }}">Profile Page</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="{{ route('accountsetting.page') }}">Account Settings</a>
+                        <a href="{{ route('accountsetting.page', ['username'=> Auth::user()->userdetail->username]) }}">Account Settings</a>
                     </li>
                     <li class="dropdown-item">
                         <a href="dashboard-purchases.html">Your Purchases</a>
@@ -97,6 +103,7 @@
                         </svg>
                         <!-- /SVG ARROW -->
                     </span>
+                    @auth
                     <!-- PIN -->
                     <span class="pin soft-edged secondary">{{ Cart::session(Auth::user()->id)->getTotalQuantity()}}</span>
                     <!-- /PIN -->
@@ -139,7 +146,8 @@
                     </ul>
                     <!-- /DROPDOWN CART -->
                 </div>
-                @auth
+
+
 
 
                 <div class="account-email-quickview">

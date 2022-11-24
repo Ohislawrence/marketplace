@@ -1,173 +1,36 @@
+@guest
+    @php
+        $userpage = $userdetail->user;
+    @endphp
+@else
+    @php
+        if (request()->route('username') == auth()->user()->userdetail->username) {
+            $userpage = auth()->user();
+        }elseif (request()->route('username') != auth()->user()->userdetail->username) {
+            $userpage = $userdetail->user;
+        }
+    @endphp
+@endguest
+
 @extends('layouts.guest')
 
-@section('tittletop', 'Get great deal on apps and more')
+@section('tittletop',  $userdetail->user->name )
 @section('tittle', 'Creative Resources')
 @section('description', 'Get great deal on apps and more')
 @section('image', 'Get great deal on apps and more')
-
+@section('header')
+    <style>
+    .author-profile-banner {
+        background: url("{{ asset('users/coverimages/'. $userpage->userdetail->coverimage ) }}") no-repeat center;
+        background-size: cover;
+        min-height: 300px; }
+    </style>
+@endsection
 
 
 @section('body')
-<!-- SECTION HEADLINE -->
-<div class="section-headline-wrap">
-    <div class="section-headline">
-        <h2>Author's Profile</h2>
-        <p>Home<span class="separator">/</span><span class="current-section">Author's Profile</span></p>
-    </div>
-</div>
-<!-- /SECTION HEADLINE -->
 
-<!-- AUTHOR PROFILE BANNER -->
-<div class="author-profile-banner"></div>
-<!-- /AUTHOR PROFILE BANNER -->
-
-<!-- AUTHOR PROFILE META -->
-<div class="author-profile-meta-wrap">
-    <div class="author-profile-meta">
-        <!-- AUTHOR PROFILE INFO -->
-        <div class="author-profile-info">
-            <!-- AUTHOR PROFILE INFO ITEM -->
-            <div class="author-profile-info-item">
-                <p class="text-header">Member Since:</p>
-                <p>December 26th, 2013</p>
-            </div>
-            <!-- /AUTHOR PROFILE INFO ITEM -->
-
-            <!-- AUTHOR PROFILE INFO ITEM -->
-            <div class="author-profile-info-item">
-                <p class="text-header">Total Sales:</p>
-                <p>820</p>
-            </div>
-            <!-- /AUTHOR PROFILE INFO ITEM -->
-
-            <!-- AUTHOR PROFILE INFO ITEM -->
-            <div class="author-profile-info-item">
-                <p class="text-header">Freelance Work:</p>
-                <p>Available</p>
-            </div>
-            <!-- /AUTHOR PROFILE INFO ITEM -->
-
-            <!-- AUTHOR PROFILE INFO ITEM -->
-            <div class="author-profile-info-item">
-                <p class="text-header">Website:</p>
-                <p><a href="http://www.odindesign-themes.com/" class="primary">www.odindesign-themes.com</a></p>
-            </div>
-            <!-- /AUTHOR PROFILE INFO ITEM -->
-        </div>
-        <!-- /AUTHOR PROFILE INFO -->
-    </div>
-</div>
-<!-- /AUTHOR PROFILE META -->
-
-<!-- SECTION -->
-<div class="section-wrap">
-    <div class="section overflowable">
-        <!-- SIDEBAR -->
-        <div class="sidebar left author-profile">
-            <!-- SIDEBAR ITEM -->
-            <div class="sidebar-item author-bio">
-                <!-- USER AVATAR -->
-                <a href="user-profile.html" class="user-avatar-wrap medium">
-                    <figure class="user-avatar medium">
-                        <img src="images/avatars/avatar_09.jpg" alt="">
-                    </figure>
-                </a>
-                <!-- /USER AVATAR -->
-                <p class="text-header">Odin_Design</p>
-                <p class="text-oneline">Super Samurai Developers<br>Los Angeles, Usa</p>
-                <!-- SHARE LINKS -->
-                <ul class="share-links">
-                    <li><a href="#" class="fb"></a></li>
-                    <li><a href="#" class="twt"></a></li>
-                    <li><a href="#" class="db"></a></li>
-                </ul>
-                <!-- /SHARE LINKS -->
-                <a href="#" class="button mid dark spaced">Add to <span class="primary">Followers</span></a>
-                <a href="#" class="button mid dark-light">Send a Private Message</a>
-            </div>
-            <!-- /SIDEBAR ITEM -->
-
-            <!-- DROPDOWN -->
-            <ul class="dropdown hover-effect">
-                <li class="dropdown-item active">
-                    <a href="author-profile.html">Profile Page</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="author-profile-items.html">Author's Items (103)</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="author-profile-messages.html">Message Board</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="author-profile-reviews.html">Customer Reviews (42)</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="author-profile-followers.html">Followers (5)</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="author-profile-following.html">Following (2)</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="author-badges.html">Author Badges (16)</a>
-                </li>
-            </ul>
-            <!-- /DROPDOWN -->
-
-            <!-- SIDEBAR ITEM -->
-            <div class="sidebar-item author-reputation full">
-                <h4>Author's Reputation</h4>
-                <hr class="line-separator">
-                <!-- PIE CHART -->
-                <div class="pie-chart pie-chart1">
-                    <p class="text-header percent">86<span>%</span></p>
-                    <p class="text-header percent-info">Recommended</p>
-                    <!-- RATING -->
-                    <ul class="rating">
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item empty">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                    </ul>
-                    <!-- /RATING -->
-                </div>
-                <!-- /PIE CHART -->
-                <a href="#" class="button mid dark-light">Read all the Customer Reviews</a>
-            </div>
-            <!-- /SIDEBAR ITEM -->
-        </div>
-        <!-- /SIDEBAR -->
-
+@include('frontviews.accountsidebar')
         <!-- CONTENT -->
         <div class="content right">
             <!-- HEADLINE -->

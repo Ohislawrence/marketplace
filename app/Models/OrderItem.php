@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class OrderItem extends Model
 {
-    use HasFactory, HasUuids ;
+    use HasFactory ;
     protected $table = 'order_items';
 }

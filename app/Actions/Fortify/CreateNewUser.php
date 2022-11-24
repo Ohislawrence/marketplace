@@ -25,24 +25,28 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => 'required|unique:userdetails,username',
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        $userdetails = Userdetail::create([
-            'username'=>  $input['username'],
-            'website' => 'acarty.com',
-            'location' => 'world',
-            'profileimage' => 'profileimage.png',
-            'coverimage' => 'coverimage.png',
 
-        ]);
 
         $user =  User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'userdetail_id' => $userdetails->id,
+
+        ]);
+
+        $userdetails = Userdetail::create([
+            'username'=>  $input['username'],
+            'website' => 'acarty.com',
+            'location' => 'Around the world',
+            'profileimage' => 'profileimage.png',
+            'coverimage' => 'coverimage.png',
+            'user_id' => $user->id,
+
         ]);
 
 

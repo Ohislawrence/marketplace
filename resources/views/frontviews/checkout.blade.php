@@ -175,7 +175,10 @@
                 <!-- /RADIO -->
                 <p class="pm-text paypal">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <hr class="line-separator top">
-                <button form="checkout-form" class="button big dark">Confirm Order <span class="primary">Now!</span></button>
+                <a href="{{ route('paypal.payment') }}">
+                <button class="button big dark">Confirm Order <span class="primary">Now!</span></button>
+                </a>
+            <span class="primary">By clicking the "Place Order" button, you confirm that you have read, understand, and accept our Terms and Conditions, Return Policy, and Privacy Policy. </span>
             </div>
             <!-- /FORM BOX ITEM -->
         </div>

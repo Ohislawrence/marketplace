@@ -4283,10 +4283,7 @@ header {
       right: auto;
       left: 50%;
       margin-left: -36px; } }
-.author-profile-banner {
-  background: url("../images/profile_banner.jpg") no-repeat center;
-  background-size: cover;
-  min-height: 300px; }
+
 
 .author-profile-meta-wrap {
   border-top: 1px solid #ebebeb;

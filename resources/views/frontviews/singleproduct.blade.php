@@ -104,8 +104,8 @@
                 </a>
                 <!-- /USER AVATAR -->
                 <p class="text-header">{{ $product->user->name }}</p>
-                <p class="text-oneline">{{ Auth::user()->getRoleNames()->first() }}<br>{{ Auth::user()->userdetail->location }}</p>
-                @if (Auth::user()->getRoleNames()->first() == 'Super Admin')
+                <p class="text-oneline">{{ $product->user->getRoleNames()->first() }}<br>{{ $product->user->userdetail->location }}</p>
+                @if ($product->user->getRoleNames()->first() == 'Super Admin')
                     <!-- SHARE LINKS -->
                     <ul class="share-links">
                         <li><a href="#" class="fb"></a></li>
