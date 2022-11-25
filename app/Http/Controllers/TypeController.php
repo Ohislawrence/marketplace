@@ -16,26 +16,31 @@ class TypeController extends Controller
 
     public function software()
     {
-        return view('frontviews.software');
+        $products = Product::where('plantype_id', 1)->get();
+        return view('frontviews.software', compact('products'));
     }
 
     public function learning()
     {
-        return view('frontviews.learning');
+        $products = Product::where('plantype_id', 3)->get();
+        return view('frontviews.learning', compact('products'));
     }
 
     public function templates()
     {
-        return view('frontviews.templates');
+        $products = Product::where('plantype_id', 4)->get();
+        return view('frontviews.templates', compact('products'));
     }
 
     public function creative()
     {
-        return view('frontviews.creative');
+        $products = Product::where('plantype_id', 5)->get();
+        return view('frontviews.creative', compact('products'));
     }
 
     public function tickets()
     {
-        return view('frontviews.tickets');
+        $products = Product::where('plantype_id', 6)->get();
+        return view('frontviews.tickets', compact('products'));
     }
 }

@@ -33,6 +33,31 @@
 @include('frontviews.accountsidebar')
         <!-- CONTENT -->
         <div class="content right">
+             <!-- INBOX MESSAGES PREVIEW -->
+             <div class="inbox-messages-preview full">
+                <!-- INBOX MESSAGE PREVIEW -->
+                <div class="inbox-message-preview">
+                    <div class="inbox-message-preview-header">
+                        <p class="text-header">
+                            About me
+                        </p>
+                    </div>
+
+                    <div class="inbox-message-preview-body">
+						<!-- COMMENT LIST -->
+						<div class="comment-list">
+							<!-- COMMENT -->
+							<div class="comment-wrap">
+								<div class="comment">
+									{!! $userpage->userdetail->about_me !!}
+								</div>
+							</div>
+							<!-- /COMMENT -->
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <br/>
             <!-- HEADLINE -->
             <div class="headline buttons primary">
                 <h4>Latest Items</h4>
@@ -42,342 +67,20 @@
 
             <!-- PRODUCT LIST -->
             <div class="product-list grid column3-4-wrap">
-                <!-- PRODUCT ITEM -->
-                <div class="product-item column">
-                    <!-- PRODUCT PREVIEW ACTIONS -->
-                    <div class="product-preview-actions">
-                        <!-- PRODUCT PREVIEW IMAGE -->
-                        <figure class="product-preview-image">
-                            <img src="images/items/miniverse_m.jpg" alt="product-image">
-                        </figure>
-                        <!-- /PRODUCT PREVIEW IMAGE -->
+                @forelse ($userpage->product->take(3) as $product )
+                @include('frontviews.justproduct')
 
-                        <!-- PREVIEW ACTIONS -->
-                        <div class="preview-actions">
-                            <!-- PREVIEW ACTION -->
-                            <div class="preview-action">
-                                <a href="item-v1.html">
-                                    <div class="circle tiny primary">
-                                        <span class="icon-tag"></span>
-                                    </div>
-                                </a>
-                                <a href="item-v1.html">
-                                    <p>Go to Item</p>
-                                </a>
-                            </div>
-                            <!-- /PREVIEW ACTION -->
+            @empty
 
-                            <!-- PREVIEW ACTION -->
-                            <div class="preview-action">
-                                <a href="#">
-                                    <div class="circle tiny secondary">
-                                        <span class="icon-heart"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <p>Favourites +</p>
-                                </a>
-                            </div>
-                            <!-- /PREVIEW ACTION -->
-                        </div>
-                        <!-- /PREVIEW ACTIONS -->
-                    </div>
-                    <!-- /PRODUCT PREVIEW ACTIONS -->
-
-                    <!-- PRODUCT INFO -->
-                    <div class="product-info">
-                        <a href="item-v1.html">
-                            <p class="text-header">Miniverse - Hero Image Composer</p>
-                        </a>
-                        <p class="product-description">Lorem ipsum dolor sit urarde...</p>
-                        <a href="shop-gridview-v1.html">
-                            <p class="category primary">Hero Images</p>
-                        </a>
-                        <p class="price"><span>$</span>12</p>
-                    </div>
-                    <!-- /PRODUCT INFO -->
-                    <hr class="line-separator">
-
-                    <!-- USER RATING -->
-                    <div class="user-rating">
-                        <a href="author-profile.html">
-                            <figure class="user-avatar small">
-                                <img src="images/avatars/avatar_09.jpg" alt="user-avatar">
-                            </figure>
-                        </a>
-                        <a href="author-profile.html">
-                            <p class="text-header tiny">Odin_Design</p>
-                        </a>
-                        <ul class="rating tooltip" title="Author's Reputation">
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /USER RATING -->
-                </div>
-                <!-- /PRODUCT ITEM -->
-
-                <!-- PRODUCT ITEM -->
-                <div class="product-item column">
-                    <!-- PIN -->
-                    <span class="pin featured">Featured</span>
-                    <!-- /PIN -->
-
-                    <!-- PRODUCT PREVIEW ACTIONS -->
-                    <div class="product-preview-actions">
-                        <!-- PRODUCT PREVIEW IMAGE -->
-                        <figure class="product-preview-image">
-                            <img src="images/items/flat_m.jpg" alt="product-image">
-                        </figure>
-                        <!-- /PRODUCT PREVIEW IMAGE -->
-
-                        <!-- PREVIEW ACTIONS -->
-                        <div class="preview-actions">
-                            <!-- PREVIEW ACTION -->
-                            <div class="preview-action">
-                                <a href="item-v1.html">
-                                    <div class="circle tiny primary">
-                                        <span class="icon-tag"></span>
-                                    </div>
-                                </a>
-                                <a href="item-v1.html">
-                                    <p>Go to Item</p>
-                                </a>
-                            </div>
-                            <!-- /PREVIEW ACTION -->
-
-                            <!-- PREVIEW ACTION -->
-                            <div class="preview-action">
-                                <a href="#">
-                                    <div class="circle tiny secondary">
-                                        <span class="icon-heart"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <p>Favourites +</p>
-                                </a>
-                            </div>
-                            <!-- /PREVIEW ACTION -->
-                        </div>
-                        <!-- /PREVIEW ACTIONS -->
-                    </div>
-                    <!-- /PRODUCT PREVIEW ACTIONS -->
-
-                    <!-- PRODUCT INFO -->
-                    <div class="product-info">
-                        <a href="item-v1.html">
-                            <p class="text-header">Flatland - Hero Image Composer</p>
-                        </a>
-                        <p class="product-description">Lorem ipsum dolor sit urarde...</p>
-                        <a href="shop-gridview-v1.html">
-                            <p class="category primary">Hero Images</p>
-                        </a>
-                        <p class="price"><span>$</span>12</p>
-                    </div>
-                    <!-- /PRODUCT INFO -->
-                    <hr class="line-separator">
-
-                    <!-- USER RATING -->
-                    <div class="user-rating">
-                        <a href="author-profile.html">
-                            <figure class="user-avatar small">
-                                <img src="images/avatars/avatar_09.jpg" alt="user-avatar">
-                            </figure>
-                        </a>
-                        <a href="author-profile.html">
-                            <p class="text-header tiny">Odin_Design</p>
-                        </a>
-                        <ul class="rating tooltip" title="Author's Reputation">
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /USER RATING -->
-                </div>
-                <!-- /PRODUCT ITEM -->
-
-                <!-- PRODUCT ITEM -->
-                <div class="product-item column">
-                    <!-- PRODUCT PREVIEW ACTIONS -->
-                    <div class="product-preview-actions">
-                        <!-- PRODUCT PREVIEW IMAGE -->
-                        <figure class="product-preview-image">
-                            <img src="images/items/phantom_m.jpg" alt="product-image">
-                        </figure>
-                        <!-- /PRODUCT PREVIEW IMAGE -->
-
-                        <!-- PREVIEW ACTIONS -->
-                        <div class="preview-actions">
-                            <!-- PREVIEW ACTION -->
-                            <div class="preview-action">
-                                <a href="item-v1.html">
-                                    <div class="circle tiny primary">
-                                        <span class="icon-tag"></span>
-                                    </div>
-                                </a>
-                                <a href="item-v1.html">
-                                    <p>Go to Item</p>
-                                </a>
-                            </div>
-                            <!-- /PREVIEW ACTION -->
-
-                            <!-- PREVIEW ACTION -->
-                            <div class="preview-action">
-                                <a href="#">
-                                    <div class="circle tiny secondary">
-                                        <span class="icon-heart"></span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <p>Favourites +</p>
-                                </a>
-                            </div>
-                            <!-- /PREVIEW ACTION -->
-                        </div>
-                        <!-- /PREVIEW ACTIONS -->
-                    </div>
-                    <!-- /PRODUCT PREVIEW ACTIONS -->
-
-                    <!-- PRODUCT INFO -->
-                    <div class="product-info">
-                        <a href="item-v1.html">
-                            <p class="text-header">Phantom Cloud Illustration Shop</p>
-                        </a>
-                        <p class="product-description">Lorem ipsum dolor sit urarde...</p>
-                        <a href="shop-gridview-v1.html">
-                            <p class="category primary">PSD Templates</p>
-                        </a>
-                        <p class="price"><span>$</span>14</p>
-                    </div>
-                    <!-- /PRODUCT INFO -->
-                    <hr class="line-separator">
-
-                    <!-- USER RATING -->
-                    <div class="user-rating">
-                        <a href="author-profile.html">
-                            <figure class="user-avatar small">
-                                <img src="images/avatars/avatar_09.jpg" alt="user-avatar">
-                            </figure>
-                        </a>
-                        <a href="author-profile.html">
-                            <p class="text-header tiny">Odin_Design</p>
-                        </a>
-                        <ul class="rating tooltip" title="Author's Reputation">
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                            <li class="rating-item">
-                                <!-- SVG STAR -->
-                                <svg class="svg-star">
-                                    <use xlink:href="#svg-star"></use>
-                                </svg>
-                                <!-- /SVG STAR -->
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /USER RATING -->
-                </div>
-                <!-- /PRODUCT ITEM -->
-            </div>
-            <!-- /PRODUCT LIST -->
+            @endforelse
+        </div>
 
             <div class="clearfix"></div>
 
             <!-- HEADLINE -->
             <div class="headline buttons primary">
-                <h4>Latest Messages</h4>
-                <a href="author-profile-messages.html" class="button mid-short dark-light">See all the Messages</a>
+                <h4>Latest Reviews</h4>
+                <a href="author-profile-messages.html" class="button mid-short dark-light">See all the Reviews</a>
             </div>
             <!-- /HEADLINE -->
 
