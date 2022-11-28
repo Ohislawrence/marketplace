@@ -4,7 +4,7 @@
         <!-- LOGO -->
         <a href="{{ (route('home.page')) }}">
             <figure class="logo">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
+                <img src="{{ asset('assets/images/logo1.png') }}" alt="logo">
             </figure>
         </a>
         <!-- /LOGO -->

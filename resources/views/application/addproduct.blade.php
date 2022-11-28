@@ -60,7 +60,7 @@
             <hr class="line-separator">
             <form id="upload_form" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
                 @csrf
-
+                <input type="hidden" name="type" value="{{ request()->get('type') }}">
 
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">
@@ -68,8 +68,12 @@
                     <label for="category" class="select-block">
                         <select name="category" id="category">
                             <option value="">Select Category</option>
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @foreach ($categories as $cat)
+                            <?php $dash=''; ?>
+                            <option value="{{ $cat->id }}">{{$cat->name}}</option>
+                            @if(count($cat->subcategory))
+                                @include('application/subCategoryList-option',['subcategories' => $cat->subcategory])
+                            @endif</option>
                             @endforeach
 
                         </select>
@@ -83,6 +87,8 @@
                 <!-- /INPUT CONTAINER -->
 
 
+
+
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">
                     <label for="item_name" class="rl-label required">Name of the Item (Max 40 Characters)</label>
@@ -91,7 +97,16 @@
                         <span class="error small danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <!-- /INPUT CONTAINER -->
 
+                 <!-- INPUT CONTAINER -->
+                 <div class="input-container">
+                    <label for="item_name" class="rl-label required">One Sentence discription (25 words) )</label>
+                    <input type="text" id="name" name="short_discription" >
+                    @error('short_discription')
+                        <span class="error small danger">{{ $message }}</span>
+                    @enderror
+                </div>
                 <!-- /INPUT CONTAINER -->
 
                 <!-- INPUT CONTAINER -->
@@ -176,9 +191,52 @@
                 <div class="clearfix"></div>
 
                 <!-- INPUT CONTAINER -->
+                <div class="input-container half">
+                    <label for="sv" class="rl-label required">Access (How long will user get access)</label>
+                    <label for="sv" class="select-block">
+                        <select name="access" id="sv">
+                            <option value="lifetime">Life Time</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                        <!-- SVG ARROW -->
+                        <svg class="svg-arrow">
+                            <use xlink:href="#svg-arrow"></use>
+                        </svg>
+                        <!-- /SVG ARROW -->
+                    </label>
+                </div>
+                <!-- /INPUT CONTAINER -->
+
+                <!-- INPUT CONTAINER -->
+                <div class="input-container half">
+                    <label for="sv" class="rl-label required">Who is the ideal user?</label>
+                    <label for="sv" class="select-block">
+                        <select name="ideal_for" id="sv">
+                            <option value="developers">Developers</option>
+                            <option value="creators">Creators</option>
+                        </select>
+                        <!-- SVG ARROW -->
+                        <svg class="svg-arrow">
+                            <use xlink:href="#svg-arrow"></use>
+                        </svg>
+                        <!-- /SVG ARROW -->
+                    </label>
+                </div>
+                <!-- /INPUT CONTAINER -->
+
+                <div class="clearfix"></div>
+
+                <!-- INPUT CONTAINER -->
                  <div class="input-container half">
                     <label for="files_included" class="rl-label required">Qty (zero for limitless)</label>
-                    <input type="number" id="qty" name="qty" placeholder="How much do you want to sell before stopping?t">
+                    <input type="number" id="qty" name="qty" placeholder="How much do you want to sell before stopping sale">
+                </div>
+                <!-- /INPUT CONTAINER -->
+
+                <!-- INPUT CONTAINER -->
+                <div class="input-container half">
+                    <label for="files_included" class="rl-label required">This is an alternative to?</label>
+                    <input type="text" id="qty" name="alternative_to" placeholder="e.g canlendarly">
                 </div>
                 <!-- /INPUT CONTAINER -->
 
@@ -186,17 +244,48 @@
                     <!-- INPUT CONTAINER -->
                 <div class="input-container">
                     <label for="link" class="rl-label required">Link (For affiliate Products)</label>
-                    <input type="text" id="name2" name="url" placeholder="Enter them item name here...">
+                    <input type="url" id="name2" name="url" value="{{ old('url') }}">
                 </div>
                 <!-- /INPUT CONTAINER -->
                 @else
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">
-                    <label for="link" class="rl-label required">Link (For code sales)</label>
-                    <input type="text" id="name2" name="url" placeholder="Enter them item name here...">
+                    <label for="link" class="rl-label required">Show how it works(A link to how it works)</label>
+                    <input type="url" id="name2" name="url" value="{{ old('url') }}">
                 </div>
                 <!-- /INPUT CONTAINER -->
                 @endif
+
+                <!-- INPUT CONTAINER -->
+                <div class="input-container">
+                    <label for="link" class="rl-label required">Integrates with ....? </label>
+                    <input type="text" id="name2" name="integrations" placeholder="">
+                </div>
+                <!-- /INPUT CONTAINER -->
+
+                <!-- INPUT CONTAINER -->
+                <div class="input-container">
+                    <label for="link" class="rl-label required">Redeem Link (Link to redeem item)</label>
+                    <input type="url" id="name2" name="redeem_url" placeholder="">
+                </div>
+                <!-- /INPUT CONTAINER -->
+
+
+                <!-- INPUT CONTAINER -->
+                <div class="input-container">
+                    <label for="item_description" class="rl-label required">Redeem instructions</label>
+                    <textarea id="keypoints" class="ckeditor form-control" name="redeem_instructions" rows="3"></textarea>
+                </div>
+                <!-- /INPUT CONTAINER -->
+
+
+                <!-- INPUT CONTAINER -->
+                <div class="input-container">
+                    <label for="link" class="rl-label required">Add codes or files for download</label>
+                    <p><span class="small primary">Can only add a CSV file for codes or a zip file for downloads.</span></p>
+                    <input type="file" id="name2" name="itemforredeem" accept=".zip,.csv">
+                </div>
+                <!-- /INPUT CONTAINER -->
 
 
 

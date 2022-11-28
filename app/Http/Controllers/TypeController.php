@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Type;
+use App\Models\Productcategory;
 
 class TypeController extends Controller
 {
@@ -43,4 +44,12 @@ class TypeController extends Controller
         $products = Product::where('plantype_id', 6)->get();
         return view('frontviews.tickets', compact('products'));
     }
+
+    public function type(Request $request, $types) {
+        $type= $request->types;
+        $Ptype = Type::where('slug', $type)->first();
+        $products = Product::where('plantype_id', $Ptype->id)->get();
+        return view('frontviews.' . $Ptype->slug , compact('products'));
+
+}
 }

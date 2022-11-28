@@ -34,7 +34,7 @@ return new class extends Migration
             $table->integer('plantype_id')->nullable();
             $table->integer('time_offer')->nullable();
             $table->date('time_offer_ends')->nullable();
-            $table->integer('productcategory_id');
+            $table->text('integrations');
             $table->timestamps();
         });
     }

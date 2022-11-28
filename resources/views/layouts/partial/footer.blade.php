@@ -6,7 +6,7 @@
             <!-- COMPANY INFO -->
             <div class="company-info">
                 <figure class="logo small">
-                    <img src="{{ asset('assets/images/logo_small.png') }}" alt="logo-small">
+                    <img src="{{ asset('assets/images/logo_small1.png') }}" alt="logo-small">
                 </figure>
                 <p>A marketplace for great deals on apps, PDFs, courses, template and more.</p>
                 <ul class="company-info-list">
@@ -101,7 +101,7 @@
                 <ul class="link-list">
                     <li class="link-item">
                         <div class="bullet"></div>
-                        <a href="#">List Products</a>
+                        <a href="{{ route('items.page') }}">List Products</a>
                     </li>
                     <li class="link-item">
                         <div class="bullet"></div>
@@ -119,20 +119,20 @@
 
             <!-- LINK INFO -->
             <div class="link-info">
-                <p class="footer-title">Others</p>
+                <p class="footer-title">Blogs</p>
                 <!-- LINK LIST -->
                 <ul class="link-list">
                     <li class="link-item">
                         <div class="bullet"></div>
-                        <a href="#">List Products</a>
+                            <a href="#">Facebokk</a>
                     </li>
                     <li class="link-item">
                         <div class="bullet"></div>
-                        <a href="#">FAQs</a>
+                            <a href="#">Instagram</a>
                     </li>
                     <li class="link-item">
                         <div class="bullet"></div>
-                        <a href="#">Case Studies</a>
+                            <a href="#">Twitter</a>
                     </li>
 
                 </ul>

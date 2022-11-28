@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Models\Product;
 use App\Models\Productcategory;
 use App\Models\Productimage;
+use App\Models\Redeem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Mockery\Matcher\Type;
@@ -38,7 +40,7 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $type = $request->type;
-        $categories = Productcategory::where('type', $type)->get();
+        $categories = Productcategory::where('type', $type)->where('parent_id', null)->get();
         return view('application.addproduct', compact('categories', 'type'));
     }
 
@@ -89,6 +91,13 @@ class ProductController extends Controller
             'time_offer_ends'=> $request->offerends,
             'productcategory_id'=> $request->category,
             'keypoints'=> $request->keypoints,
+            'short_summary' => $request->short_discription,
+            'access' => $request->access,
+            'ideal_for' => $request->ideal_for,
+            'alternative_to' => $request->alternative_to,
+            'redeem_url' => $request->redeem_url,
+            'redeem_instructions' => $request->redeem_instructions,
+            'integrations' => $request->integrations,
 
         ]);
 
@@ -107,6 +116,101 @@ class ProductController extends Controller
             }
 
         }
+
+        if($request->itemforredeem){
+
+            $file = $request->itemforredeem ;
+
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $tempPath = $file->getRealPath();
+            $fileSize = $file->getSize();
+            $mimeType = $file->getMimeType();
+
+            // Valid File Extensions
+            //$valid_extension = array("csv");
+
+            // 2MB in Bytes
+            $maxFileSize = 2097152;
+
+            // Check file extension
+            if(in_array(strtolower($extension), array("csv"))){
+
+                // Check file size
+                if($fileSize <= $maxFileSize){
+
+                // File upload location
+                $location = 'uploads';
+
+                // Upload file
+                $file->move($location,$filename);
+
+                // Import CSV to Database
+                $filepath = public_path($location."/".$filename);
+
+                // Reading file
+                $file = fopen($filepath,"r");
+
+                $importData_arr = array();
+                $i = 0;
+
+                while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+                    $num = count($filedata );
+
+                    // Skip first row (Remove below comment if you want to skip the first row)
+                    /*if($i == 0){
+                        $i++;
+                        continue;
+                    }*/
+                    for ($c=0; $c < $num; $c++) {
+                        $importData_arr[$i][] = $filedata [$c];
+                    }
+                    $i++;
+                }
+                fclose($file);
+
+                // Insert to MySQL database
+                foreach($importData_arr as $importData){
+
+                    Redeem::create([
+                        'user_id' => auth()->user()->id,
+                        'item' => $importData[0],
+                        'redeemed' => 'no',
+                        'code_or_file' => 'code',
+                        'upload_method' => "bulk_upload",
+                        'product_id' => $productID->id,
+                    ]);
+
+                }
+                Session::flash('message','Import Successful.');
+        }else{
+          Session::flash('message','File too large. File must be less than 2MB.');
+        }
+
+      }
+      // Check file extension
+      if(in_array(strtolower($extension), array("zip")))
+        {
+            $fileName = Str::slug($productID->name).time().rand(1,99).'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('products/files'), $fileName);
+
+
+            Redeem::create([
+                'user_id' => auth()->user()->id,
+                'item' => $fileName,
+                'redeemed' => 'no',
+                'code_or_file' => 'file',
+                'upload_method' => "upload",
+                'product_id' => $productID->id,
+            ]);
+
+            Product::where('id', $productID->id)->update(['downloadable' => 'yes']);
+        }
+
+
+        }
+
+
         return redirect()->route('product.index')
         ->with('message','Product submitted successfully');
     }

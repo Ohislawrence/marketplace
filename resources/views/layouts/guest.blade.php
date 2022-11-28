@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/simple-line-icons.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/tooltipster.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700">
 
         @yield('header')
         <!-- favicon -->

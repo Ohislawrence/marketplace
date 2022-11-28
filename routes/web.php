@@ -32,11 +32,7 @@ Route::get('/checkout', [FrontController::class, 'checkout'])->name('checkout.pa
 Route::get('/favourite', [FrontController::class, 'favourite'])->name('favourite.page');
 //types
 Route::get('/items', [TypeController::class, 'items'])->name('items.page');
-Route::get('/software', [TypeController::class, 'software'])->name('software.page');
-Route::get('/courses-and-learning', [TypeController::class, 'learning'])->name('learning.page');
-Route::get('/templates', [TypeController::class, 'templates'])->name('templates.page');
-Route::get('/creative-resources', [TypeController::class, 'creative'])->name('creative.page');
-Route::get('/tickets', [TypeController::class, 'tickets'])->name('tickets.page');
+Route::get('all/{types}', [TypeController::class, 'type'])->name('type.page');
 
 Route::get('/item/{productslug}', [FrontController::class, 'singleproduct'])->name('singleproduct.page');
 

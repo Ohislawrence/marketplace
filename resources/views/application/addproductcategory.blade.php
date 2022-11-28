@@ -52,6 +52,30 @@
                 </div>
                 <!-- /INPUT CONTAINER -->
 
+                <!-- INPUT CONTAINER -->
+                <div class="input-container">
+                    <label for="category" class="rl-label required">Parent (for sub category)</label>
+                    <label for="category" class="select-block">
+                        <select name="parentcategory" id="category">
+                            <option value="">Select a parent, leave this for main category</option>
+                            @foreach ($parentcategory as $cat )
+                            <?php $dash=''; ?>
+                            <option value="{{ $cat->id }}">{{$cat->name}}</option>
+                            @if(count($cat->subcategory))
+                                @include('application/subCategoryList-option',['subcategories' => $cat->subcategory])
+                            @endif</option>
+                            @endforeach
+
+                        </select>
+                        <!-- SVG ARROW -->
+                        <svg class="svg-arrow">
+                            <use xlink:href="#svg-arrow"></use>
+                        </svg>
+                        <!-- /SVG ARROW -->
+                    </label>
+                </div>
+                <!-- /INPUT CONTAINER -->
+
 
                 <hr class="line-separator">
                 <button type="submit" class="button big dark">Create <span class="primary">Category</span></button>

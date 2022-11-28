@@ -22,31 +22,31 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ (route('software.page')) }}">Software</a>
+            <a href="{{ route('type.page', ['types' => 'software']) }}">Software</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('learning.page') }}">Courses & Learning</a>
+            <a href="{{ route('type.page', ['types' => 'courses-and-learning']) }}">Courses & Learning</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('templates.page') }}">Templates</a>
+            <a href="{{ route('type.page', ['types' => 'templates']) }}">Templates</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('creative.page') }}">Creative Resources</a>
+            <a href="{{ route('type.page', ['types' => 'creative-resources']) }}">Creative Resources</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('tickets.page') }}">Tickets</a>
+            <a href="{{ route('type.page', ['types' => 'tickets']) }}">Tickets</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
@@ -74,7 +74,7 @@
             <div class="outer-ring">
                 <div class="inner-ring"></div>
                 <figure class="user-avatar">
-                    <img src="{{ asset('assets/images/avatars/avatar_01.jpg') }}" alt="avatar">
+                    <img src="{{ asset('users/profileimages/'. Auth::user()->userdetail->profileimage ) }}" alt="{{ Auth::user()->userdetail->username }}">
                 </figure>
             </div>
             </a>

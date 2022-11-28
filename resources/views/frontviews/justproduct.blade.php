@@ -43,9 +43,9 @@
     <!-- PRODUCT INFO -->
     <div class="product-info">
         <a href="{{ route('singleproduct.page', ['productslug' => $product->slug ]) }}">
-            <p class="text-header">{{ $product->name }}</p>
+            <p class="text-header">{{ Str::limit($product->name, 20) }}</p>
         </a>
-        <p class="product-description">{!! Str::limit($product->desc, 30) !!}</p>
+        <p class="product-description">{{ Str::limit($product->short_summary, 30) }}</p>
         <a href="shop-gridview-v1.html">
             <p class="category primary">{{$product->type->name}}</p>
         </a>
@@ -58,7 +58,7 @@
     <div class="user-rating">
         <a href="author-profile.html">
             <figure class="user-avatar small">
-                <img src="{{ asset('assets/images/avatars/avatar_01.jpg') }}" alt="user-avatar">
+                <img src="{{ asset('users/profileimages/'. $product->user->userdetail->profileimage ) }}" alt="user-avatar">
             </figure>
         </a>
         <a href="author-profile.html">

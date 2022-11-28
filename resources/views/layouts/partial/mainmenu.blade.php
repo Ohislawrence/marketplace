@@ -5,31 +5,31 @@
             <ul class="main-menu">
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="{{ route('software.page') }}">Software</a>
+                    <a href="{{ route('type.page', ['types' => 'software']) }}">Software</a>
                 </li>
                 <!-- /MENU ITEM -->
 
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="{{ route('learning.page') }}">Courses & Learning</a>
+                    <a href="{{ route('type.page', ['types' => 'courses-and-learning']) }}">Courses & Learning</a>
                 </li>
                 <!-- /MENU ITEM -->
 
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="{{ route('templates.page') }}">Templates</a>
+                    <a href="{{ route('type.page', ['types' => 'templates']) }}">Templates</a>
                 </li>
                 <!-- /MENU ITEM -->
 
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="{{ route('creative.page') }}">Creative Resources</a>
+                    <a href="{{ route('type.page', ['types' => 'creative-resources']) }}">Creative Resources</a>
                 </li>
                 <!-- /MENU ITEM -->
 
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="{{ route('tickets.page') }}">Tickets</a>
+                    <a href="{{ route('type.page', ['types' => 'tickets']) }}">Tickets</a>
                 </li>
                 <!-- /MENU ITEM -->
 

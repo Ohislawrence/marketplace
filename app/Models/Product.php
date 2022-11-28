@@ -30,6 +30,13 @@ class Product extends Model
         'time_offer',
         'time_offer_ends',
         'productcategory_id',
+        'access',
+        'short_summary',
+        'integrations',
+        'ideal_for',
+        'alternative_to',
+        'redeem_url',
+        'redeem_instructions',
     ];
 
     public function user()
@@ -45,7 +52,12 @@ class Product extends Model
 
     public function type()
     {
-        return $this->belongsTo('App\Models\Type', 'plantype_id' );
+        return $this->belongsTo(\App\Models\Type::class, 'plantype_id' );
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Productcategory', 'productcategory_id' );
     }
 
 }

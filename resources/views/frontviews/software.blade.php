@@ -22,7 +22,7 @@
         <div class="content">
             <!-- HEADLINE -->
             <div class="headline primary">
-                <h4>12.580 Products Found</h4>
+                <h4>{{ $products->count() }} Items Found</h4>
                 <!-- VIEW SELECTORS -->
                 <div class="view-selectors">
                     <a href="shop-gridview-v1.html" class="view-selector grid active"></a>
@@ -69,6 +69,7 @@
                 </div>
             <!-- /PRODUCT SHOWCASE -->
             </div>
+
             <!-- PAGER -->
             <div class="pager primary">
                 <div class="pager-item"><p>1</p></div>
@@ -85,21 +86,13 @@
         <div class="sidebar">
             <!-- DROPDOWN -->
             <ul class="dropdown hover-effect">
-                <li class="dropdown-item">
-                    <a href="#">Digital Graphics</a>
-                </li>
-                <li class="dropdown-item active">
-                    <a href="#">Illustration</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Web Design</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Stock Photography</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Code and Plugins</a>
-                </li>
+                @forelse ( $products as $product)
+                    <li class="dropdown-item">
+                        <a href="#">{{ $product->category->name}}</a>
+                    </li>
+                @empty
+
+                @endforelse
             </ul>
             <!-- /DROPDOWN -->
 

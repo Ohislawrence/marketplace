@@ -19,7 +19,6 @@
 <div class="section-headline-wrap">
     <div class="section-headline">
         <h2>All Items</h2>
-
     </div>
 </div>
 <!-- /SECTION HEADLINE -->
@@ -31,7 +30,7 @@
         <div class="content">
             <!-- HEADLINE -->
             <div class="headline primary">
-                <h4>12.580 Products Found</h4>
+                <h4>{{ $products->count() }} Items Found</h4>
                 <!-- VIEW SELECTORS -->
                 <div class="view-selectors">
                     <a href="shop-gridview-v1.html" class="view-selector grid active"></a>
@@ -70,123 +69,14 @@
             <div class="product-showcase">
                 <!-- PRODUCT LIST -->
                 <div class="product-list grid column3-4-wrap">
-                    @foreach ( $products as $product)
-                    <!-- PRODUCT ITEM -->
-                    <div class="product-item column">
-                        <!-- PRODUCT PREVIEW ACTIONS -->
-                        <div class="product-preview-actions">
-                            <!-- PRODUCT PREVIEW IMAGE -->
-                            <figure class="product-preview-image">
-                                <img src="images/items/westeros_m.jpg" alt="product-image">
-                            </figure>
-                            <!-- /PRODUCT PREVIEW IMAGE -->
+                    @forelse ( $products as $product )
+                    @include('frontviews.justproduct')
+                    @empty
 
-                            <!-- PREVIEW ACTIONS -->
-                            <div class="preview-actions">
-                                <!-- PREVIEW ACTION -->
-                                <div class="preview-action">
-                                    <a href="item-v1.html">
-                                        <div class="circle tiny primary">
-                                            <span class="icon-tag"></span>
-                                        </div>
-                                    </a>
-                                    <a href="item-v1.html">
-                                        <p>Go to Item</p>
-                                    </a>
-                                </div>
-                                <!-- /PREVIEW ACTION -->
-
-                                <!-- PREVIEW ACTION -->
-                                <div class="preview-action">
-                                    <a href="#">
-                                        <div class="circle tiny secondary">
-                                            <span class="icon-heart"></span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <p>Favourites +</p>
-                                    </a>
-                                </div>
-                                <!-- /PREVIEW ACTION -->
-                            </div>
-                            <!-- /PREVIEW ACTIONS -->
-                        </div>
-                        <!-- /PRODUCT PREVIEW ACTIONS -->
-
-                        <!-- PRODUCT INFO -->
-                        <div class="product-info">
-                            <a href="item-v1.html">
-                                <p class="text-header">Westeros Custom Clothing</p>
-                            </a>
-                            <p class="product-description">Lorem ipsum dolor sit urarde...</p>
-                            <a href="shop-gridview-v1.html">
-                                <p class="category primary">PSD Templates</p>
-                            </a>
-                            <p class="price"><span>$</span>14</p>
-                        </div>
-                        <!-- /PRODUCT INFO -->
-                        <hr class="line-separator">
-
-                        <!-- USER RATING -->
-                        <div class="user-rating">
-                            <a href="author-profile.html">
-                                <figure class="user-avatar small">
-                                    <img src="images/avatars/avatar_01.jpg" alt="user-avatar">
-                                </figure>
-                            </a>
-                            <a href="author-profile.html">
-                                <p class="text-header tiny">Johnny Fisher</p>
-                            </a>
-                            <ul class="rating tooltip" title="Author's Reputation">
-                                <li class="rating-item">
-                                    <!-- SVG STAR -->
-                                    <svg class="svg-star">
-                                        <use xlink:href="#svg-star"></use>
-                                    </svg>
-                                    <!-- /SVG STAR -->
-                                </li>
-                                <li class="rating-item">
-                                    <!-- SVG STAR -->
-                                    <svg class="svg-star">
-                                        <use xlink:href="#svg-star"></use>
-                                    </svg>
-                                    <!-- /SVG STAR -->
-                                </li>
-                                <li class="rating-item">
-                                    <!-- SVG STAR -->
-                                    <svg class="svg-star">
-                                        <use xlink:href="#svg-star"></use>
-                                    </svg>
-                                    <!-- /SVG STAR -->
-                                </li>
-                                <li class="rating-item">
-                                    <!-- SVG STAR -->
-                                    <svg class="svg-star">
-                                        <use xlink:href="#svg-star"></use>
-                                    </svg>
-                                    <!-- /SVG STAR -->
-                                </li>
-                                <li class="rating-item empty">
-                                    <!-- SVG STAR -->
-                                    <svg class="svg-star">
-                                        <use xlink:href="#svg-star"></use>
-                                    </svg>
-                                    <!-- /SVG STAR -->
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /USER RATING -->
-                    </div>
-                    <!-- /PRODUCT ITEM -->
-
-
-                    @endforeach
-
-
+                    @endforelse
                 </div>
-                <!-- /PRODUCT LIST -->
-            </div>
             <!-- /PRODUCT SHOWCASE -->
+            </div>
 
             <!-- PAGER -->
             <div class="pager primary">
@@ -199,153 +89,154 @@
             <!-- /PAGER -->
         </div>
         <!-- CONTENT -->
+
         <!-- SIDEBAR -->
-			<div class="sidebar">
-				<!-- DROPDOWN -->
-				<ul class="dropdown hover-effect">
-					<li class="dropdown-item">
-						<a href="#">Digital Graphics</a>
-					</li>
-					<li class="dropdown-item active">
-						<a href="#">Illustration</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="#">Web Design</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="#">Stock Photography</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="#">Code and Plugins</a>
-					</li>
-				</ul>
-				<!-- /DROPDOWN -->
+        <div class="sidebar">
+            <!-- DROPDOWN -->
+            <ul class="dropdown hover-effect">
+                <li class="dropdown-item">
+                    <a href="#">Digital Graphics</a>
+                </li>
+                <li class="dropdown-item active">
+                    <a href="#">Illustration</a>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#">Web Design</a>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#">Stock Photography</a>
+                </li>
+                <li class="dropdown-item">
+                    <a href="#">Code and Plugins</a>
+                </li>
+            </ul>
+            <!-- /DROPDOWN -->
 
-				<!-- SIDEBAR ITEM -->
-				<div class="sidebar-item">
-					<h4>Filter Products</h4>
-					<hr class="line-separator">
-					<form id="shop_search_form" name="shop_search_form">
-						<!-- CHECKBOX -->
-						<input type="checkbox" id="filter1" name="filter1" checked>
-						<label for="filter1">
-							<span class="checkbox primary primary"><span></span></span>
-							Cartoon Characters
-							<span class="quantity">350</span>
-						</label>
-						<!-- /CHECKBOX -->
+            <!-- SIDEBAR ITEM -->
+            <div class="sidebar-item">
+                <h4>Filter Products</h4>
+                <hr class="line-separator">
+                <form id="shop_search_form" name="shop_search_form">
+                    <!-- CHECKBOX -->
+                    <input type="checkbox" id="filter1" name="filter1" checked>
+                    <label for="filter1">
+                        <span class="checkbox primary primary"><span></span></span>
+                        Cartoon Characters
+                        <span class="quantity">350</span>
+                    </label>
+                    <!-- /CHECKBOX -->
 
-						<!-- CHECKBOX -->
-						<input type="checkbox" id="filter2" name="filter2" checked>
-						<label for="filter2">
-							<span class="checkbox primary"><span></span></span>
-							Flat Vector
-							<span class="quantity">68</span>
-						</label>
-						<!-- /CHECKBOX -->
+                    <!-- CHECKBOX -->
+                    <input type="checkbox" id="filter2" name="filter2" checked>
+                    <label for="filter2">
+                        <span class="checkbox primary"><span></span></span>
+                        Flat Vector
+                        <span class="quantity">68</span>
+                    </label>
+                    <!-- /CHECKBOX -->
 
-						<!-- CHECKBOX -->
-						<input type="checkbox" id="filter3" name="filter3" checked>
-						<label for="filter3">
-							<span class="checkbox primary"><span></span></span>
-							People
-							<span class="quantity">350</span>
-						</label>
-						<!-- /CHECKBOX -->
+                    <!-- CHECKBOX -->
+                    <input type="checkbox" id="filter3" name="filter3" checked>
+                    <label for="filter3">
+                        <span class="checkbox primary"><span></span></span>
+                        People
+                        <span class="quantity">350</span>
+                    </label>
+                    <!-- /CHECKBOX -->
 
-						<!-- CHECKBOX -->
-						<input type="checkbox" id="filter4" name="filter4">
-						<label for="filter4">
-							<span class="checkbox primary"><span></span></span>
-							Animals
-							<span class="quantity">68</span>
-						</label>
-						<!-- /CHECKBOX -->
+                    <!-- CHECKBOX -->
+                    <input type="checkbox" id="filter4" name="filter4">
+                    <label for="filter4">
+                        <span class="checkbox primary"><span></span></span>
+                        Animals
+                        <span class="quantity">68</span>
+                    </label>
+                    <!-- /CHECKBOX -->
 
-						<!-- CHECKBOX -->
-						<input type="checkbox" id="filter5" name="filter5">
-						<label for="filter5">
-							<span class="checkbox primary"><span></span></span>
-							Objects
-							<span class="quantity">350</span>
-						</label>
-						<!-- /CHECKBOX -->
+                    <!-- CHECKBOX -->
+                    <input type="checkbox" id="filter5" name="filter5">
+                    <label for="filter5">
+                        <span class="checkbox primary"><span></span></span>
+                        Objects
+                        <span class="quantity">350</span>
+                    </label>
+                    <!-- /CHECKBOX -->
 
-						<!-- CHECKBOX -->
-						<input type="checkbox" id="filter6" name="filter6" checked>
-						<label for="filter6">
-							<span class="checkbox primary"><span></span></span>
-							Backgrounds
-							<span class="quantity">68</span>
-						</label>
-						<!-- /CHECKBOX -->
-					</form>
-				</div>
-				<!-- /SIDEBAR ITEM -->
+                    <!-- CHECKBOX -->
+                    <input type="checkbox" id="filter6" name="filter6" checked>
+                    <label for="filter6">
+                        <span class="checkbox primary"><span></span></span>
+                        Backgrounds
+                        <span class="quantity">68</span>
+                    </label>
+                    <!-- /CHECKBOX -->
+                </form>
+            </div>
+            <!-- /SIDEBAR ITEM -->
 
-				<!-- SIDEBAR ITEM -->
-				<div class="sidebar-item">
-					<h4>File Types</h4>
-					<hr class="line-separator">
-					<!-- CHECKBOX -->
-					<input type="checkbox" id="ft1" name="ft1" form="shop_search_form">
-					<label for="ft1">
-						<span class="checkbox primary"><span></span></span>
-						Photoshop PSD
-						<span class="quantity">72</span>
-					</label>
-					<!-- /CHECKBOX -->
+            <!-- SIDEBAR ITEM -->
+            <div class="sidebar-item">
+                <h4>File Types</h4>
+                <hr class="line-separator">
+                <!-- CHECKBOX -->
+                <input type="checkbox" id="ft1" name="ft1" form="shop_search_form">
+                <label for="ft1">
+                    <span class="checkbox primary"><span></span></span>
+                    Photoshop PSD
+                    <span class="quantity">72</span>
+                </label>
+                <!-- /CHECKBOX -->
 
-					<!-- CHECKBOX -->
-					<input type="checkbox" id="ft2" name="ft2" form="shop_search_form" checked>
-					<label for="ft2">
-						<span class="checkbox primary"><span></span></span>
-						Illustrator AI
-						<span class="quantity">254</span>
-					</label>
-					<!-- /CHECKBOX -->
+                <!-- CHECKBOX -->
+                <input type="checkbox" id="ft2" name="ft2" form="shop_search_form" checked>
+                <label for="ft2">
+                    <span class="checkbox primary"><span></span></span>
+                    Illustrator AI
+                    <span class="quantity">254</span>
+                </label>
+                <!-- /CHECKBOX -->
 
-					<!-- CHECKBOX -->
-					<input type="checkbox" id="ft3" name="ft3" form="shop_search_form" checked>
-					<label for="ft3">
-						<span class="checkbox primary"><span></span></span>
-						EPS
-						<span class="quantity">138</span>
-					</label>
-					<!-- /CHECKBOX -->
+                <!-- CHECKBOX -->
+                <input type="checkbox" id="ft3" name="ft3" form="shop_search_form" checked>
+                <label for="ft3">
+                    <span class="checkbox primary"><span></span></span>
+                    EPS
+                    <span class="quantity">138</span>
+                </label>
+                <!-- /CHECKBOX -->
 
-					<!-- CHECKBOX -->
-					<input type="checkbox" id="ft4" name="ft4" form="shop_search_form" checked>
-					<label for="ft4">
-						<span class="checkbox primary"><span></span></span>
-						SVG
-						<span class="quantity">96</span>
-					</label>
-					<!-- /CHECKBOX -->
+                <!-- CHECKBOX -->
+                <input type="checkbox" id="ft4" name="ft4" form="shop_search_form" checked>
+                <label for="ft4">
+                    <span class="checkbox primary"><span></span></span>
+                    SVG
+                    <span class="quantity">96</span>
+                </label>
+                <!-- /CHECKBOX -->
 
-					<!-- CHECKBOX -->
-					<input type="checkbox" id="ft5" name="ft5" form="shop_search_form">
-					<label for="ft5">
-						<span class="checkbox primary"><span></span></span>
-						InDesign INDD
-						<span class="quantity">102</span>
-					</label>
-					<!-- /CHECKBOX -->
-				</div>
-				<!-- /SIDEBAR ITEM -->
+                <!-- CHECKBOX -->
+                <input type="checkbox" id="ft5" name="ft5" form="shop_search_form">
+                <label for="ft5">
+                    <span class="checkbox primary"><span></span></span>
+                    InDesign INDD
+                    <span class="quantity">102</span>
+                </label>
+                <!-- /CHECKBOX -->
+            </div>
+            <!-- /SIDEBAR ITEM -->
 
-				<!-- SIDEBAR ITEM -->
-				<div class="sidebar-item range-feature">
-					<h4>Price Range</h4>
-					<hr class="line-separator spaced">
-					<input type="hidden" class="price-range-slider" value="500" form="shop_search_form">
-					<button form="shop_search_form" class="button mid primary">Update your Search</button>
-				</div>
-				<!-- /SIDEBAR ITEM -->
-			</div>
-			<!-- /SIDEBAR -->
-		</div>
-	</div>
-	<!-- /SECTION -->
+            <!-- SIDEBAR ITEM -->
+            <div class="sidebar-item range-feature">
+                <h4>Price Range</h4>
+                <hr class="line-separator spaced">
+                <input type="hidden" class="price-range-slider" value="500" form="shop_search_form">
+                <button form="shop_search_form" class="button mid primary">Update your Search</button>
+            </div>
+            <!-- /SIDEBAR ITEM -->
+        </div>
+        <!-- /SIDEBAR -->
+    </div>
+</div>
+<!-- /SECTION -->
 
 @endsection

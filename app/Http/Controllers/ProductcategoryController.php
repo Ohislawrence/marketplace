@@ -28,7 +28,8 @@ class ProductcategoryController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('application.addproductcategory', compact('types'));
+        $parentcategory = Productcategory::where('parent_id', null)->orderby('name', 'asc')->get();
+        return view('application.addproductcategory', compact('types', 'parentcategory'));
     }
 
     /**
@@ -43,6 +44,7 @@ class ProductcategoryController extends Controller
             'name' => 'required|unique:productcategories,name',
             'desc' => 'required',
             'type' => 'required',
+            'parentcategory' => 'nullable',
         ]);
 
         Productcategory::create([
@@ -50,6 +52,7 @@ class ProductcategoryController extends Controller
             'slug' => Str::slug($request->name),
             'desc' => $request->desc,
             'type' => $request->type,
+            'parent_id' => $request->parentcategory,
 
         ]);
 
