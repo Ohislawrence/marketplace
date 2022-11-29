@@ -37,6 +37,7 @@ class Product extends Model
         'alternative_to',
         'redeem_url',
         'redeem_instructions',
+        'TLDR',
     ];
 
     public function user()

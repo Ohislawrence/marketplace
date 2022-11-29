@@ -51,8 +51,19 @@
         <div class="sidebar right">
             <!-- SIDEBAR ITEM -->
             <div class="sidebar-item">
+            @if ($product->downloadable == 'link')
+                @if($product->price == 0)
+                <p class="price large"><span>FREE </p>
+                <center><p class="price tiny"><del>${{ $product->price }}</del></p></center>
+                @else
                 <p class="price large"><span>$</span>{{ $productprice }} </p>
                 <center><p class="price tiny"><del>${{ $product->price }}</del></p></center>
+                @endif
+            @else
+            <p class="price large"><span>$</span>{{ $productprice }} </p>
+            <center><p class="price tiny"><del>${{ $product->price }}</del></p></center>
+            @endif
+                
                 <br/>
                 <hr class="line-separator">
                 <form id="aux_form" name="aux_form"></form>
@@ -64,8 +75,12 @@
                 @endif
 
                 <br/>
-                @if ($product->plantype_id == 7)
-                    <a href="{{ $product->url }}" class="button mid dark spaced" target="_blank"><span class="primary">Get it Now!</span></a>
+                @if ($product->downloadable == 'link')
+                <form action="{{ route('affiliate.link') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name = "productID" value="{{ $product->id }}">
+                    <button type="submit" class="button mid dark spaced"><span class="primary">Get it Now!</span></buttom>
+                </form>
                 @else
                 <form action="{{ route('buy.now') }}" method="POST" enctype="multipart/form-data">
                     @csrf

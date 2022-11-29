@@ -11,6 +11,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalPaymentController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use App\Models\Type;
 
 
 
@@ -41,7 +42,7 @@ Route::get('/item/{productslug}', [FrontController::class, 'singleproduct'])->na
 //acounts
 Route::get('/user/{username}', [AccountController::class, 'account'])->name('account.page');
 Route::get('user/{username}/purchases', [AccountController::class, 'purchases'])->name('purchases.page');
-
+Route::post('link/aff/link', [OrderController::class, 'affiliatelink'] )->name('affiliate.link');
 
 //cart
 Route::post('buy-now', [FrontController::class, 'buynow'])->name('buy.now');
@@ -49,11 +50,13 @@ Route::resource('cart', CartController::class);
 
 Route::get('/set', function () {
     //$adminRole = Role::create(['name' => 'general']);
-    /*Type::create([
-        'name' => 'Links',
-        'slug' => 'links'
-    ]);
-    //dd($adminRole);*/
+    //$role = Role::where('name', 'Super Admin')->first();
+       //$user = auth()->user()->assignRole($role);
+    /*$types = Type::create([
+        'name' => 'Ticket',
+        'slug' => 'ticket'
+    ]);*/
+    //dd($user);
 })->name('set');
 
 //,'role:Super Admin'

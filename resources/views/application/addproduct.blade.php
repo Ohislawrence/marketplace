@@ -61,6 +61,25 @@
             <form id="upload_form" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="type" value="{{ request()->get('type') }}">
+                @if(auth()->user()->getRoleNames()->first() == 'Super Admin')
+                <!-- INPUT CONTAINER -->
+                <div class="input-container">
+                    <label for="category" class="rl-label required">Is affiliate link?</label>
+                    <label for="category" class="select-block">
+                        <select name="category" id="category">
+                            <option value="">No</option>
+                            <option value="link">Yes</option>
+                        </select>
+                        <!-- SVG ARROW -->
+                        <svg class="svg-arrow">
+                            <use xlink:href="#svg-arrow"></use>
+                        </svg>
+                        <!-- /SVG ARROW -->
+                    </label>
+                </div>
+                <!-- /INPUT CONTAINER -->
+
+                @endif
 
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">

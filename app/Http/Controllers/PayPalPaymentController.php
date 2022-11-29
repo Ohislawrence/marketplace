@@ -132,10 +132,10 @@ class PayPalPaymentController extends Controller
         if (isset($response['status']) && $response['status'] == 'COMPLETED')
         {
 
-            $paid = OrderPayment::where('invoice_id', $response['invoice_id'] )->first();
-            //$paid = $paid->id;
-            $paid->status = 'paid';
-            $paid->save();
+            $paid = OrderPayment::where('invoice_id', $response['invoice_id'] )->update(['status' => 'paid']);
+            //$paid->update(['status' => 'paid']);
+            //$paid->status = 'paid';
+            //$paid->save();
             return redirect()
                 ->route('purchases.page')
                 ->with('success', 'Transaction complete.');
