@@ -34,29 +34,45 @@ class AccountController extends Controller
             'coverimage' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-
-        $profileimage = time().rand(50,99).'.'.$request->profileimage->extension();
-        $request->profileimage->move(public_path('users/profileimages'), $profileimage);
-
-        $coverimage = time().rand(1,49).'.'.$request->coverimage->extension();
-        $request->coverimage->move(public_path('users/coverimages'), $coverimage);
-
         $update2 = Userdetail::where('user_id', Auth::user()->id)->first();
         $update1 = $update2->user;
+
+        if($request->profileimage)
+        {
+            $profileimage = time().rand(50,99).'.'.$request->profileimage->extension();
+            $request->profileimage->move(public_path('users/profileimages'), $profileimage);
+        }else{
+            $profileimage = $update2->profileimage;
+        }
+
+        if($request->coverimage)
+        {
+            $coverimage = time().rand(1,49).'.'.$request->coverimage->extension();
+            $request->coverimage->move(public_path('users/coverimages'), $coverimage);
+        }else{
+            $coverimage = $update2->coverimage;
+        }
+
+
+
+
+
 
         $update1 ->update([
             'name' => $request->name,
         ]) ;
 
         $update2->update([
-            'username' => $request->username,
+            'zip' => $request->zip,
+            'company_name' => $request->company,
+            'about_me' => $request->about,
+
             'coverimage' => $coverimage,
             'profileimage'=> $profileimage,
             'location'=> $request->location,
             'website'=> $request->website,
-            'zip' => $request->zip,
-            'company' => $request->company,
-            'about_me' => $request->about,
+
+
         ]);
 
 

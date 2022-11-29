@@ -122,20 +122,20 @@
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">
                     <label for="website_url" class="rl-label">Website</label>
-                    <input type="text" id="website_url" value="{{ auth()->user()->userdetail->website }}" name="website">
+                    <input type="url" id="website_url" value="{{ auth()->user()->userdetail->website }}" name="website">
                 </div>
                 <!-- /INPUT CONTAINER -->
 
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">
                     <label for="website_url" class="rl-label">Location</label>
-                    <input type="text" id="website_url" value="{{ auth()->user()->userdetail->location }}" name="location">
+                    <input type="text" id="" value="{{ auth()->user()->userdetail->location }}" name="location">
                 </div>
                 <!-- /INPUT CONTAINER -->
                 <!-- INPUT CONTAINER -->
                 <div class="input-container">
                     <label for="website_url" class="rl-label">Zip Code</label>
-                    <input type="text" value="{{ auth()->user()->userdetail->zip }}" name="zip">
+                    <input type="number" value="{{ auth()->user()->userdetail->zip }}" name="zip">
                 </div>
                 <!-- /INPUT CONTAINER -->
 

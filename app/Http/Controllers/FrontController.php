@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -22,6 +23,7 @@ class FrontController extends Controller
     public function singleproduct($productslug)
     {
         $product = Product::where('slug', $productslug)->first();
+
         if ($product) {
             return view('frontviews.singleproduct', compact('product'));
         } else {

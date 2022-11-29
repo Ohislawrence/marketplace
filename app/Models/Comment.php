@@ -17,4 +17,24 @@ class Comment extends Model
         'review',
 
     ];
+
+    public function reply()
+    {
+        return $this->hasMany(\App\Models\Comment::class, 'comment_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(\App\Models\Comment::class, 'comment_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(\App\Models\Product::class, 'comment_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

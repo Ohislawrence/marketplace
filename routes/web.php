@@ -7,6 +7,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalPaymentController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -85,4 +86,7 @@ Route::middleware([
     Route::get('cart/paypal/payment', [PayPalPaymentController::class, 'handlePayment'])->name('paypal.payment');
     Route::get('cart/paypal/payment-cancel', [PayPalPaymentController::class, 'paymentCancel'])->name('paypal.cancel');
     Route::get('cart/paypal/payment-success', [PayPalPaymentController::class, 'paymentSuccess'])->name('paypal.success');
+
+    //comments
+    Route::post('comment/send/now', [CommentController::class, 'comment'])->name('comment.post');
 });

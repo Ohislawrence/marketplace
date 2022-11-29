@@ -16,7 +16,10 @@ class Userdetail extends Model
         'profileimage',
         'location',
         'website',
-        'user_id'
+        'user_id',
+        'zip',
+        'company_name',
+        'about_me',
 
     ];
 

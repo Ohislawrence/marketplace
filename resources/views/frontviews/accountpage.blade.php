@@ -49,7 +49,7 @@
 							<!-- COMMENT -->
 							<div class="comment-wrap">
 								<div class="comment">
-									{!! $userpage->userdetail->about_me !!}
+									<p>{!! $userpage->userdetail->about_me !!}</p>
 								</div>
 							</div>
 							<!-- /COMMENT -->
