@@ -1,22 +1,16 @@
 @extends('layouts.guest')
 
-@section('tittletop', 'Get great deal on apps and more')
-@section('tittle', 'Creative Resources')
-@section('description', 'Get great deal on apps and more')
-@section('image', 'Get great deal on apps and more')
+@section('tittletop', 'Shop Software')
 
-@section('footer')
-<!-- Shop -->
-<script src="{{ asset('assets/js/shop.js') }}"></script>
-<!-- JRange -->
-<script src="{{ asset('assets/js/vendor/jquery.range.min.js') }}"></script>
-@endsection
+@section('tittle', 'Get great deal on apps and more')
+@section('description', 'A marketplace for great deals on apps, PDFs, courses, template and more.')
+@section('image', 'Get great deal on apps and more')
 
 @section('body')
 <!-- SECTION HEADLINE -->
 <div class="section-headline-wrap">
     <div class="section-headline">
-        <h2>Creative Resourses</h2>
+        <h2>{{$Ptype->name}}</h2>
     </div>
 </div>
 <!-- /SECTION HEADLINE -->
@@ -75,14 +69,10 @@
                 </div>
             <!-- /PRODUCT SHOWCASE -->
             </div>
-
+            <div class="clearfix"></div>
             <!-- PAGER -->
             <div class="pager primary">
-                <div class="pager-item"><p>1</p></div>
-                <div class="pager-item active"><p>2</p></div>
-                <div class="pager-item"><p>3</p></div>
-                <div class="pager-item"><p>...</p></div>
-                <div class="pager-item"><p>17</p></div>
+                {{ $products->links() }}
             </div>
             <!-- /PAGER -->
         </div>
@@ -92,21 +82,13 @@
         <div class="sidebar">
             <!-- DROPDOWN -->
             <ul class="dropdown hover-effect">
-                <li class="dropdown-item">
-                    <a href="#">Digital Graphics</a>
-                </li>
-                <li class="dropdown-item active">
-                    <a href="#">Illustration</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Web Design</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Stock Photography</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Code and Plugins</a>
-                </li>
+                @forelse ( $products as $product)
+                    <li class="dropdown-item">
+                        <a href="#">{{ $product->category->name}}</a>
+                    </li>
+                @empty
+
+                @endforelse
             </ul>
             <!-- /DROPDOWN -->
 
@@ -237,4 +219,6 @@
 </div>
 <!-- /SECTION -->
 
+
+@include('frontviews.justnewsletter')
 @endsection

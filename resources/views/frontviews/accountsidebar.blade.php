@@ -87,11 +87,13 @@
                 </ul>
                 @guest()
 
-                <a href="{{ route('follow.button', ['username'=> request()->route('username')]) }}" class="button mid dark spaced">Log in to Follow</a>
+                <button id="myBtn" class="button mid dark spaced">Log in to Follow</button>
+                @include('frontviews.loginmodal')
 
                 @else
                 <!-- /SHARE LINKS -->
                 @if (request()->route('username') != auth()->user()->userdetail->username)
+                
                     @if (auth()->user()->isFollowing($userdetail->user))
                     <a href="{{ route('unfollow.button', ['username'=> request()->route('username')]) }}" class="button mid dark spaced">Unfollow</a>
                     @else
@@ -118,13 +120,13 @@
                 @endif
 
                 <li class="dropdown-item">
-                    <a href="{{ route('followers.page', ['username'=> request()->route('username')]) }}">Followers ({{ $userdetail->user->followers()->count() }})</a>
+                    <a >Followers ({{ $userdetail->user->followers()->count() }})</a>
                 </li>
                 <li class="dropdown-item">
-                    <a href="{{ route('following.page', ['username'=> request()->route('username')]) }}">Following ({{ $userdetail->user->followings()->count() }})</a>
+                    <a >Following ({{ $userdetail->user->followings()->count() }})</a>
                 </li>
                 <li class="dropdown-item">
-                    <a href="author-badges.html">Author Badges (16)</a>
+                    <a href="author-badges.html">Author Badges </a>
                 </li>
             </ul>
             <!-- /DROPDOWN -->

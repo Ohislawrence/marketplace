@@ -36,9 +36,10 @@
 
             </ul>
         </nav>
-        <form class="search-form">
-            <input type="text" class="rounded" name="search" id="search_products" placeholder="Search products here...">
-            <input type="image" src="{{ asset('assets/images/search-icon.png') }}" alt="search-icon">
+        <form class="search-form" method="POST" action="{{ route('search.page')}}">
+            @csrf
+            <input type="text" class="rounded" name="search" id="search_products" placeholder="Search items here...">
+            
         </form>
     </div>
 </div>

@@ -19,14 +19,21 @@
 @section('description', 'Get great deal on apps and more')
 @section('image', 'Get great deal on apps and more')
 @section('header')
+
     <style>
     .author-profile-banner {
         background: url("{{ asset('users/coverimages/'. $userpage->userdetail->coverimage ) }}") no-repeat center;
         background-size: cover;
         min-height: 300px; }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}">
 @endsection
 
+
+@section('footer')
+
+
+@endsection
 
 @section('body')
 

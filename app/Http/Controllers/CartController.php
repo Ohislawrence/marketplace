@@ -13,9 +13,10 @@ class CartController extends Controller
      */
     public function index()
     {
-        $userId = auth()->user()->id;
-        $cartItems = \Cart::session($userId)->getContent();
-        // dd($cartItems);
+        
+            $userId = auth()->user()->id;
+            $cartItems = \Cart::session($userId)->getContent();
+
         return view('frontviews.cart', compact('cartItems'));
     }
 
@@ -37,7 +38,8 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = auth()->user()->id;
+        
+        
         \Cart::session($userId)->add([
             'id' => $request->id,
             'name' => $request->name,

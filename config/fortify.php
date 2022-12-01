@@ -61,7 +61,15 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    'home' => function()
+        {
+        if (\Route::currentRouteName() == 'login' || \Route::currentRouteName() == 'register') {
+        return route('home');
+        }
+        else{
+        return URL::previous();
+        }
+    },
 
     /*
     |--------------------------------------------------------------------------

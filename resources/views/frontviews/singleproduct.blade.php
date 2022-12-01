@@ -12,17 +12,7 @@
 
 
 @section('footer')
-<script>
-    function myFunction() {
-      var x = document.getElementById("myDIVv");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
-    </script>
-<script src="{{ asset('assets/js/modal/modal.js') }}"></script>
+
 <!-- XM Tab -->
 <script src="{{ asset('assets/js/vendor/jquery.xmtab.min.js') }}"></script>
 <!-- Image Slides -->
@@ -90,23 +80,26 @@
                 @endif
 
                 <br/>
-                @auth
+                
                 @if ($product->downloadable == 'link')
+                @auth
                 <form action="{{ route('affiliate.link') }}" method="POST">
                     @csrf
                     <input type="hidden" name = "productID" value="{{ $product->id }}">
                     <button type="submit" class="button mid dark spaced"><span class="primary">Get it Now!</span></buttom>
                 </form>
-                @endif
-
                 @else
 
                 <button id="myBtn" class="button mid dark spaced"><span class="primary">Get it Now!</span></buttom>
 
                 @endauth
+                @endif
 
+                
 
+                
                 @if ($product->downloadable != 'link')
+                @auth
                 <form action="{{ route('buy.now') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{ $product->id }}" name="id">
@@ -118,19 +111,28 @@
                     <input type="hidden" value="1" name="quantity">
                 <button type="submit" class="button mid dark spaced"><span class="primary">Buy Now!</span></button>
                 </form>
+                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" value="{{ $product->id }}" name="id">
+                    <input type="hidden" value="{{ $product->name }}" name="name">
+                    <input type="hidden" value="{{ $productprice }}" name="price">
+                    <input type="hidden" value="{{ $product->slug }}" name="slug">
+                    <input type="hidden" value="{{ $product->type->name }}" name="type">
+                    <input type="hidden" value="{{ $product->featureimage }}"  name="image">
+                    <input type="hidden" value="1" name="quantity">
+                <button type="submit" class="button mid primary">Add to Cart </button>
+                </form>
 
-                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" value="{{ $product->id }}" name="id">
-                        <input type="hidden" value="{{ $product->name }}" name="name">
-                        <input type="hidden" value="{{ $productprice }}" name="price">
-                        <input type="hidden" value="{{ $product->slug }}" name="slug">
-                        <input type="hidden" value="{{ $product->type->name }}" name="type">
-                        <input type="hidden" value="{{ $product->featureimage }}"  name="image">
-                        <input type="hidden" value="1" name="quantity">
-                    <button type="submit" class="button mid primary">Add to Cart </button>
-                    </form>
-                    @endif
+                @else
+                    <button id="myBtn" class="button mid dark spaced"><span class="primary">Buy Now!</span></button>
+                    
+                @endauth
+                @endif
+
+                   
+                
+                    
+                
 
                 <div class="clearfix"></div>
             </div>

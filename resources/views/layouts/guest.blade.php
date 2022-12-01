@@ -30,6 +30,8 @@
 
         @include('layouts.partial.footer')
 
+        
+        <script src="{{ asset('assets/js/modal/modal.js') }}"></script>
         <!-- jQuery -->
         <script src="{{ asset('assets/js/vendor/jquery-3.1.0.min.js') }}"></script>
         <!-- Tooltipster -->

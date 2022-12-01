@@ -26,16 +26,17 @@
 
         <!-- SEARCH WIDGET -->
         <div class="search-widget">
-            <form class="search-widget-form">
-                <input type="text" name="category_name" placeholder="Search goods or services here...">
+            <form class="search-widget-form" method="POST" action="{{ route('homepagesearch.page')}}">
+                @csrf
+                <input type="text" name="search" placeholder="Search items here...">
                 <label for="categories" class="select-block">
-                    <select name="categories" id="categories">
-                        <option value="0">All Categories</option>
+                    <select name="types" id="categories">
+                        <option value="">All Categories</option>
                         <option value="1">Software</option>
-                        <option value="2">Courses & Learning</option>
-                        <option value="3">Templates</option>
-                        <option value="4">Creative Resources</option>
-                        <option value="5">Tickets</option>
+                        <option value="3">Courses & Learning</option>
+                        <option value="4">Templates</option>
+                        <option value="5">Creative Resources</option>
+                        <option value="6">Tickets</option>
                     </select>
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
@@ -43,7 +44,7 @@
                     </svg>
                     <!-- /SVG ARROW -->
                 </label>
-                <button class="button medium dark">Search Now!</button>
+                <button type="submit" class="button medium dark">Search Now!</button>
             </form>
         </div>
         <!-- /SEARCH WIDGET -->

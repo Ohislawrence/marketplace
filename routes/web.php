@@ -37,6 +37,11 @@ Route::get('/favourite', [FrontController::class, 'favourite'])->name('favourite
 Route::get('/items', [TypeController::class, 'items'])->name('items.page');
 Route::get('all/{types}', [TypeController::class, 'type'])->name('type.page');
 
+//search
+Route::post('search', [TypeController::class, 'search'])->name('search.page');
+Route::post('home/search', [TypeController::class, 'homepagesearch'])->name('homepagesearch.page');
+
+//singleproduct
 Route::get('/item/{productslug}', [FrontController::class, 'singleproduct'])->name('singleproduct.page');
 
 

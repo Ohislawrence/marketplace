@@ -8,10 +8,28 @@
 
 
 @section('footer')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 <!-- JRange -->
 <script src="{{ asset('assets/js/vendor/jquery.range.min.js') }}"></script>
 <!-- Shop -->
 <script src="{{ asset('assets/js/shop.js') }}"></script>
+
+
+
+<script>
+    $('ul.pagination').hide();
+    $(function() {
+        $('.scrolling-pagination').jscroll({
+            autoTrigger: true,
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.scrolling-pagination',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
+    });
+</script>
 @endsection
 
 @section('body')
@@ -69,22 +87,20 @@
             <div class="product-showcase">
                 <!-- PRODUCT LIST -->
                 <div class="product-list grid column3-4-wrap">
+                    <div class="scrolling-pagination">
                     @forelse ( $products as $product )
                     @include('frontviews.justproduct')
                     @empty
 
                     @endforelse
+                    </div>
                 </div>
-            <!-- /PRODUCT SHOWCASE -->
+                
             </div>
-
+            <div class="clearfix"></div>
             <!-- PAGER -->
             <div class="pager primary">
-                <div class="pager-item"><p>1</p></div>
-                <div class="pager-item active"><p>2</p></div>
-                <div class="pager-item"><p>3</p></div>
-                <div class="pager-item"><p>...</p></div>
-                <div class="pager-item"><p>17</p></div>
+            {{ $products->links() }}
             </div>
             <!-- /PAGER -->
         </div>
