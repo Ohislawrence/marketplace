@@ -98,7 +98,7 @@ class ProductController extends Controller
             'redeem_url' => $request->redeem_url,
             'redeem_instructions' => $request->redeem_instructions,
             'integrations' => $request->integrations,
-            'downloadable' => 'link',
+            'downloadable' => $request->link,
 
         ]);
 

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderItem;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -51,7 +55,7 @@ class OrderController extends Controller
         $orderItem->amount = 0;
         $orderItem->save();
 
-        
+
         return redirect(route('purchases.page',['username' => auth()->user()->userdetail->username]));
     }
 }

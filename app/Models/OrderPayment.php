@@ -9,4 +9,14 @@ class OrderPayment extends Model
 {
     use HasFactory;
     protected $table = 'order_payments';
+
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order');
+    }
+
+    public function user()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 }

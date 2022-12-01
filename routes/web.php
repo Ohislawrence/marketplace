@@ -9,6 +9,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalPaymentController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use App\Models\Type;
@@ -39,10 +40,13 @@ Route::get('all/{types}', [TypeController::class, 'type'])->name('type.page');
 Route::get('/item/{productslug}', [FrontController::class, 'singleproduct'])->name('singleproduct.page');
 
 
-//acounts
+//accounts
 Route::get('/user/{username}', [AccountController::class, 'account'])->name('account.page');
 Route::get('user/{username}/purchases', [AccountController::class, 'purchases'])->name('purchases.page');
 Route::post('link/aff/link', [OrderController::class, 'affiliatelink'] )->name('affiliate.link');
+
+//download
+Route::post('product/download', [AccountController::class, 'download'])->name('download.item');
 
 //cart
 Route::post('buy-now', [FrontController::class, 'buynow'])->name('buy.now');

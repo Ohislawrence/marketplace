@@ -31,7 +31,7 @@
 <div class="content right">
     <!-- HEADLINE -->
     <div class="headline primary">
-        <h4>103 Author's Items</h4>
+        <h4>Your Purchases</h4>
         <!-- VIEW SELECTORS -->
         <div class="view-selectors">
             <a href="author-profile-items.html" class="view-selector grid"></a>
@@ -92,32 +92,55 @@
         <!-- /PURCHASES LIST HEADER -->
 
          <!-- PURCHASE ITEM -->
+
+         @forelse ( $orderpayment as $item )
+        @foreach ($item->order->orderitem as $purch )
+
+
+
          <div class="purchase-item">
             <div class="purchase-item-date">
-                <p>Dec 18th, 2015</p>
+                <p>{{ $item->created_at }}</p>
             </div>
             <div class="purchase-item-details">
                 <!-- ITEM PREVIEW -->
                 <div class="item-preview">
                     <figure class="product-preview-image small liquid">
-                        <img src="images/items/westeros_s.jpg" alt="product-image">
+                        <img src="{{ asset('products/featuredimage/'.$purch->product->featureimage )}}" alt="">
                     </figure>
-                    <p class="text-header">Westeros Custom Clothing</p>
-                    <p class="description">Lorem ipsum dolor sit urarde adipisicing elit dem...</p>
+                    <p class="text-header">{{ $purch->product->name }}</p>
+                    <p class="description">{{ $purch->product->short_summary }}</p>
                 </div>
                 <!-- /ITEM PREVIEW -->
             </div>
             <div class="purchase-item-info">
-                <p class="category primary">PSD Templates</p>
-                <p><span class="light">License:</span> Standard</p>
-                <p><span class="light">Author:</span> Odin_Design</p>
+                <p class="category primary">{{ $purch->product->type->name }}</p>
+                <p><span class="light">License:</span> {{  $purch->product->access  }}</p>
+                <p><span class="light">Author:</span> {{ $purch->product->user->name }}</p>
                 <p class="text-header tiny">Check Invoice</p>
             </div>
             <div class="purchase-item-price">
-                <p class="price"><span>$</span>14</p>
+                @if ($item->amount == 0)
+                <p class="price">Free</p>
+                @else
+                <p class="price"><span>$</span>{{ $item->amount }}</p>
+                @endif
+
             </div>
+
             <div class="purchase-item-download">
-                <a href="#" class="button dark-light">Download Item</a>
+            @if ($purch->product->downloadable == 'link')
+            <a href="#" class="button dark-light">Claim Offer</a>
+            @elseif ($purch->product->downloadable == 'yes')
+            <form action="{{ route('download.item')}}" method="POST">
+                @csrf
+                <input type="hidden" name="productID" value="{{ $purch->product->id }}">
+            <button type="submit" class="button dark-light">Download</button>
+            </form>
+            @else
+            <a href="#" class="button dark-light">Redeem Now</a>
+            @endif
+
             </div>
             <div class="purchase-item-recommend">
                 <div class="recommendation-wrap">
@@ -130,50 +153,11 @@
                 </div>
             </div>
         </div>
-        <!-- /PURCHASE ITEM -->
+        @endforeach
+         @empty
 
-        <!-- PURCHASE ITEM -->
-        <div class="purchase-item">
-            <div class="purchase-item-date">
-                <p>May 4th, 2015</p>
-            </div>
-            <div class="purchase-item-details">
-                <!-- ITEM PREVIEW -->
-                <div class="item-preview">
-                    <figure class="product-preview-image small liquid">
-                        <img src="images/items/miniverse_s.jpg" alt="product-image">
-                    </figure>
-                    <p class="text-header">Miniverse - Hero Image Composer</p>
-                    <p class="description">Lorem ipsum dolor sit urarde adipisicing elit dem...</p>
-                </div>
-                <!-- /ITEM PREVIEW -->
-            </div>
-            <div class="purchase-item-info">
-                <p class="category primary">Hero Images</p>
-                <p><span class="light">License:</span> Standard</p>
-                <p><span class="light">Author:</span> Odin_Design</p>
-                <p class="text-header tiny">Check Invoice</p>
-            </div>
-            <div class="purchase-item-price">
-                <p class="price"><span>$</span>12</p>
-            </div>
-            <div class="purchase-item-download">
-                <a href="#" class="button dark-light">Download Item</a>
-            </div>
-            <div class="purchase-item-recommend">
-                <div class="recommendation-wrap">
-                    <a href="#recommendation-popup" class="recommendation good open-recommendation-form">
-                        <span class="icon-like"></span>
-                    </a>
-                    <a href="#recommendation-popup" class="recommendation bad hoverable open-recommendation-form">
-                        <span class="icon-dislike"></span>
-                    </a>
-                </div>
-                <p class="text-header">
-                    <a href="#recommendation-popup" class="open-recommendation-form">Review Comment</a>
-                </p>
-            </div>
-        </div>
+         @endforelse
+
         <!-- /PURCHASE ITEM -->
     </div>
     <!-- /PRODUCT LIST -->

@@ -80,4 +80,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Userdetail');
     }
 
+    public function order()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
+
 }

@@ -51,7 +51,8 @@
         @auth
 
         <!-- COMMENT REPLY FORM -->
-            @if ($comment->user_id == auth()->user()->id || $product->user_id == auth()->user()->id)
+
+        @if ($comment->user_id == auth()->user()->id || $product->user_id == auth()->user()->id)
 
 
         <form class="comment-reply-form" method="POST" action="{{ route('comment.post') }}">

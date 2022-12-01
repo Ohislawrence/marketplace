@@ -6,8 +6,23 @@
 @section('description', 'A marketplace for great deals on apps, PDFs, courses, template and more.')
 @section('image', 'Get great deal on apps and more')
 
+@section('header')
+<link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}">
+@endsection
+
 
 @section('footer')
+<script>
+    function myFunction() {
+      var x = document.getElementById("myDIVv");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    </script>
+<script src="{{ asset('assets/js/modal/modal.js') }}"></script>
 <!-- XM Tab -->
 <script src="{{ asset('assets/js/vendor/jquery.xmtab.min.js') }}"></script>
 <!-- Image Slides -->
@@ -28,10 +43,10 @@
 <!-- Item V1 -->
 <script src="{{ asset('assets/js/item-v1.js') }}"></script>
 
-
 @endsection
 
 @section('body')
+@include('frontviews.loginmodal')
 <!-- SECTION HEADLINE -->
 <div class="section-headline-wrap">
     <div class="section-headline">
@@ -63,7 +78,7 @@
             <p class="price large"><span>$</span>{{ $productprice }} </p>
             <center><p class="price tiny"><del>${{ $product->price }}</del></p></center>
             @endif
-                
+
                 <br/>
                 <hr class="line-separator">
                 <form id="aux_form" name="aux_form"></form>
@@ -75,13 +90,23 @@
                 @endif
 
                 <br/>
+                @auth
                 @if ($product->downloadable == 'link')
                 <form action="{{ route('affiliate.link') }}" method="POST">
                     @csrf
                     <input type="hidden" name = "productID" value="{{ $product->id }}">
                     <button type="submit" class="button mid dark spaced"><span class="primary">Get it Now!</span></buttom>
                 </form>
+                @endif
+
                 @else
+
+                <button id="myBtn" class="button mid dark spaced"><span class="primary">Get it Now!</span></buttom>
+
+                @endauth
+
+
+                @if ($product->downloadable != 'link')
                 <form action="{{ route('buy.now') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{ $product->id }}" name="id">
@@ -105,9 +130,7 @@
                         <input type="hidden" value="1" name="quantity">
                     <button type="submit" class="button mid primary">Add to Cart </button>
                     </form>
-
-                @endif
-
+                    @endif
 
                 <div class="clearfix"></div>
             </div>

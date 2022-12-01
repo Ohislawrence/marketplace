@@ -38,6 +38,7 @@ class Product extends Model
         'redeem_url',
         'redeem_instructions',
         'TLDR',
+        'downloadable',
     ];
 
     public function user()
@@ -64,6 +65,11 @@ class Product extends Model
     public function comment()
     {
         return $this->hasMany('App\Models\Comment');
+    }
+
+    public function orderitem()
+    {
+        return $this->hasMany('App\Models\OrderItem');
     }
 
 }

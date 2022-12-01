@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\OrderPayment;
+use App\Models\Redeem;
 use App\Models\User;
 use App\Models\Userdetail;
 use Illuminate\Http\Request;
@@ -83,7 +87,17 @@ class AccountController extends Controller
     public function purchases($username)
     {
         $userdetail = Userdetail::where('username', $username)->first();
-        return view('frontviews.purchases', compact('userdetail'));
+        $orderpayment = OrderPayment::where('user_id', auth()->user()->id)->where('status', 'paid')->get();
+
+        return view('frontviews.purchases', compact('userdetail', 'orderpayment'));
+    }
+
+
+    public function download(Request $request)
+    {
+        //dd($productID);
+        $item = Redeem::where('product_id', $request->productID)->first();
+        return response()->download(asset('products/files/'. $item->item));
     }
 
     public function followers($username)
