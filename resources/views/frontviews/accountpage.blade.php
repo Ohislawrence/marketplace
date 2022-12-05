@@ -68,7 +68,7 @@
             <!-- HEADLINE -->
             <div class="headline buttons primary">
                 <h4>Latest Items</h4>
-                <a href="author-profile-items.html" class="button mid-short dark-light">See all the items</a>
+                <a href="{{ route('myitem.page', ['username' => $userpage->userdetail->username]) }}" class="button mid-short dark-light">See all the items</a>
             </div>
             <!-- /HEADLINE -->
 

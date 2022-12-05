@@ -48,10 +48,11 @@ Route::get('/item/{productslug}', [FrontController::class, 'singleproduct'])->na
 //accounts
 Route::get('/user/{username}', [AccountController::class, 'account'])->name('account.page');
 Route::get('user/{username}/purchases', [AccountController::class, 'purchases'])->name('purchases.page');
-Route::post('link/aff/link', [OrderController::class, 'affiliatelink'] )->name('affiliate.link');
+Route::get('user/{username}/myitem', [AccountController::class, 'myitem'])->name('myitem.page');
+
 
 //download
-Route::post('product/download', [AccountController::class, 'download'])->name('download.item');
+
 
 //cart
 Route::post('buy-now', [FrontController::class, 'buynow'])->name('buy.now');
@@ -92,6 +93,8 @@ Route::middleware([
     Route::get('user/{username}/follow/button', [AccountController::class, 'followbutton'])->name('follow.button');
     Route::get('user/{username}/unfollow/button', [AccountController::class, 'unfollowbutton'])->name('unfollow.button');
     Route::post('account/settings/save', [AccountController::class, 'accountsettingsave'])->name('accountsetting.save');
+    Route::post('link/aff/link', [OrderController::class, 'affiliatelink'] )->name('affiliate.link');
+    Route::get('product/download/{productID}', [AccountController::class, 'download'])->name('download.item');
 
 
     //PayPal Payment
@@ -101,4 +104,6 @@ Route::middleware([
 
     //comments
     Route::post('comment/send/now', [CommentController::class, 'comment'])->name('comment.post');
+    //reviews
+    Route::post('review/send/now', [CommentController::class, 'review'])->name('review.post');
 });

@@ -4,13 +4,13 @@
     <div class="tab-header primary">
         <!-- TAB ITEM -->
         <div class="tab-item selected">
-            <p class="text-header">Comments ({{ $product->comment->count() }})</p>
+            <p class="text-header">Comments ({{ $product->comment->where('comment_id', null)->where('review', null)->count() }})</p>
         </div>
         <!-- /TAB ITEM -->
 
         <!-- TAB ITEM -->
         <div class="tab-item">
-            <p class="text-header">Buyers Corner</p>
+            <p class="text-header">Review ({{ $product->comment->where('comment_id', null)->whereNotNull('review')->count() }})</p>
         </div>
         <!-- /TAB ITEM -->
 
@@ -26,7 +26,7 @@
     <div class="tab-content void">
         <!-- COMMENTS -->
         <div class="comment-list">
-        @forelse ( $product->comment->where('comment_id', null) as $comment )
+        @forelse ( $product->comment->where('comment_id', null)->where('review', null) as $comment )
 
         <!-- COMMENT -->
         <div class="comment-wrap">
@@ -105,16 +105,13 @@
 
         @empty
 
-        @endforelse
+
             <!-- PAGER -->
             <div class="pager primary">
-                <div class="pager-item"><p>1</p></div>
-                <div class="pager-item active"><p>2</p></div>
-                <div class="pager-item"><p>3</p></div>
-                <div class="pager-item"><p>...</p></div>
-                <div class="pager-item"><p>17</p></div>
             </div>
             <!-- /PAGER -->
+
+    @endforelse
 
             <div class="clearfix"></div>
 
@@ -160,210 +157,92 @@
     <div class="tab-content void">
         <!-- COMMENTS -->
         <div class="comment-list">
-            <!-- COMMENT -->
+        @forelse ( $product->comment->where('comment_id', null)->whereNotNull('review') as $review )
+
+        <!-- COMMENT -->
+        <div class="comment-wrap">
+            <!-- USER AVATAR -->
+            <a href="{{ route('account.page', ['username'=> $review->user->userdetail->username]) }}">
+                <figure class="user-avatar medium">
+                    <img src="{{ asset('users/profileimages/'. $review->user->userdetail->profileimage ) }}" alt="">
+                </figure>
+            </a>
+            <!-- /USER AVATAR -->
+            <div class="comment">
+                <p class="text-header">{{ $review->user->name }}</p>
+                <!-- PIN -->
+                <span class="pin greyed">Purchased</span>
+                <!-- /PIN -->
+                <p class="timestamp">{{ $review->created_at }}</p>
+                <a href="#" class="report">Report</a>
+                <p>{{ $review->comment }}</p>
+            </div>
+
+        <!-- /COMMENT -->
+        @auth
+
+        <!-- COMMENT REPLY FORM -->
+
+        @if ($comment->user_id == auth()->user()->id || $product->user_id == auth()->user()->id)
+
+
+        <form class="comment-reply-form" method="POST" action="{{ route('review.post') }}">
+            @csrf
+            <input type="hidden" name="productuuid" value="{{ $product->id }}">
+            <input type="hidden" name="comment_id" value="{{ $review->id }}">
+            <textarea name="reviewreply" placeholder="Reply here..."></textarea>
+            <!-- CHECKBOX -->
+            <input type="checkbox" id="notif1" name="notif1" checked>
+            <label for="notif1">
+                <span class="checkbox primary"><span></span></span>
+                Receive email notifications
+            </label>
+            <!-- /CHECKBOX -->
+            <button type="submit" class="button primary">Reply</button>
+        </form>
+        <!-- /COMMENT REPLY FORM -->
+        @endif
+        @endauth
+        <!-- COMMENT reply -->
+        @forelse ( $product->comment->where('comment_id', $review->id) as  $reply)
             <div class="comment-wrap">
                 <!-- USER AVATAR -->
                 <a href="user-profile.html">
                     <figure class="user-avatar medium">
-                        <img src="images/avatars/avatar_02.jpg" alt="">
+                        <img src="{{ asset('users/profileimages/'. $reply->user->userdetail->profileimage ) }}" alt="">
                     </figure>
                 </a>
                 <!-- /USER AVATAR -->
                 <div class="comment">
-                    <p class="text-header">MeganV.</p>
+                    <p class="text-header">{{ $reply->user->name }}</p>
                     <!-- PIN -->
-                    <span class="pin greyed">Purchased</span>
+                    <span class="pin">Author</span>
                     <!-- /PIN -->
-                    <p class="timestamp">5 Hours Ago</p>
+                    <p class="timestamp">{{ $reply->created_at }}</p>
                     <a href="#" class="report">Report</a>
-                    <p>I’ve recently bought your theme and let me say it’s fantastic! I have a small question regarding the main files and how to install the theme. Could you help me? Thanks!</p>
+                    <p>{{ $reply->comment }}</p>
                 </div>
-            </div>
-            <!-- /COMMENT -->
+        </div>
+        <!-- /COMMENT REPLY -->
+        @empty
 
-            <!-- COMMENT REPLY -->
-            <div class="comment-wrap comment-reply">
-                <!-- USER AVATAR -->
-                <a href="user-profile.html">
-                    <figure class="user-avatar medium">
-                        <img src="images/avatars/avatar_09.jpg" alt="">
-                    </figure>
-                </a>
-                <!-- /USER AVATAR -->
+        @endforelse
 
-                <!-- COMMENT REPLY FORM -->
-                <form class="comment-reply-form">
-                    <textarea name="treply10" placeholder="Write your comment here..."></textarea>
-                    <!-- CHECKBOX -->
-                    <input type="checkbox" id="notif10" name="notif10" checked>
-                    <label for="notif10">
-                        <span class="checkbox primary"><span></span></span>
-                        Receive email notifications
-                    </label>
-                    <!-- /CHECKBOX -->
-                    <button class="button primary">Post Comment</button>
-                </form>
-                <!-- /COMMENT REPLY FORM -->
-            </div>
-            <!-- /COMMENT REPLY -->
+        <!-- /COMMENT reply -->
+    </div>
+        <!-- LINE SEPARATOR -->
+        <hr class="line-separator">
+        <!-- /LINE SEPARATOR -->
 
-            <!-- LINE SEPARATOR -->
-            <hr class="line-separator">
-            <!-- /LINE SEPARATOR -->
+        @empty
 
-            <!-- COMMENT -->
-            <div class="comment-wrap">
-                <!-- USER AVATAR -->
-                <a href="user-profile.html">
-                    <figure class="user-avatar medium">
-                        <img src="images/avatars/avatar_19.jpg" alt="">
-                    </figure>
-                </a>
-                <!-- /USER AVATAR -->
-                <div class="comment">
-                    <p class="text-header">Cloud Templates</p>
-                    <!-- PIN -->
-                    <span class="pin greyed">Purchased</span>
-                    <!-- /PIN -->
-                    <p class="timestamp">8 Hours Ago</p>
-                    <a href="#" class="report">Report</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnada. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                </div>
-            </div>
-            <!-- /COMMENT -->
-
-            <!-- COMMENT REPLY -->
-            <div class="comment-wrap comment-reply">
-                <!-- USER AVATAR -->
-                <a href="user-profile.html">
-                    <figure class="user-avatar medium">
-                        <img src="images/avatars/avatar_09.jpg" alt="">
-                    </figure>
-                </a>
-                <!-- /USER AVATAR -->
-
-                <!-- COMMENT REPLY FORM -->
-                <form class="comment-reply-form">
-                    <textarea name="treply20" placeholder="Write your comment here..."></textarea>
-                    <!-- CHECKBOX -->
-                    <input type="checkbox" id="notif20" name="notif20" checked>
-                    <label for="notif20">
-                        <span class="checkbox primary"><span></span></span>
-                        Receive email notifications
-                    </label>
-                    <!-- /CHECKBOX -->
-                    <button class="button primary">Post Comment</button>
-                </form>
-                <!-- /COMMENT REPLY FORM -->
-            </div>
-            <!-- /COMMENT REPLY -->
-
-            <!-- LINE SEPARATOR -->
-            <hr class="line-separator">
-            <!-- /LINE SEPARATOR -->
-
-            <!-- COMMENT -->
-            <div class="comment-wrap">
-                <!-- USER AVATAR -->
-                <a href="user-profile.html">
-                    <figure class="user-avatar medium">
-                        <img src="images/avatars/avatar_18.jpg" alt="">
-                    </figure>
-                </a>
-                <!-- /USER AVATAR -->
-                <div class="comment">
-                    <p class="text-header">Lucy Diamond</p>
-                    <!-- PIN -->
-                    <span class="pin greyed">Purchased</span>
-                    <!-- /PIN -->
-                    <p class="timestamp">10 Hours Ago</p>
-                    <a href="#" class="report">Report</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnada. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                </div>
-
-                <!-- COMMENT -->
-                <div class="comment-wrap">
-                    <!-- USER AVATAR -->
-                    <a href="user-profile.html">
-                        <figure class="user-avatar medium">
-                            <img src="images/avatars/avatar_09.jpg" alt="">
-                        </figure>
-                    </a>
-                    <!-- /USER AVATAR -->
-                    <div class="comment">
-                        <p class="text-header">Odin_Design</p>
-                        <!-- PIN -->
-                        <span class="pin">Author</span>
-                        <!-- /PIN -->
-                        <p class="timestamp">2 Hours Ago</p>
-                        <a href="#" class="report">Report</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnada. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                    </div>
-                </div>
-                <!-- /COMMENT -->
-
-                <!-- COMMENT -->
-                <div class="comment-wrap">
-                    <!-- USER AVATAR -->
-                    <a href="user-profile.html">
-                        <figure class="user-avatar medium">
-                            <img src="images/avatars/avatar_18.jpg" alt="">
-                        </figure>
-                    </a>
-                    <!-- /USER AVATAR -->
-                    <div class="comment">
-                        <p class="text-header">Lucy Diamond</p>
-                        <!-- PIN -->
-                        <span class="pin greyed">Purchased</span>
-                        <!-- /PIN -->
-                        <p class="timestamp">2 Hours Ago</p>
-                        <a href="#" class="report">Report</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnada. Ut enim ad minim veniam onsectetur elit.</p>
-                    </div>
-                </div>
-                <!-- /COMMENT -->
-
-                <!-- COMMENT REPLY -->
-                <div class="comment-wrap comment-reply">
-                    <!-- USER AVATAR -->
-                    <a href="user-profile.html">
-                        <figure class="user-avatar medium">
-                            <img src="images/avatars/avatar_09.jpg" alt="">
-                        </figure>
-                    </a>
-                    <!-- /USER AVATAR -->
-
-                    <!-- COMMENT REPLY FORM -->
-                    <form class="comment-reply-form">
-                        <textarea name="treply30" placeholder="Write your comment here..."></textarea>
-                        <!-- CHECKBOX -->
-                        <input type="checkbox" id="notif30" name="notif30" checked>
-                        <label for="notif30">
-                            <span class="checkbox primary"><span></span></span>
-                            Receive email notifications
-                        </label>
-                        <!-- /CHECKBOX -->
-                        <button class="button primary">Post Comment</button>
-                    </form>
-                    <!-- /COMMENT REPLY FORM -->
-                </div>
-                <!-- /COMMENT REPLY -->
-            </div>
-            <!-- /COMMENT -->
-
-            <!-- LINE SEPARATOR -->
-            <hr class="line-separator">
-            <!-- /LINE SEPARATOR -->
 
             <!-- PAGER -->
             <div class="pager primary">
-                <div class="pager-item"><p>1</p></div>
-                <div class="pager-item active"><p>2</p></div>
-                <div class="pager-item"><p>3</p></div>
-                <div class="pager-item"><p>...</p></div>
-                <div class="pager-item"><p>17</p></div>
             </div>
             <!-- /PAGER -->
+
+    @endforelse
 
             <div class="clearfix"></div>
 
@@ -371,26 +250,47 @@
             <hr class="line-separator">
             <!-- /LINE SEPARATOR -->
 
-            <h3>Leave a Comment</h3>
+            <h3>Write a review</h3>
+            @auth
 
             <!-- COMMENT REPLY -->
             <div class="comment-wrap comment-reply">
                 <!-- USER AVATAR -->
                 <a href="user-profile.html">
                     <figure class="user-avatar medium">
-                        <img src="images/avatars/avatar_09.jpg" alt="">
+                        <img src="{{ asset('users/profileimages/'. auth()->user()->userdetail->profileimage ) }}" alt="">
                     </figure>
                 </a>
                 <!-- /USER AVATAR -->
 
                 <!-- COMMENT REPLY FORM -->
-                <form class="comment-reply-form">
-                    <textarea name="treply100" placeholder="Write your comment here..."></textarea>
-                    <button class="button primary">Post Comment</button>
+                <form class="comment-reply-form" method="POST" action="{{ route('review.post') }}">
+                    @csrf
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                      </div>
+                    <input type="hidden" name="productuuid" value="{{ $product->id }}">
+                    <textarea name="review" placeholder="Write your comment here..."></textarea>
+                    <button type="submit" class="button primary">Review</button>
                 </form>
                 <!-- /COMMENT REPLY FORM -->
             </div>
             <!-- /COMMENT REPLY -->
+            @else
+            <div class="comment-wrap comment-reply">
+                <p>Purchase this item to review it</p>
+            </div>
+
+            @endauth
         </div>
         <!-- /COMMENTS -->
     </div>

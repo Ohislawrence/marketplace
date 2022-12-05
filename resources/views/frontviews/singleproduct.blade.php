@@ -8,6 +8,7 @@
 
 @section('header')
 <link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/rating.css') }}">
 @endsection
 
 
@@ -80,7 +81,7 @@
                 @endif
 
                 <br/>
-                
+
                 @if ($product->downloadable == 'link')
                 @auth
                 <form action="{{ route('affiliate.link') }}" method="POST">
@@ -95,9 +96,9 @@
                 @endauth
                 @endif
 
-                
 
-                
+
+
                 @if ($product->downloadable != 'link')
                 @auth
                 <form action="{{ route('buy.now') }}" method="POST" enctype="multipart/form-data">
@@ -125,14 +126,14 @@
 
                 @else
                     <button id="myBtn" class="button mid dark spaced"><span class="primary">Buy Now!</span></button>
-                    
+
                 @endauth
                 @endif
 
-                   
-                
-                    
-                
+
+
+
+
 
                 <div class="clearfix"></div>
             </div>

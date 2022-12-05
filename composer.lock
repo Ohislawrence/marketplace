@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90fae78aa77dee22f52f0a76a184a112",
+    "content-hash": "084e28f3dc204b3cdf0f0d0f892d19c4",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2115,6 +2115,81 @@
                 }
             ],
             "time": "2022-08-08T13:52:53+00:00"
+        },
+        {
+            "name": "mannikj/laravel-wallet",
+            "version": "v9.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MannikJ/laravel-wallet.git",
+                "reference": "4794dc495b981781cc44062dc1a232c1eeea19d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MannikJ/laravel-wallet/zipball/4794dc495b981781cc44062dc1a232c1eeea19d9",
+                "reference": "4794dc495b981781cc44062dc1a232c1eeea19d9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^3.0",
+                "nunomaduro/larastan": "^1.0",
+                "orchestra/testbench": "^7.5",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MannikJ\\Laravel\\Wallet\\WalletServiceProvider"
+                    ],
+                    "aliases": {
+                        "Wallet": "MannikJ\\Laravel\\Wallet\\Facades\\WalletFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MannikJ\\Laravel\\Wallet\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jannik Malken",
+                    "email": "mannikj@web.de",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Simon Depelchin",
+                    "email": "simon@webartisan.be",
+                    "homepage": "https://webartisan.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easy to use virtual wallet for your app",
+            "homepage": "https://github.com/mannikj/laravel-wallet",
+            "keywords": [
+                "credits",
+                "currency",
+                "depsimon",
+                "laravel-wallet",
+                "mannikj",
+                "payment",
+                "virtual",
+                "wallet"
+            ],
+            "support": {
+                "issues": "https://github.com/MannikJ/laravel-wallet/issues",
+                "source": "https://github.com/MannikJ/laravel-wallet/tree/v9.0.0"
+            },
+            "time": "2022-05-11T14:43:55+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

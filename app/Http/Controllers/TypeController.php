@@ -15,7 +15,7 @@ class TypeController extends Controller
         return view('frontviews.items', compact('products'));
     }
 
-    
+
 
     public function type(Request $request, $types) {
         $type= $request->types;
@@ -28,14 +28,14 @@ class TypeController extends Controller
     public function search(Request $request){
         // Get the search value from the request
         $search = $request->input('search');
-    
+
         // Search in the title and body columns from the posts table
         $products = Product::query()
-            ->where('is_approved','=', '1')
-            ->orWhere('desc', 'LIKE', "%{$search}%")
+            ->where('is_approved', '1')
             ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('desc', 'LIKE', "%{$search}%")
             ->orderBy('created_at')->paginate(12);
-    
+
         // Return the search view with the resluts compacted
         return view('frontviews.search', compact('products'));
     }
@@ -49,11 +49,11 @@ class TypeController extends Controller
         // Search in the title and body columns from the posts table
         $products = Product::query()
             ->where('plantype_id', $type)
-            ->where('is_approved','=', '1')
+            ->where('is_approved', '1')
             ->where('name', 'LIKE', "%{$search}%")
             ->orWhere('desc', 'LIKE', "%{$search}%")
             ->orderBy('created_at')->paginate(12);
-    
+
         // Return the search view with the resluts compacted
         return view('frontviews.search', compact('products'));
     }

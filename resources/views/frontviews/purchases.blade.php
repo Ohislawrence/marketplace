@@ -130,13 +130,10 @@
 
             <div class="purchase-item-download">
             @if ($purch->product->downloadable == 'link')
-            <a href="#" class="button dark-light">Claim Offer</a>
+            <a href="{{ $purch->product->url}}" target="_blank" class="button dark-light">Claim Offer</a>
             @elseif ($purch->product->downloadable == 'yes')
-            <form action="{{ route('download.item')}}" method="POST">
-                @csrf
-                <input type="hidden" name="productID" value="{{ $purch->product->id }}">
-            <button type="submit" class="button dark-light">Download</button>
-            </form>
+                <a href="{{ route('download.item', ['productID' => $purch->product->id ]) }}" class="button dark-light">Download</a>
+
             @else
             <a href="#" class="button dark-light">Redeem Now</a>
             @endif
@@ -166,11 +163,7 @@
 
     <!-- PAGER -->
     <div class="pager primary">
-        <div class="pager-item"><p>1</p></div>
-        <div class="pager-item active"><p>2</p></div>
-        <div class="pager-item"><p>3</p></div>
-        <div class="pager-item"><p>...</p></div>
-        <div class="pager-item"><p>17</p></div>
+        {{ $orderpayment->links()}}
     </div>
     <!-- /PAGER -->
 </div>

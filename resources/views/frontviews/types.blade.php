@@ -82,9 +82,12 @@
         <div class="sidebar">
             <!-- DROPDOWN -->
             <ul class="dropdown hover-effect">
-                @forelse ( $products as $product)
+                @forelse ( $products->groupBy('category') as $cat => $product)
                     <li class="dropdown-item">
-                        <a href="#">{{ $product->category->name}}</a>
+                        @foreach ($product as $cate)
+                        <a href="#">{{ $cate->category->name}}</a>
+                        @endforeach
+
                     </li>
                 @empty
 

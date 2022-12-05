@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderItem;
+use App\Models\OrderPayment;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -54,6 +55,15 @@ class OrderController extends Controller
         $orderItem->quantity = 1;
         $orderItem->amount = 0;
         $orderItem->save();
+
+        $orderPayment = new OrderPayment();
+        $orderPayment->user_id = auth()->user()->id;
+        $orderPayment->order_id = $order->id;
+        $orderPayment->invoice_id = $order->uniqueId;
+        $orderPayment->amount = 0;
+        $orderPayment->provider = 'acarty';
+        $orderPayment->status = 'paid';
+        $orderPayment->save();
 
 
         return redirect(route('purchases.page',['username' => auth()->user()->userdetail->username]));

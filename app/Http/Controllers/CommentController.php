@@ -31,4 +31,32 @@ class CommentController extends Controller
         }
         return back();
     }
+
+
+
+    public function review(Request $request)
+    {
+        if($request->review)
+        {
+            Comment::create([
+                'user_id' => auth()->user()->id,
+                'product_id' => $request->productuuid,
+                'comment'=> $request->review,
+                'review' => $request->rate,
+            ]);
+        }
+
+
+        if($request->reviewreply)
+        {
+            Comment::create([
+                'user_id' => auth()->user()->id,
+                'product_id' => $request->productuuid,
+                'comment'=> $request->reviewreply,
+                'comment_id' =>$request->comment_id,
+
+            ]);
+        }
+        return back();
+    }
 }

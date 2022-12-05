@@ -46,8 +46,8 @@
 
             <!-- AUTHOR PROFILE INFO ITEM -->
             <div class="author-profile-info-item">
-                <p class="text-header">Freelance Work:</p>
-                <p>Available</p>
+                <p class="text-header">Wallet Balance:</p>
+                <p>$ {{ $userpage->wallet->balance }}</p>
             </div>
             <!-- /AUTHOR PROFILE INFO ITEM -->
 
@@ -93,7 +93,7 @@
                 @else
                 <!-- /SHARE LINKS -->
                 @if (request()->route('username') != auth()->user()->userdetail->username)
-                
+
                     @if (auth()->user()->isFollowing($userdetail->user))
                     <a href="{{ route('unfollow.button', ['username'=> request()->route('username')]) }}" class="button mid dark spaced">Unfollow</a>
                     @else
@@ -114,7 +114,7 @@
                 </li>
                 @if ($userdetail->user->getRoleNames()->first() == 'seller')
                 <li class="dropdown-item">
-                    <a href="author-profile-items.html">Author's Items (103)</a>
+                    <a href="{{ route('myitem.page', ['username' => $userpage->userdetail->username]) }}">Author's Items</a>
                 </li>
 
                 @endif
@@ -126,7 +126,7 @@
                     <a >Following ({{ $userdetail->user->followings()->count() }})</a>
                 </li>
                 <li class="dropdown-item">
-                    <a href="author-badges.html">Author Badges </a>
+                    <a href="#">Author Badges </a>
                 </li>
             </ul>
             <!-- /DROPDOWN -->
@@ -137,17 +137,14 @@
                 <li class="dropdown-item {{ request()->is('user/*/') ? 'active' : '' }}">
                     <a href="{{ route('account.page', ['username'=> auth()->user()->userdetail->username] ) }}">Profile Page</a>
                 </li>
-                <li class="dropdown-item ">
-                    <a href="author-profile-items.html">Author's Items (103)</a>
+                <li class="dropdown-item {{ request()->is('user/*/myitem') ? 'active' : '' }}">
+                    <a href="{{ route('myitem.page', ['username' => $userpage->userdetail->username]) }}">Author's Items</a>
                 </li>
                 <li class="dropdown-item {{ request()->is('user/*/followers') ? 'active' : '' }}">
                     <a href="{{ route('followers.page', ['username'=> auth()->user()->userdetail->username]) }}">Followers ({{ auth()->user()->followers()->count() }})</a>
                 </li>
                 <li class="dropdown-item {{ request()->is('user/*/following') ? 'active' : '' }}">
                     <a href="{{ route('following.page', ['username'=> auth()->user()->userdetail->username]) }}">Following ({{ auth()->user()->followings()->count() }})</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="author-badges.html">My Badges (16)</a>
                 </li>
                 <li class="dropdown-item {{ request()->is('user/*/purchases') ? 'active' : '' }}">
                     <a href="{{ route('purchases.page',  ['username'=> auth()->user()->userdetail->username] ) }}">My Purchases</a>
@@ -156,7 +153,7 @@
                     <a href="{{ route('accountsetting.page',  ['username'=> auth()->user()->userdetail->username]) }}">Settings</a>
                 </li>
                 <li class="dropdown-item">
-                    <a href="author-profile-reviews.html">Reviews (42)</a>
+                    <a href="author-profile-reviews.html">Reviews</a>
                 </li>
                 <li class="dropdown-item">
                     <a href="author-profile-reviews.html">Payouts</a>

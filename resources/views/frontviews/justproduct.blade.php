@@ -64,36 +64,39 @@
         <a href="author-profile.html">
             <p class="text-header tiny">{{ $product->user->name }}</p>
         </a>
+        @php
+            $avg = $product->comment->where('comment_id', null)->whereNotNull('review')->avg('review');
+        @endphp
         <ul class="rating tooltip" title="Author's Reputation">
-            <li class="rating-item">
+            <li class="rating-item {{ $avg >= 1  ? '' : 'empty' }}">
                 <!-- SVG STAR -->
-                <svg class="svg-star">
+                <svg class="svg-star ">
+                    <use xlink:href="#svg-star "></use>
+                </svg>
+                <!-- /SVG STAR -->
+            </li>
+            <li class="rating-item {{ $avg >= 2  ? '' : 'empty' }}">
+                <!-- SVG STAR -->
+                <svg class="svg-star  ">
                     <use xlink:href="#svg-star"></use>
                 </svg>
                 <!-- /SVG STAR -->
             </li>
-            <li class="rating-item">
+            <li class="rating-item {{ $avg >= 3  ? '' : 'empty' }}">
                 <!-- SVG STAR -->
-                <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
+                <svg class="svg-star ">
+                    <use xlink:href="#svg-star "></use>
                 </svg>
                 <!-- /SVG STAR -->
             </li>
-            <li class="rating-item">
+            <li class="rating-item {{ $avg >= 4  ? '' : 'empty' }}">
                 <!-- SVG STAR -->
-                <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
+                <svg class="svg-star ">
+                    <use xlink:href="#svg-star "></use>
                 </svg>
                 <!-- /SVG STAR -->
             </li>
-            <li class="rating-item">
-                <!-- SVG STAR -->
-                <svg class="svg-star">
-                    <use xlink:href="#svg-star"></use>
-                </svg>
-                <!-- /SVG STAR -->
-            </li>
-            <li class="rating-item empty">
+            <li class="rating-item {{ $avg >= 5  ? '' : 'empty' }}">
                 <!-- SVG STAR -->
                 <svg class="svg-star">
                     <use xlink:href="#svg-star"></use>

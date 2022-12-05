@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\OrderPayment;
+use App\Models\Product;
 use App\Models\Redeem;
 use App\Models\User;
 use App\Models\Userdetail;
@@ -87,17 +88,18 @@ class AccountController extends Controller
     public function purchases($username)
     {
         $userdetail = Userdetail::where('username', $username)->first();
-        $orderpayment = OrderPayment::where('user_id', auth()->user()->id)->where('status', 'paid')->get();
+        $orderpayment = OrderPayment::where('user_id', auth()->user()->id)->where('status', 'paid')->paginate(9);
 
         return view('frontviews.purchases', compact('userdetail', 'orderpayment'));
     }
 
 
-    public function download(Request $request)
+    public function download($productID)
     {
         //dd($productID);
-        $item = Redeem::where('product_id', $request->productID)->first();
-        return response()->download(asset('products/files/'. $item->item));
+        $item = Redeem::where('product_id', $productID)->first();
+        $filePath = asset('products/files/'. $item->item);
+        return response()->download($filePath);
     }
 
     public function followers($username)
@@ -124,5 +126,15 @@ class AccountController extends Controller
         $userdetail = Userdetail::where('username', $username)->first();
         Auth::user()->unfollow($userdetail->user);
         return back();
+    }
+
+    public function myitem($username)
+    {
+        $userdetail = Userdetail::where('username', $username)->first();
+
+        $products = Product::where('user_id', $userdetail->user->id )->paginate(9);
+        //dd($userdetail->user->id);
+
+        return view('frontviews.authoritem', compact('userdetail', 'products'));
     }
 }

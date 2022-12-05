@@ -9,11 +9,12 @@
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/tooltipster.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700">
+
+        <link href='https://fonts.googleapis.com/css?family=Montserrat+Web:400,600,700' rel='stylesheet'>
 
         @yield('header')
         <!-- favicon -->
-        <link rel="icon" href="{{ asset('assets/favicon.ico') }}">
+        <link rel="icon" href="{{ asset('favicon2.png') }}">
 
         <title>@yield('tittletop') | {{ config('app.name') }}</title>
 
@@ -30,7 +31,7 @@
 
         @include('layouts.partial.footer')
 
-        
+
         <script src="{{ asset('assets/js/modal/modal.js') }}"></script>
         <!-- jQuery -->
         <script src="{{ asset('assets/js/vendor/jquery-3.1.0.min.js') }}"></script>
