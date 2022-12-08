@@ -217,58 +217,7 @@
             </div>
             <!-- /SIDEBAR ITEM -->
 
-            <!-- SIDEBAR ITEM -->
-            <div class="sidebar-item author-reputation full">
-                <h4>Author's Reputation</h4>
-                <hr class="line-separator">
-                <!-- PIE CHART -->
-                <div class="pie-chart pie-chart1">
-                    <p class="text-header percent">86<span>%</span></p>
-                    <p class="text-header percent-info">Recommended</p>
-                    <!-- RATING -->
-                    <ul class="rating">
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                        <li class="rating-item empty">
-                            <!-- SVG STAR -->
-                            <svg class="svg-star">
-                                <use xlink:href="#svg-star"></use>
-                            </svg>
-                            <!-- /SVG STAR -->
-                        </li>
-                    </ul>
-                    <!-- /RATING -->
-                </div>
-                <!-- /PIE CHART -->
-                <a href="#" class="button mid dark-light">Read all the Customer Reviews</a>
-            </div>
-            <!-- /SIDEBAR ITEM -->
+
 
 
         </div>

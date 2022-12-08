@@ -150,8 +150,9 @@
                     <a href="{{ route('purchases.page',  ['username'=> auth()->user()->userdetail->username] ) }}">My Purchases</a>
                 </li>
                 <li class="dropdown-item {{ request()->is('user/*/account/settings') ? 'active' : '' }}">
-                    <a href="{{ route('accountsetting.page',  ['username'=> auth()->user()->userdetail->username]) }}">Settings</a>
+                    <a href="{{ route('accountsetting.page',  ['username'=> auth()->user()->userdetail->username]) }}">Account Settings</a>
                 </li>
+                @hasanyrole('seller|Super Admin')
                 <li class="dropdown-item">
                     <a href="author-profile-reviews.html">Reviews</a>
                 </li>
@@ -164,6 +165,7 @@
                 <li class="dropdown-item">
                     <a href="author-profile-reviews.html">Statements</a>
                 </li>
+                @endhasanyrole
             </ul>
             <!-- /DROPDOWN -->
 

@@ -70,8 +70,9 @@
                         <a href="{{ route('accountsetting.page', ['username'=> Auth::user()->userdetail->username]) }}">Account Settings</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="dashboard-purchases.html">Your Purchases</a>
+                        <a href="d{{ route('purchases.page',  ['username'=> auth()->user()->userdetail->username] ) }}">My Purchases</a>
                     </li>
+
                     <li class="dropdown-item">
                         <a href="dashboard-statement.html">Sales Statement</a>
                     </li>
@@ -84,6 +85,7 @@
                     <li class="dropdown-item">
                         <a href="{{ route('product.index') }}">Manage Items</a>
                     </li>
+
                 </ul>
                 <!-- /DROPDOWN -->
             </div>
@@ -145,81 +147,6 @@
                         <!-- /DROPDOWN ITEM -->
                     </ul>
                     <!-- /DROPDOWN CART -->
-                </div>
-
-
-
-
-                <div class="account-email-quickview">
-                    <span class="icon-envelope">
-                        <!-- SVG ARROW -->
-                        <svg class="svg-arrow">
-                            <use xlink:href="#svg-arrow"></use>
-                        </svg>
-                        <!-- /SVG ARROW -->
-                    </span>
-
-                    <!-- PIN -->
-                    <span class="pin soft-edged secondary">!</span>
-                    <!-- /PIN -->
-
-                    <!-- DROPDOWN NOTIFICATIONS -->
-                    <ul class="dropdown notifications closed">
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <div class="dropdown-triangle"></div>
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="images/avatars/avatar_06.jpg" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>Sarah-Imaginarium</span></p>
-                            <p class="subject">Product Question</p>
-                            <p class="timestamp">May 18th, 2014</p>
-                            <span class="notification-type secondary-new icon-envelope"></span>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="images/avatars/avatar_04.jpg" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>Red Thunder Graphics</span></p>
-                            <p class="subject">Support Inquiry</p>
-                            <p class="timestamp">May 5th, 2014</p>
-                            <span class="notification-type icon-envelope-open"></span>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="images/avatars/avatar_07.jpg" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>Twisted Themes</span></p>
-                            <p class="subject">Collaboration</p>
-                            <p class="timestamp">Feb 24th, 2014</p>
-                            <span class="notification-type secondary-new icon-envelope"></span>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="images/avatars/avatar_08.jpg" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>GregSpiegel1820</span></p>
-                            <p class="subject">How to Install the Theme...</p>
-                            <p class="timestamp">Jan 3rd, 2014</p>
-                            <span class="notification-type icon-action-undo"></span>
-                            <a href="dashboard-inbox.html" class="button secondary">View all Messages</a>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-                    </ul>
-                    <!-- /DROPDOWN NOTIFICATIONS -->
                 </div>
 
                 <div class="account-settings-quickview">

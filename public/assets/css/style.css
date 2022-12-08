@@ -2,7 +2,7 @@
 /***************************************/
 /* 1. RESET */
 /***************************************/
-@import url(https://fonts.googleapis.com/css?family=Montserrat+Web:400,600,700);
+@import url(https://fonts.googleapis.com/css?family=Poppins+Web:400,600,700);
 * {
   margin: 0;
   padding: 0;
@@ -85,13 +85,13 @@ figure > figcaption {
   	TEXT ICONS
 ----------------*/
 body {
-  background-color: #FFFFFF; }
+  background-color: #F5F5F5; }
 
 a, p, h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat Web", sans-serif; }
+  font-family: "Poppins Web", sans-serif; }
 
 h1, h5, h6 {
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase; }
 
 h1 {
@@ -99,23 +99,23 @@ h1 {
   font-size: 3em;
   text-align: center; }
   h1 span {
-    color: #5a5c71; }
+    color: #16ffd8; }
 
 h2 {
   color: #fff;
   font-size: 2em;
-  font-weight: 700; }
+  font-weight: 500; }
 
 h3 {
   color: #2b373a;
   font-size: 1.5em;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center; }
 
 h4 {
   color: #2b373a;
   font-size: 1.25em;
-  font-weight: 700; }
+  font-weight: 600; }
 
 h5 {
   color: #fff;
@@ -132,7 +132,7 @@ p {
   line-height: 1.71429em;
   font-weight: 600; }
   p.primary, p.secondary, p.tertiary {
-    font-weight: 700; }
+    font-weight: 600; }
   p.primary {
     color: #00d7b3; }
   p.secondary {
@@ -151,7 +151,7 @@ p {
     color: #b2b2b2; }
   p span.bold {
     color: #2b373a;
-    font-weight: 700; }
+    font-weight: 600; }
   p span.primary {
     color: #00d7b3; }
   p span.secondary {
@@ -281,7 +281,7 @@ p {
 ------------*/
 input, textarea {
   color: #888;
-  font-family: "Montserrat Web", sans-serif;
+  font-family: "Poppins Web", sans-serif;
   font-size: 0.8125em;
   border-radius: 4px; }
 
@@ -318,7 +318,7 @@ select {
   border: 1px solid #ebebeb;
   border-radius: 4px;
   color: #b2b2b2;
-  font-family: "Montserrat Web", sans-serif;
+  font-family: "Poppins Web", sans-serif;
   line-height: 40px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -334,14 +334,14 @@ label {
   margin-bottom: 12px;
   color: #888;
   font-size: 0.8125em;
-  font-family: "Montserrat Web", sans-serif;
+  font-family: "Poppins Web", sans-serif;
   font-weight: 600;
   cursor: pointer; }
   label:last-child {
     margin-bottom: 0; }
   label.b-label, label.rl-label {
     color: #2b373a;
-    font-weight: 700; }
+    font-weight: 600; }
   label.rl-label {
     margin-bottom: 14px;
     font-size: 0.875em;
@@ -427,7 +427,7 @@ input[type="checkbox"] {
 -------------------*/
 .placeholder, ::-webkit-input-placeholder, :-moz-placeholder, ::-moz-placeholder, :-ms-input-placeholder {
   color: #b2b2b2;
-  font-family: "Montserrat Web", sans-serif;
+  font-family: "Poppins Web", sans-serif;
   font-size: 13px;
   font-weight: 600; }
 
@@ -452,9 +452,9 @@ input[type="checkbox"] {
   height: 30px;
   border-radius: 4px;
   color: #fff;
-  font-family: "Montserrat Web", sans-serif;
+  font-family: "Poppins Web", sans-serif;
   font-size: 0.75em;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 30px;
   text-align: center; }
   .button.primary {
@@ -711,7 +711,7 @@ input[type="checkbox"] {
     .section-headline p .separator {
       margin: 0 13px; }
     .section-headline p .current-section {
-      font-weight: 700; }
+      font-weight: 600; }
 
 /*--------------------
   	SLIDE CONTROLS
@@ -842,9 +842,9 @@ input[type="checkbox"] {
 
 .pin-tag {
   display: inline-block;
-  font-family: "Montserrat Web", sans-serif;
+  font-family: "Poppins Web", sans-serif;
   font-size: 0.75em;
-  font-weight: 700; }
+  font-weight: 600; }
   .pin-tag.primary {
     color: #06b99b; }
   .pin-tag.secondary {
@@ -858,9 +858,9 @@ input[type="checkbox"] {
   border-radius: 2px;
   background-color: #535d5f;
   color: #fff;
-  font-family: "Montserrat Web", sans-serif;
+  font-family: "Poppins Web", sans-serif;
   font-size: 0.5625em;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 15px;
   text-transform: uppercase;
   position: absolute; }
@@ -1045,7 +1045,7 @@ header, .menu-bar, .banner, #services,
 
 .user-money {
   color: #16ffd8;
-  font-size: 1em; }
+  font-size: 0.6em; }
 
 /*------------
   	RATING
@@ -1092,7 +1092,7 @@ header, .menu-bar, .banner, #services,
 
 .text-header, .category, .price {
   color: #2b373a;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1em; }
 
 .text-header {
@@ -1225,7 +1225,7 @@ header, .menu-bar, .banner, #services,
         line-height: 1.27273em; }
         .dropdown.notifications .dropdown-item .title span {
           color: #2b373a;
-          font-weight: 700; }
+          font-weight: 600; }
       .dropdown.notifications .dropdown-item .subject {
         font-size: 0.6875em; }
       .dropdown.notifications .dropdown-item .timestamp {
@@ -1336,7 +1336,7 @@ header, .menu-bar, .banner, #services,
       line-height: 50px;
       color: #2b373a;
       font-size: 0.875em;
-      font-weight: 700; }
+      font-weight: 600; }
       .dropdown .dropdown-item > a .svg-arrow {
         position: relative;
         top: 1px;
@@ -1391,7 +1391,7 @@ header, .menu-bar, .banner, #services,
       display: block;
       color: #6a7779;
       font-size: 0.8125em;
-      font-weight: 700;
+      font-weight: 600;
       line-height: 34px;
       opacity: 0.6;
       transition: opacity .15s ease-in; }
@@ -1465,7 +1465,7 @@ header, .menu-bar, .banner, #services,
     color: #2b373a;
     font-size: 0.875em;
     line-height: 60px;
-    font-weight: 700; }
+    font-weight: 600; }
 
 .sidebar-menu-dropdown {
   width: 270px;
@@ -1504,7 +1504,7 @@ header, .menu-bar, .banner, #services,
   text-align: left; }
 .information-layout.v2 p span {
   color: #2b373a;
-  font-weight: 700; }
+  font-weight: 600; }
 
 /*-------------------
   	ITEM PREVIEW
@@ -1539,7 +1539,7 @@ header, .menu-bar, .banner, #services,
       left: 50%;
       color: #2b373a;
       font-size: 1.125em;
-      font-weight: 700;
+      font-weight: 600;
       text-align: center;
       line-height: 35px; }
       .bid-countdown > div > p .tag {
@@ -1548,9 +1548,9 @@ header, .menu-bar, .banner, #services,
         font-weight: 600; }
   .bid-countdown .colon {
     color: #2b373a;
-    font-family: "Montserrat Web", sans-serif;
+    font-family: "Poppins Web", sans-serif;
     font-size: 1.125em;
-    font-weight: 700;
+    font-weight: 600;
     position: absolute;
     top: 10px; }
     .bid-countdown .colon:nth-child(1) {
@@ -1940,7 +1940,7 @@ header {
       margin-top: 6px;
       color: #b6c6ca;
       font-size: 0.75em;
-      font-weight: 700; }
+      font-weight: 600; }
       header .account-actions .interesting-link:hover {
         color: #fff; }
     header .account-actions .button {
@@ -2032,7 +2032,7 @@ header {
       padding: 0 30px;
       color: #2b373a;
       font-size: 0.875em;
-      font-weight: 700;
+      font-weight: 500;
       text-transform: uppercase;
       line-height: 71px;
       transition: all .15s ease-in-out; }
@@ -2186,7 +2186,7 @@ header {
     background-color: #202729;
     color: #535d5f;
     font-size: 0.625em;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 35px;
     text-transform: uppercase; }
   .side-menu .logo {
@@ -2276,7 +2276,7 @@ header {
       #subscribe-banner .subscribe-content .subscribe-header .subscribe-title {
         margin: 20px 0 6px;
         font-size: 1.5em;
-        font-weight: 700; }
+        font-weight: 600; }
       #subscribe-banner .subscribe-content .subscribe-header p {
         color: #fff;
         font-size: 0.8125em;
@@ -2976,7 +2976,7 @@ header {
     .category-nav .category-tab p {
       color: #abaeae;
       font-size: 1.125em;
-      font-weight: 700;
+      font-weight: 600;
       line-height: 1em;
       text-align: center;
       line-height: 65px; }
@@ -3377,7 +3377,7 @@ header {
     .pager .pager-item p {
       color: #fff;
       font-size: 0.75em;
-      font-weight: 700;
+      font-weight: 600;
       line-height: 30px;
       text-align: center; }
     .pager .pager-item:last-child {
@@ -3556,7 +3556,7 @@ header {
       .blog-post-preview.v1 .blog-post-preview-item .more-button.primary {
         color: #06b99b;
         font-size: 0.75em;
-        font-weight: 700; }
+        font-weight: 600; }
   .blog-post-preview.v2 .blog-post-preview-item {
     padding: 15px 15px 36px; }
     .blog-post-preview.v2 .blog-post-preview-item .blog-post-preview-item-info {
@@ -3742,7 +3742,7 @@ header {
         position: relative; }
         .post .post-paragraph .post-item-list li .bullet-icon {
           color: #2b373a;
-          font-weight: 700;
+          font-weight: 600;
           position: absolute;
           left: 2px; }
           .post .post-paragraph .post-item-list li .bullet-icon.svg-check {
@@ -3962,7 +3962,7 @@ header {
       .comment-list .comment-wrap .comment .reply {
         color: #06b99b;
         font-size: 0.75em;
-        font-weight: 700;
+        font-weight: 600;
         position: absolute;
         top: 6px;
         right: 52px; }
@@ -4535,12 +4535,12 @@ header {
       line-height: 20px; }
       .form-popup p.highlighted span {
         color: #2b373a;
-        font-weight: 700; }
+        font-weight: 600; }
     .form-popup p.spaced {
       line-height: 20px;
       margin-bottom: 16px; }
     .form-popup p a {
-      font-weight: 700; }
+      font-weight: 600; }
       .form-popup p a:hover {
         text-decoration: underline; }
   .form-popup button {
@@ -5101,7 +5101,7 @@ header {
     padding-right: 24px; }
     .thread-list .thread-list-item .lastpost span {
       color: #2b373a;
-      font-weight: 700; }
+      font-weight: 600; }
 
 .topic-preview .topic-preview-item {
   padding-bottom: 14px;
@@ -5117,7 +5117,7 @@ header {
     margin-top: 4px; }
     .topic-preview .topic-preview-item .lastpost span {
       color: #2b373a;
-      font-weight: 700; }
+      font-weight: 600; }
 
 .thread {
   border: 1px solid #ebebeb;
@@ -5205,7 +5205,7 @@ header {
   #footer-top .footer-title {
     color: #fff;
     font-size: 1.25em;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1em;
     margin-bottom: 32px; }
   #footer-top .link-info, #footer-top .twitter-feed {
@@ -5619,7 +5619,7 @@ header {
       line-height: 74px; }
       .profile-notification .profile-notification-body p span {
         color: #2b373a;
-        font-weight: 700; }
+        font-weight: 600; }
   .profile-notification .profile-notification-type {
     float: right; }
     .profile-notification .profile-notification-type .type-icon {
@@ -5953,7 +5953,7 @@ header {
         padding: 0 14px;
         color: #b2b2b2;
         font-size: 0.8125em;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 32px;
         cursor: pointer;
         transition: all .3s ease; }
@@ -6612,7 +6612,7 @@ header {
     padding: 0 26px 0 12px;
     color: #2b373a;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 26px; }
   .chart-filter form .select-block .svg-arrow {
     top: 8px;

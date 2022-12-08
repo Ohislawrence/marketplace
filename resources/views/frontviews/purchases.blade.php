@@ -93,7 +93,7 @@
 
          <!-- PURCHASE ITEM -->
 
-         @forelse ( $orderpayment as $item )
+        @forelse ( $orderpayment as $item )
         @foreach ($item->order->orderitem as $purch )
 
 

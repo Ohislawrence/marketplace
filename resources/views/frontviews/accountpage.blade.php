@@ -94,47 +94,38 @@
             <!-- COMMENTS -->
             <div class="comment-list">
                 <!-- COMMENT -->
+                @forelse ($userpage->product as $product )
+                @foreach ( $product->comment->where('comment_id', null)->whereNotNull('review')->take(3) as $review )
                 <div class="comment-wrap">
                     <!-- USER AVATAR -->
-                    <a href="user-profile.html">
+                    <a href="{{ route('account.page', ['username'=> $review->user->userdetail->username]) }}">
                         <figure class="user-avatar medium">
-                            <img src="images/avatars/avatar_02.jpg" alt="">
+                            <img src="{{ asset('users/profileimages/'. $review->user->userdetail->profileimage ) }}" alt="">
                         </figure>
                     </a>
                     <!-- /USER AVATAR -->
-                    <div class="comment">
-                        <p class="text-header">MeganV.</p>
-                        <!-- PIN -->
-                        <span class="pin greyed">Purchased</span>
-                        <!-- /PIN -->
-                        <p class="timestamp">5 Hours Ago</p>
-                        <a href="#" class="report">Report</a>
-                        <p>I’ve recently bought your theme and let me say it’s fantastic! I have a small question regarding the main files and how to install the theme. Could you help me? Thanks!</p>
-                    </div>
+            <div class="comment">
+                <p class="text-header">{{ $review->user->name }}</p>
+                <!-- PIN -->
+                <span class="pin greyed">Purchased</span>
+                <!-- /PIN -->
+                <p class="timestamp">{{ $review->created_at }}</p>
+                <a href="#" class="report">Report</a>
+                <p>{{ $review->comment }}</p>
+            </div>
                 </div>
                 <!-- /COMMENT -->
-
                 <!-- LINE SEPARATOR -->
                 <hr class="line-separator">
                 <!-- /LINE SEPARATOR -->
 
-                <!-- COMMENT -->
-                <div class="comment-wrap">
-                    <!-- USER AVATAR -->
-                    <a href="user-profile.html">
-                        <figure class="user-avatar medium">
-                            <img src="images/avatars/avatar_19.jpg" alt="">
-                        </figure>
-                    </a>
-                    <!-- /USER AVATAR -->
-                    <div class="comment">
-                        <p class="text-header">Cloud Templates</p>
-                        <p class="timestamp">8 Hours Ago</p>
-                        <a href="#" class="report">Report</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnada. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                    </div>
-                </div>
-                <!-- /COMMENT -->
+                @endforeach
+
+                @empty
+
+
+                @endforelse
+
             </div>
             <!-- /COMMENTS -->
         </div>

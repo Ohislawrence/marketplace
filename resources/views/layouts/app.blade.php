@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/owl.carousel.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <!-- favicon -->
-        <link rel="icon" href="{{ asset('favicon2.png') }}">
+        <link rel="icon" href="{{ asset('favicon.png') }}">
 
         <title>@yield('tittletop') | {{ config('app.name') }}</title>
 

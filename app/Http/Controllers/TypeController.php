@@ -21,7 +21,8 @@ class TypeController extends Controller
         $type= $request->types;
         $Ptype = Type::where('slug', $type)->first();
         $products = Product::where('plantype_id', $Ptype->id)->where('is_approved','=', '1')->orderBy('created_at')->paginate(12);
-        return view('frontviews.types' , compact('products', 'Ptype'));
+        $category = Productcategory::all();
+        return view('frontviews.types' , compact('products', 'Ptype', 'category'));
 
     }
 
