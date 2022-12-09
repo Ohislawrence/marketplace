@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class CommentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+    private $comment;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($comment)
     {
-        //
+        $this->comment = $comment;
     }
 
     /**
@@ -41,7 +42,7 @@ class CommentNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->name($this->comment['name'])
+            ->greeting($this->comment['name'])
             ->line($this->comment['body'])
             ->action($this->comment['actionText'], $this->comment['actionURL'])
             ->line($this->comment['thanks']);

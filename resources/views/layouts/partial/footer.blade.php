@@ -9,6 +9,7 @@
                     <img src="{{ asset('assets/images/logo_small1.png') }}" alt="logo-small">
                 </figure>
                 <p>A marketplace for great deals on apps, PDFs, courses, template and more.</p>
+                <!--
                 <ul class="company-info-list">
                     <li class="company-info-item">
                         <span class="icon-present"></span>
@@ -22,17 +23,17 @@
                         <span class="icon-user"></span>
                         <p><span>74.059</span> Sellers</p>
                     </li>
-                </ul>
+                </ul>-->
                 <!-- SOCIAL LINKS -->
                 <ul class="social-links">
                     <li class="social-link fb">
-                        <a href="#"></a>
+                        <a href="https://www.facebook.com/acartysolutions" target="_blank"></a>
                     </li>
                     <li class="social-link twt">
                         <a href="#"></a>
                     </li>
                     <li class="social-link db">
-                        <a href="#"></a>
+                        <a href="https://www.linkedin.com/company/acarty/" target="_blank"></a>
                     </li>
                     <li class="social-link rss">
                         <a href="#"></a>

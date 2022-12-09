@@ -13,9 +13,10 @@ class CommentController extends Controller
 {
     public function comment(Request $request)
     {
-       
+
         if($request->comment)
-        {
+        { $slug  = $request->slug ;
+            //dd($slug);
             $sent = Comment::create([
                 'user_id' => auth()->user()->id,
                 'product_id' => $request->productuuid,
@@ -23,7 +24,7 @@ class CommentController extends Controller
             ]);
 
 
-            $product = Product::where('slug', $request->productslug)->first();
+            $product = Product::where('id', $sent->product_id)->first();
             $user = User::find($product->user_id);
 
             $comment = [
@@ -31,10 +32,10 @@ class CommentController extends Controller
                 'body' => 'You have received a comment on your product, go to the link below to repy,',
                 'thanks' => 'Thank you.',
                 'actionText' => 'View Comment',
-                'actionURL' => route('singleproduct.page', ['productslug' => $request->productslug ]),
-                'product_id' => $request->productuuid
+                'actionURL' => route('singleproduct.page', ['productslug' => $slug ]),
+                'product_id' => $sent->product_id,
             ];
-      
+
             Notification::send($user, new CommentNotification($comment));
         }
 
@@ -80,24 +81,4 @@ class CommentController extends Controller
         return back();
     }
 
-
-
-
-    public function sendNotification()
-    {
-        $user = User::first();
-  
-        $comment = [
-            'name' => 'Hello '.$user->name,
-            'body' => 'You have received a comment on your product, go to the link below to repy,',
-            'thanks' => 'Thank you.',
-            'actionText' => 'View Comment',
-            'actionURL' => url('/'),
-            'product_id' => 101
-        ];
-  
-        Notification::send($user, new CommentNotification($comment));
-   
-        dd('done');
-    }
 }

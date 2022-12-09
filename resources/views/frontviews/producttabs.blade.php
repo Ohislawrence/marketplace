@@ -57,6 +57,7 @@
 
         <form class="comment-reply-form" method="POST" action="{{ route('comment.post') }}">
             @csrf
+            <input type="hidden" name="slug" value="{{ $product->slug }}">
             <input type="hidden" name="productuuid" value="{{ $product->id }}">
             <input type="hidden" name="comment_id" value="{{ $comment->id }}">
             <textarea name="reply" placeholder="Reply here..."></textarea>
@@ -135,6 +136,7 @@
                 <!-- COMMENT REPLY FORM -->
                 <form class="comment-reply-form" method="POST" action="{{ route('comment.post') }}">
                     @csrf
+                    <input type="hidden" name="slug" value="{{ $product->slug }}">
                     <input type="hidden" name="productuuid" value="{{ $product->id }}">
                     <textarea name="comment" placeholder="Write your comment here..."></textarea>
                     <button type="submit" class="button primary">Comment</button>
