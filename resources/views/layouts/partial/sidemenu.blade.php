@@ -58,13 +58,13 @@
 
 <!-- SIDE MENU -->
 <div id="account-options-menu" class="side-menu right closed">
-    @auth
+
     <!-- SVG PLUS -->
     <svg class="svg-plus">
         <use xlink:href="#svg-plus"></use>
     </svg>
     <!-- /SVG PLUS -->
-
+    @auth
     <!-- SIDE MENU HEADER -->
     <div class="side-menu-header">
         <!-- USER QUICKVIEW -->
@@ -90,58 +90,26 @@
     <!-- /SIDE MENU HEADER -->
 
     <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">Your Account</p>
+    <p class="side-menu-title">My Account</p>
     <!-- /SIDE MENU TITLE -->
 
     <!-- DROPDOWN -->
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-notifications.html">Notifications</a>
+            <a href="{{ route('account.page',['username'=> Auth::user()->userdetail->username]) }}">Profile Page</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-inbox.html">Messages</a>
+            <a href="{{ route('accountsetting.page', ['username'=> Auth::user()->userdetail->username]) }}">Account Settings</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="cart.html">Your Cart</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="favourites.html">Favourites</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-    </ul>
-    <!-- /DROPDOWN -->
-
-    <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">Dashboard</p>
-    <!-- /SIDE MENU TITLE -->
-
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect">
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="author-profile.html">Profile Page</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="dashboard-settings.html">Account Settings</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="dashboard-purchases.html">Your Purchases</a>
+            <a href="{{ route('purchases.page',  ['username'=> auth()->user()->userdetail->username] ) }}">My Purchases</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
@@ -153,29 +121,25 @@
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-buycredits.html">Buy Credits</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
             <a href="dashboard-withdrawals.html">Withdrawals</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-uploaditem.html">Upload Item</a>
+            <a href="{{ route('product.select') }}">Upload Item</a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-manageitems.html">Manage Items</a>
+            <a href="{{ route('product.index') }}">Manage Items</a>
         </li>
         <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
+
+
 
     <a href="#" class="button medium secondary">Logout</a>
     <a href="#" class="button medium primary">Become a Seller</a>

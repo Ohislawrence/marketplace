@@ -9,18 +9,20 @@
 
 @section('header')
 <link rel="stylesheet" href="{{ asset('assets/css/vendor/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}">
 @endsection
 
 
 @section('footer')
 
 @section('body')
-
+@include('frontviews.loginmodal')
+@include('frontviews.registermodal')
 <!-- BANNER -->
 <div class="banner-wrap">
     <section class="banner">
         <h5>Welcome to</h5>
-        <h1>The Biggest <span>Marketplace</span></h1>
+        <h1>The Web App <span>Marketplace</span></h1>
         <p>A marketplace for great deals on apps, PDFs, courses, template and more...</p>
         <img src="{{ asset('assets/images/top_items.png') }}" alt="banner-img">
 
@@ -64,8 +66,9 @@
                 <div class="circle dark">
                     <span class="icon-present"></span>
                 </div>
-                <h3>Buy &amp; Sell Easily</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h3>Great Deals</h3>
+                <p>Get great deals on web apps and great online tools you love.</p>
+
             </div>
             <!-- /SERVICE ITEM -->
 
@@ -77,7 +80,7 @@
                     <span class="icon-lock"></span>
                 </div>
                 <h3>Secure Transaction</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>All transactions are secured by trusted 3rd party gateways.</p>
             </div>
             <!-- /SERVICE ITEM -->
 
@@ -89,7 +92,7 @@
                     <span class="icon-like"></span>
                 </div>
                 <h3>Products Control</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Downloads and Saas items are secured and safe for use.</p>
             </div>
             <!-- /SERVICE ITEM -->
 
@@ -101,7 +104,7 @@
                     <span class="icon-diamond"></span>
                 </div>
                 <h3>Quality Platform</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Acarty is always improving, you will notice when you join us.</p>
             </div>
             <!-- /SERVICE ITEM -->
         </div>
@@ -114,18 +117,27 @@
 <!-- PROMO -->
 <div class="promo-banner dark left">
     <span class="icon-wallet"></span>
-    <h5>Make money instantly!</h5>
+    <h5>Make money with your product!</h5>
     <h1>Start <span>Selling</span></h1>
-    <a href="#" class="button medium primary">Open Your Shop!</a>
+    @auth
+    <a href="#" class="button medium primary">Sell Here!</a>
+    @else
+    <button href="#login"  class="button medium primary modal-button">Log In!</button>
+    @endauth
 </div>
 <!-- /PROMO -->
 
 <!-- PROMO -->
 <div class="promo-banner secondary right">
     <span class="icon-tag"></span>
-    <h5>Find anything you want</h5>
+    <h5>Find any web app you want</h5>
     <h1>Start Buying</h1>
-    <a href="#" class="button medium dark">Register Now!</a>
+    @auth
+    <a href="{{ route('items.page') }}" class="button medium dark">Browse Items!</a>
+    @else
+    <button href="#register" class="button medium dark modal-button">Register Now!</a>
+    @endauth
+
 </div>
 <!-- /PROMO -->
 

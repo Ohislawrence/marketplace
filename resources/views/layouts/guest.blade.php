@@ -8,9 +8,10 @@
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/simple-line-icons.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/tooltipster.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/mobilenav.css') }}">
         <!-- Fonts -->
 
-        <link href='https://fonts.googleapis.com/css?family=Montserrat+Web:400,600,700' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Poppins+Web:400,600,700' type="text/html">
 
         @yield('header')
         <!-- favicon -->
@@ -30,6 +31,7 @@
         @yield('body')
 
         @include('layouts.partial.footer')
+        @include('layouts.partial.mobilenav')
 
 
         <script src="{{ asset('assets/js/modal/modal.js') }}"></script>

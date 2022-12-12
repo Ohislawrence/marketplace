@@ -1,5 +1,5 @@
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="login" class="modal">
 
     <!-- Modal content -->
 

@@ -130,9 +130,9 @@ p {
   color: #888;
   font-size: 0.875em;
   line-height: 1.71429em;
-  font-weight: 600; }
+  font-weight: 400; }
   p.primary, p.secondary, p.tertiary {
-    font-weight: 600; }
+    font-weight: 400; }
   p.primary {
     color: #00d7b3; }
   p.secondary {
