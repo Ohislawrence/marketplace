@@ -15,9 +15,9 @@
 @extends('layouts.guest')
 
 @section('tittletop',  $userdetail->user->name )
-@section('tittle', 'Creative Resources')
-@section('description', 'Get great deal on apps and more')
-@section('image', 'Get great deal on apps and more')
+@section('tittle', $userdetail->user->name )
+@section('description', $userpage->userdetail->about_me)
+@section('image', asset('assets/images/acarty-og-image.png') )
 @section('header')
 
     <style>

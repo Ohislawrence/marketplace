@@ -2,9 +2,9 @@
 
 @section('tittletop', $product->name)
 
-@section('tittle', 'Get great deal on apps and more')
-@section('description', 'A marketplace for great deals on apps, PDFs, courses, template and more.')
-@section('image', 'Get great deal on apps and more')
+@section('tittle', $product->name)
+@section('description', $product->short_summary)
+@section('image', asset('products/featuredimage/'.$product->featureimage ))
 
 @section('header')
 <link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}">

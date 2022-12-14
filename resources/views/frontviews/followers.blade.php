@@ -10,11 +10,11 @@
 
 @extends('layouts.guest')
 
-@section('tittletop', 'Get great deal on apps and more')
+@section('tittletop',  $userdetail->user->name.' Followers')
 
-@section('tittle', 'Get great deal on apps and more')
-@section('description', 'A marketplace for great deals on apps, PDFs, courses, template and more.')
-@section('image', 'Get great deal on apps and more')
+@section('tittle', $userdetail->user->name.' Followers')
+@section('description', 'The marketplace for great deals on apps, PDFs, courses, template and more.')
+@section('image', asset('assets/images/acarty-og-image.png'))
 
 @section('header')
     <style>

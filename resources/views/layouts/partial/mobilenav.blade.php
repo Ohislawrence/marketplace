@@ -10,14 +10,15 @@
     </a>
 
     <a href="#" class="bloc-icon">
-        <span>
-        <img src="{{ asset('assets/icon/carty.png') }}" alt="">
-        </span>
         @auth
-            <!-- PIN -->
+        <!-- PIN -->
         <span class="pin soft-edged secondary">{{ Cart::session(Auth::user()->id)->getTotalQuantity()}}</span>
         <!-- /PIN -->
         @endauth
+        <span>
+        <img src="{{ asset('assets/icon/carty.png') }}" alt="">
+        </span>
+
 
     </a>
 

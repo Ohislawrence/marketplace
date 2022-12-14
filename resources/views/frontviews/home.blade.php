@@ -3,8 +3,8 @@
 @section('tittletop', 'Get great deal on apps and more')
 
 @section('tittle', 'Get great deal on apps and more')
-@section('description', 'A marketplace for great deals on apps, PDFs, courses, template and more.')
-@section('image', 'Get great deal on apps and more')
+@section('description', 'The marketplace for great deals on apps, PDFs, courses, template and more.')
+@section('image', asset('assets/images/acarty-og-image.png'))
 
 
 @section('header')
@@ -23,7 +23,7 @@
     <section class="banner">
         <h5>Welcome to</h5>
         <h1>The Web App <span>Marketplace</span></h1>
-        <p>A marketplace for great deals on apps, PDFs, courses, template and more...</p>
+        <p>The marketplace for great deals on apps, PDFs, courses, template and more...</p>
         <img src="{{ asset('assets/images/top_items.png') }}" alt="banner-img">
 
         <!-- SEARCH WIDGET -->

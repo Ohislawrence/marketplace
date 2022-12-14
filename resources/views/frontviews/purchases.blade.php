@@ -10,9 +10,9 @@
 @extends('layouts.guest')
 
 @section('tittletop', 'My Puchases')
-@section('tittle', 'Creative Resources')
+@section('tittle', 'My Puchases')
 @section('description', 'Get great deal on apps and more')
-@section('image', 'Get great deal on apps and more')
+@section('image', asset('assets/images/acarty-og-image.png'))
 
 @section('header')
     <style>

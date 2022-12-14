@@ -1,9 +1,9 @@
 @extends('layouts.guest')
 
-@section('tittletop', 'Get great deal on apps and more')
-@section('tittle', 'Creative Resources')
+@section('tittletop', 'Your Shopping Cart')
+@section('tittle', 'Your Shopping Cart')
 @section('description', 'Get great deal on apps and more')
-@section('image', 'Get great deal on apps and more')
+@section('image', asset('assets/images/acarty-og-image.png'))
 
 
 
