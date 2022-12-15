@@ -10,6 +10,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalPaymentController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use App\Models\Type;
@@ -82,6 +84,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::post('editor-image/upload', [ProductController::class, 'editorupload'])->name('ckeditor.product');
+    //products
     Route::resource('product-category', ProductcategoryController::class);
     Route::get('product-type/select', [ProductController::class, 'select'])->name('product.select');
     Route::resource('product', ProductController::class);
@@ -106,4 +109,10 @@ Route::middleware([
     Route::post('comment/send/now', [CommentController::class, 'comment'])->name('comment.post');
     //reviews
     Route::post('review/send/now', [CommentController::class, 'review'])->name('review.post');
+
+    //users
+    Route::resource('admin/users', UserController::class);
+
+    //sales
+    Route::get('admin/sales', [SaleController::class, 'index'])->name('sales.index');
 });

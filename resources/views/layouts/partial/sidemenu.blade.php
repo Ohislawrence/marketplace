@@ -70,7 +70,7 @@
         <!-- USER QUICKVIEW -->
         <div class="user-quickview">
             <!-- USER AVATAR -->
-            <a href="author-profile.html">
+            <a href="{{ route('account.page',['username'=> Auth::user()->userdetail->username]) }}">
             <div class="outer-ring">
                 <div class="inner-ring"></div>
                 <figure class="user-avatar">

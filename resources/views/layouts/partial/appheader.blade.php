@@ -11,11 +11,11 @@
         <!-- USER QUICKVIEW -->
         <div class="user-quickview">
             <!-- USER AVATAR -->
-            <a href="author-profile.html">
+            <a href="{{ route('account.page',['username'=> Auth::user()->userdetail->username]) }}">
             <div class="outer-ring">
                 <div class="inner-ring"></div>
                 <figure class="user-avatar">
-                    <img src="{{ asset('assets/images/avatars/avatar_01.jpg') }}" alt="avatar">
+                    <img src="{{ asset('users/profileimages/'. Auth::user()->userdetail->profileimage ) }}" alt="{{ Auth::user()->userdetail->username }}">
                 </figure>
             </div>
             </a>
@@ -47,13 +47,19 @@
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-notifications.html">
+            <a href="{{ route('sales.index')}}">
                 <span class="sl-icon icon-star"></span>
-                Notifications
+                Orders
             </a>
-            <!-- PIN -->
-            <span class="pin soft-edged big primary">49</span>
-            <!-- /PIN -->
+        </li>
+        <!-- /DROPDOWN ITEM -->
+
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('users.index') }}">
+                <span class="sl-icon icon-star"></span>
+                All Users
+            </a>
         </li>
         <!-- /DROPDOWN ITEM -->
 
@@ -194,7 +200,7 @@
     <!-- DASHBOARD HEADER -->
     <div class="dashboard-header retracted">
         <!-- DB CLOSE BUTTON -->
-        <a href="index-2.html" class="db-close-button">
+        <a href="{{ route('home.page')}}" class="db-close-button">
            <img src="{{ asset('assets/images/dashboard/back-icon.png') }}" alt="back-icon">
         </a>
         <!-- DB CLOSE BUTTON -->
@@ -282,7 +288,7 @@
 
         <!-- DASHBOARD HEADER ITEM -->
         <div class="dashboard-header-item back-button">
-            <a href="index-2.html" class="button mid dark-light">Back to Homepage</a>
+            <a href="{{ route('home.page')}}" class="button mid dark-light">Back to Homepage</a>
         </div>
         <!-- /DASHBOARD HEADER ITEM -->
     </div>

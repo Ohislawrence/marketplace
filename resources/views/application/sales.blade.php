@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('tittletop', 'All Products')
+@section('tittletop', 'Sales')
 
 @section('header')
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -38,7 +38,7 @@
 <div class="dashboard-content">
     <!-- HEADLINE -->
     <div class="headline statement primary">
-        <h4>All Products</h4>
+        <h4>Sales</h4>
         <a href="#" class="button primary">Download File</a>
         <button form="statement_filter_form" class="button dark-light">Refine Search</button>
         <form id="statement_filter_form" name="statement_filter_form" class="statement-form">
@@ -78,7 +78,7 @@
             <span class="sl-icon icon-present"></span>
             <p class="text-header big">{{ App\Models\Order::count(); }}</p>
             <div class="sale-data-item-info">
-                <p class="text-header">Total Products</p>
+                <p class="text-header">Total Users</p>
                 <p>In all Time</p>
             </div>
         </div>
@@ -89,7 +89,7 @@
             <span class="sl-icon icon-present"></span>
             <p class="text-header big">333</p>
             <div class="sale-data-item-info">
-                <p class="text-header">Pending Approval</p>
+                <p class="text-header">Total Sellers</p>
                 <p>In all Time</p>
             </div>
         </div>
@@ -152,28 +152,30 @@
         <!-- /TRANSACTION LIST HEADER -->
 
         <!-- TRANSACTION LIST ITEM -->
-        @forelse ($products as $product)
+        @forelse ($orders as $order)
         <div class="transaction-list-item">
             <div class="transaction-list-item-date">
-                <p>{{$product->name}}</p>
+                <p>{{$order->product->name}}</p>
             </div>
             <div class="transaction-list-item-author">
-                <p class="text-header"><a href=""></a></p>
+                <p class="text-header"><a href="">{{$order->quantity}}</a></p>
             </div>
             <div class="transaction-list-item-item">
-                <p class="category primary"><a href=""></a></p>
+                <p class="category primary"><a href="">{{$order->amount}}</a></p>
             </div>
             <div class="transaction-list-item-detail">
                 <p></p>
             </div>
             <div class="transaction-list-item-code">
-                <p><span class="light"></span></p>
+                @foreach($order->order->orderpayment as $payment)
+                <p><span class="light">{{$payment->provider}}</span></p>
+                @endforeach
             </div>
             <div class="transaction-list-item-price">
-                <p></p>
+                <p>{{$order->order->created_at}}</p>
             </div>
             <div class="transaction-list-item-cut">
-                <p><span class="light"></span></p>
+                <p><span class="light">{{$order->order->uniqueId}}</span></p>
             </div>
             <div class="transaction-list-item-earnings">
                 <p class="text-header">$ 6</p>
@@ -202,7 +204,7 @@
         <!-- PAGER -->
         <div class="pager-wrap">
             <div class="pager primary">
-                {{ $products->links()}}
+                {{ $orders->links()}}
             </div>
         </div>
         <!-- /PAGER -->
