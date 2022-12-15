@@ -227,8 +227,8 @@
                 @endforeach
         </div>
         <!-- /PRODUCT SHOWCASE -->
-
-        <!-- PRODUCT SHOWCASE -->
+    @auth
+    <!-- PRODUCT SHOWCASE -->
         <div class="product-showcase">
             <!-- HEADLINE -->
             <div class="headline">
@@ -263,6 +263,7 @@
             </div>
         <!-- PRODUCT SHOWCASE -->
         </div>
+    @endauth
     </div>
 </div>
 <!-- /PRODUCTS SIDESHOW -->
