@@ -16,7 +16,7 @@
 <div class="section-headline-wrap">
     <div class="section-headline">
         <h2>{{ $userdetail->user->name }} Profile</h2>
-        <p>Home<span class="separator">/</span><span class="current-section">Profile</span></p>
+        
     </div>
 </div>
 <!-- /SECTION HEADLINE -->
@@ -33,7 +33,7 @@
             <!-- AUTHOR PROFILE INFO ITEM -->
             <div class="author-profile-info-item">
                 <p class="text-header">Member Since:</p>
-                <p>{{ $userdetail->created_at }}</p>
+                <p>{{ $userdetail->created_at->diffForHumans() }}</p>
             </div>
             <!-- /AUTHOR PROFILE INFO ITEM -->
 

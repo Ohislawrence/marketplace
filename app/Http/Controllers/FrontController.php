@@ -10,6 +10,7 @@ class FrontController extends Controller
 {
     public function index()
     {
+       
         $products = Product::all();
 
         $cart = session()->get('cart');
