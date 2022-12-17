@@ -13,7 +13,7 @@
 
 
 @section('footer')
-
+<script src="{{ asset('js/share.js') }}"></script>
 <!-- XM Tab -->
 <script src="{{ asset('assets/js/vendor/jquery.xmtab.min.js') }}"></script>
 <!-- Image Slides -->
@@ -321,11 +321,11 @@
                     <p class="text-header small">Share this:</p>
                     <!-- SHARE LINKS -->
                     <ul class="share-links hoverable">
-                        <li><a href="#" class="fb"></a></li>
-                        <li><a href="#" class="twt"></a></li>
-                        <li><a href="#" class="db"></a></li>
-                        <li><a href="#" class="rss"></a></li>
-                        <li><a href="#" class="gplus"></a></li>
+                        {!! Share::currentPage()->facebook(); !!}
+                        {!! Share::currentPage()->twitter(); !!}
+                        {!! Share::currentPage()->linkedin(); !!}
+                        {!! Share::currentPage()->whatsapp(); !!}
+                        
                     </ul>
                     <!-- /SHARE LINKS -->
                 </div>

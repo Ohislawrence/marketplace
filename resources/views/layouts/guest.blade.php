@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/tooltipster.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/mobilenav.css') }}">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" /> 
         <!-- Fonts -->
 
         <link href='https://fonts.googleapis.com/css?family=Poppins+Web:400,600,700' type="text/html">

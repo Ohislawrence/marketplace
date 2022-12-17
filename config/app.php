@@ -184,6 +184,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -217,6 +218,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ])->toArray(),
 
 ];

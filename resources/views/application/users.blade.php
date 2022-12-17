@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('tittletop', 'All Products')
+@section('tittletop', 'All Users')
 
 @section('header')
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -38,7 +38,7 @@
 <div class="dashboard-content">
     <!-- HEADLINE -->
     <div class="headline statement primary">
-        <h4>All Products</h4>
+        <h4>All Users</h4>
         <a href="#" class="button primary">Download File</a>
         <button form="statement_filter_form" class="button dark-light">Refine Search</button>
         <form id="statement_filter_form" name="statement_filter_form" class="statement-form">
@@ -76,9 +76,9 @@
         <!-- SALE DATA ITEM -->
         <div class="sale-data-item">
             <span class="sl-icon icon-present"></span>
-            <p class="text-header big">{{ App\Models\Order::count(); }}</p>
+            <p class="text-header big">{{ App\Models\User::count(); }}</p>
             <div class="sale-data-item-info">
-                <p class="text-header">Total Products</p>
+                <p class="text-header">Total Users</p>
                 <p>In all Time</p>
             </div>
         </div>
@@ -89,7 +89,7 @@
             <span class="sl-icon icon-present"></span>
             <p class="text-header big">333</p>
             <div class="sale-data-item-info">
-                <p class="text-header">Pending Approval</p>
+                <p class="text-header">Total Sellers</p>
                 <p>In all Time</p>
             </div>
         </div>
@@ -124,22 +124,22 @@
         <!-- TRANSACTION LIST HEADER -->
         <div class="transaction-list-header">
             <div class="transaction-list-header-date">
-                <p class="text-header small">Product Name</p>
+                <p class="text-header small">Name</p>
             </div>
             <div class="transaction-list-header-author">
-                <p class="text-header small">Qty</p>
+                <p class="text-header small">Username</p>
             </div>
             <div class="transaction-list-header-item">
-                <p class="text-header small">Cost</p>
+                <p class="text-header small">Role</p>
             </div>
             <div class="transaction-list-header-detail">
-                <p class="text-header small">Marchart</p>
+                <p class="text-header small">Product(s)</p>
             </div>
             <div class="transaction-list-header-code">
-                <p class="text-header small">Date</p>
+                <p class="text-header small">Sale to date</p>
             </div>
             <div class="transaction-list-header-price">
-                <p class="text-header small">Invoice No</p>
+                <p class="text-header small">Sale this month</p>
             </div>
             <div class="transaction-list-header-cut">
                 <p class="text-header small">Earnings</p>
@@ -152,28 +152,28 @@
         <!-- /TRANSACTION LIST HEADER -->
 
         <!-- TRANSACTION LIST ITEM -->
-        @forelse ($products as $product)
+        @forelse ($users as $user)
         <div class="transaction-list-item">
             <div class="transaction-list-item-date">
-                <p>{{$product->name}}</p>
+                <p>{{$user->name}}</p>
             </div>
             <div class="transaction-list-item-author">
-                <p class="text-header"><a href=""></a></p>
+                <p class="text-header"><a href="">{{$user->userdetail->username}}</a></p>
             </div>
             <div class="transaction-list-item-item">
-                <p class="category primary"><a href=""></a></p>
+                <p class="category primary"><a href="">{{ $user->getRoleNames()->first()}}</a></p>
             </div>
             <div class="transaction-list-item-detail">
-                <p></p>
+                <p>{{$user->product->count()}}</p>
             </div>
             <div class="transaction-list-item-code">
-                <p><span class="light"></span></p>
+                <p><span class="light">ED3546</span></p>
             </div>
             <div class="transaction-list-item-price">
-                <p></p>
+                <p>$ 12</p>
             </div>
             <div class="transaction-list-item-cut">
-                <p><span class="light"></span></p>
+                <p><span class="light">50%</span></p>
             </div>
             <div class="transaction-list-item-earnings">
                 <p class="text-header">$ 6</p>
@@ -202,7 +202,7 @@
         <!-- PAGER -->
         <div class="pager-wrap">
             <div class="pager primary">
-                {{ $products->links()}}
+                {{ $users->links()}}
             </div>
         </div>
         <!-- /PAGER -->

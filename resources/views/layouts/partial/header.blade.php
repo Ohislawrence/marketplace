@@ -159,11 +159,12 @@
                     </span>
 
                     <!-- PIN -->
-                    <span class="pin soft-edged primary">49</span>
+                    <span class="pin soft-edged primary">{{ auth()->user()->unreadNotifications->count()}}</span>
                     <!-- /PIN -->
 
                     <!-- DROPDOWN NOTIFICATIONS -->
                     <ul class="dropdown notifications no-hover closed">
+                        @forelse(auth()->user()->unreadNotifications as $notification)
                         <!-- DROPDOWN ITEM -->
                         <li class="dropdown-item">
                             <div class="dropdown-triangle"></div>
@@ -181,54 +182,14 @@
                         </li>
                         <!-- /DROPDOWN ITEM -->
 
-                        <!-- DROPDOWN ITEM -->
+                        @empty
                         <li class="dropdown-item">
-                            <a href="author-profile.html">
-                                <figure class="user-avatar">
-                                    <img src="images/avatars/avatar_03.jpg" alt="">
-                                </figure>
-                            </a>
                             <p class="title">
-                                <a href="author-profile.html"><span>Thomas_Ket</span></a> wrote you an
-                                <a href="author-reputation.html"><span>Author’s Reputation</span></a>
+                                No unread Notification!
                             </p>
-                            <p class="timestamp">17 Hours ago</p>
-                            <span class="notification-type icon-star"></span>
                         </li>
-                        <!-- /DROPDOWN ITEM -->
-
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="author-profile.html">
-                                <figure class="user-avatar">
-                                    <img src="images/avatars/avatar_04.jpg" alt="">
-                                </figure>
-                            </a>
-                            <p class="title">
-                                <a href="author-profile.html"><span>Red Thunder Graphics</span></a> commented on
-                                <a href="item-v1.html"><span>3D Layers - Web Mockup</span></a>
-                            </p>
-                            <p class="timestamp">8 Days Ago</p>
-                            <span class="notification-type primary-new icon-bubble"></span>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="author-profile.html">
-                                <figure class="user-avatar">
-                                    <img src="images/avatars/avatar_05.jpg" alt="">
-                                </figure>
-                            </a>
-                            <p class="title">
-                                <a href="author-profile.html"><span>DaBebop</span></a> purchased
-                                <a href="item-v1.html"><span>Miniverse - Hero Image Composer</span></a>
-                            </p>
-                            <p class="timestamp">1 Week ago</p>
-                            <span class="notification-type icon-tag"></span>
-                            <a href="dashboard-notifications.html" class="button primary">View all Notifications</a>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
+                        @endforelse
+                        
                     </ul>
                     <!-- /DROPDOWN NOTIFICATIONS -->
                 </div>
