@@ -44,15 +44,15 @@
         <div class="follow-list-item">
             <a href="author-profile.html">
                 <figure class="user-avatar medium liquid">
-                    <img src="images/avatars/avatar_11.jpg" alt="">
+                    <img src="{{ asset('users/profileimages/'. $following->userdetail ) }}" alt="">
                 </figure>
             </a>
 
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-description">
                 <p class="text-header"><a href="author-profile.html">{{ $following->user->name }}</a></p>
-                <p>Member since {{ $following->user->created_at }}</p>
-                <p>{{ $following->user->userdetail->username }}</p>
+                <p>Member since {{ $following->user->created_at->diffForHumans() }}</p>
+                <p>{{ $following->user->userdetail->location }}</p>
             </div>
             <!-- /FL ITEM INFO -->
 
@@ -125,7 +125,11 @@
 
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-button">
-                <a href="#" class="button mid-short primary follow-btn">Unfollow</a>
+                @if (auth()->user()->isFollowing($userpage))
+                    <a href="{{ route('unfollow.button', ['username'=> request()->route('username')]) }}" class="button mid-short primary follow-btn">Unfollow</a>
+                    @else
+                    <a href="{{ route('follow.button', ['username'=> request()->route('username')]) }}" class="button mid dark spaced">Follow</a>
+                @endif
             </div>
             <!-- /FL ITEM INFO -->
         </div>

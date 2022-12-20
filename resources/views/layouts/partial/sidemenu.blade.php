@@ -112,7 +112,7 @@
             <a href="{{ route('purchases.page',  ['username'=> auth()->user()->userdetail->username] ) }}">My Purchases</a>
         </li>
         <!-- /DROPDOWN ITEM -->
-
+        @hasanyrole('seller|Super Admin')
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
             <a href="dashboard-statement.html">Sales Statement</a>
@@ -136,6 +136,7 @@
             <a href="{{ route('product.index') }}">Manage Items</a>
         </li>
         <!-- /DROPDOWN ITEM -->
+        @endhasanyrole
     </ul>
     <!-- /DROPDOWN -->
 

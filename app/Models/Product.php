@@ -39,6 +39,8 @@ class Product extends Model
         'redeem_instructions',
         'TLDR',
         'downloadable',
+        'views',
+        'uniqueviews',
     ];
 
     public function user()

@@ -13,6 +13,8 @@ use Mockery\Matcher\Type;
 
 class ProductController extends Controller
 {
+
+
     public function generateUniqueCode()
     {
         do {

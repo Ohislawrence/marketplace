@@ -65,6 +65,7 @@
                 </div>
              </div>
              <br/>
+            @hasanyrole('seller|Super Admin')
             <!-- HEADLINE -->
             <div class="headline buttons primary">
                 <h4>Latest Items</h4>
@@ -74,13 +75,13 @@
 
             <!-- PRODUCT LIST -->
             <div class="product-list grid column3-4-wrap">
-                @forelse ($userpage->product->take(3) as $product )
+            @forelse ($userpage->product->take(3) as $product )
                 @include('frontviews.justproduct')
 
             @empty
 
             @endforelse
-        </div>
+            </div>
 
             <div class="clearfix"></div>
 
@@ -128,6 +129,7 @@
 
             </div>
             <!-- /COMMENTS -->
+            @endhasanyrole
         </div>
         <!-- CONTENT -->
 

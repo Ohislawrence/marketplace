@@ -29,14 +29,16 @@ class CommentController extends Controller
 
             $comment = [
                 'name' => 'Hello '.$user->name,
-                'body' => 'You have received a comment on your product, go to the link below to repy,',
+                'body' => 'You have received a comment on your product, go to the link below to reply,',
                 'thanks' => 'Thank you.',
                 'actionText' => 'View Comment',
                 'actionURL' => route('singleproduct.page', ['productslug' => $slug ]),
                 'product_id' => $sent->product_id,
             ];
 
-            Notification::send($user, new CommentNotification($comment));
+            $delay = now()->addMinutes(2);
+            //Notification::send($user, new CommentNotification($comment));
+            $user->notify((new CommentNotification($comment))->delay($delay));
         }
 
 

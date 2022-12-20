@@ -57,7 +57,8 @@ class CommentNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'offer_id' => $this->comment['product_id']
+            'offer_id' => $this->comment['product_id'],
+            'body' => $this->comment['body']
         ];
     }
 }

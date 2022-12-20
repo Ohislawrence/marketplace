@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Cookie;
 
 class FrontController extends Controller
 {
+    public function incrementViewCount() {
+        $this->views++;
+        return $this->save();
+    }
+
     public function index()
     {
-       
+
         $products = Product::all();
 
         $cart = session()->get('cart');
@@ -21,11 +27,19 @@ class FrontController extends Controller
     }
 
 
+
+
     public function singleproduct($productslug)
     {
         $product = Product::where('slug', $productslug)->first();
 
+
         if ($product) {
+            /*if(Cookie::get($product->id)!=''){
+                Cookie::set('$post->id', '1', 60);
+                $product->update(['uniqueviews' => $product->uniqueviews +1]);
+            }*/
+            $product->update(['views' => $product->views +1]);
             return view('frontviews.singleproduct', compact('product'));
         } else {
             return view('frontviews.singleproducterror');

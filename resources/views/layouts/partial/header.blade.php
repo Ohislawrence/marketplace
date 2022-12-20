@@ -18,7 +18,7 @@
         <!-- LOGO MOBILE -->
         <a href="{{ route('home.page') }}">
             <figure class="logo-mobile">
-                <img src="{{ asset('assets/images/logo_mobile.png') }}" alt="logo-mobile">
+                <img src="{{ asset('assets/images/logo_mobile.png') }}" alt="Acarty logo">
             </figure>
         </a>
         <!-- /LOGO MOBILE -->
@@ -62,6 +62,14 @@
 
                 <!-- DROPDOWN -->
                 <ul class="dropdown small hover-effect closed">
+
+                    @hasanyrole('Super Admin|seller')
+                    <li class="dropdown-item">
+                        <div class="dropdown-triangle"></div>
+                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
+                    @endhasanyrole
+
                     <li class="dropdown-item">
                         <div class="dropdown-triangle"></div>
                         <a href="{{ route('account.page',['username'=> Auth::user()->userdetail->username]) }}">Profile Page</a>
@@ -72,7 +80,7 @@
                     <li class="dropdown-item">
                         <a href="d{{ route('purchases.page',  ['username'=> auth()->user()->userdetail->username] ) }}">My Purchases</a>
                     </li>
-
+                    @hasanyrole('seller|Super Admin')
                     <li class="dropdown-item">
                         <a href="dashboard-statement.html">Sales Statement</a>
                     </li>
@@ -85,6 +93,7 @@
                     <li class="dropdown-item">
                         <a href="{{ route('product.index') }}">Manage Items</a>
                     </li>
+                    @endhasanyrole
 
                 </ul>
                 <!-- /DROPDOWN -->
@@ -168,16 +177,11 @@
                         <!-- DROPDOWN ITEM -->
                         <li class="dropdown-item">
                             <div class="dropdown-triangle"></div>
-                            <a href="author-profile.html">
-                                <figure class="user-avatar">
-                                    <img src="images/avatars/avatar_02.jpg" alt="">
-                                </figure>
-                            </a>
+
                             <p class="title">
-                                <a href="author-profile.html"><span>MeganV.</span></a> added
-                                <a href="item-v1.html"><span>Pixel Diamond Gaming Shop</span></a> to favourites
+                                {{ $notification->data['body'] }}
                             </p>
-                            <p class="timestamp">2 Hours ago</p>
+                            <p class="timestamp">{{ $notification->created_at->diffForHumans() }}</p>
                             <span class="notification-type primary-new icon-heart"></span>
                         </li>
                         <!-- /DROPDOWN ITEM -->
@@ -189,7 +193,7 @@
                             </p>
                         </li>
                         @endforelse
-                        
+
                     </ul>
                     <!-- /DROPDOWN NOTIFICATIONS -->
                 </div>

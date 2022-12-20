@@ -67,7 +67,7 @@
     <!-- /HEADLINE -->
 
     <!-- PRODUCT LIST -->
-    <div class="product-list">
+    <div class="purchases-list">
         <!-- PURCHASES LIST HEADER -->
         <div class="purchases-list-header">
             <div class="purchases-list-header-date">
@@ -85,9 +85,7 @@
             <div class="purchases-list-header-download">
                 <p class="text-header small">Download</p>
             </div>
-            <div class="purchases-list-header-recommend">
-                <p class="text-header small">Recommend Item</p>
-            </div>
+
         </div>
         <!-- /PURCHASES LIST HEADER -->
 
@@ -139,16 +137,7 @@
             @endif
 
             </div>
-            <div class="purchase-item-recommend">
-                <div class="recommendation-wrap">
-                    <a href="#recommendation-popup" class="recommendation good hoverable open-recommendation-form">
-                        <span class="icon-like"></span>
-                    </a>
-                    <a href="#recommendation-popup" class="recommendation bad hoverable open-recommendation-form">
-                        <span class="icon-dislike"></span>
-                    </a>
-                </div>
-            </div>
+
         </div>
         @endforeach
          @empty

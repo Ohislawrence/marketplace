@@ -202,8 +202,8 @@
 
                     <!-- INFORMATION LAYOUT ITEM -->
                     <div class="information-layout-item">
-                        <p class="text-header">Files:</p>
-                        <p>4500x2800 Px</p>
+                        <p class="text-header">Views:</p>
+                        <p>{{ $product->views }}</p>
                     </div>
                     <!-- /INFORMATION LAYOUT ITEM -->
 
@@ -325,7 +325,7 @@
                         {!! Share::currentPage()->twitter(); !!}
                         {!! Share::currentPage()->linkedin(); !!}
                         {!! Share::currentPage()->whatsapp(); !!}
-                        
+
                     </ul>
                     <!-- /SHARE LINKS -->
                 </div>

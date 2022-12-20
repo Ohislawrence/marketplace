@@ -16,7 +16,7 @@
 <div class="section-headline-wrap">
     <div class="section-headline">
         <h2>{{ $userdetail->user->name }} Profile</h2>
-        
+
     </div>
 </div>
 <!-- /SECTION HEADLINE -->
@@ -112,12 +112,11 @@
                 <li class="dropdown-item active">
                     <a href="{{ route('account.page', ['username'=> request()->route('username')]) }}">Profile Page</a>
                 </li>
-                @if ($userdetail->user->getRoleNames()->first() == 'seller')
+                @hasanyrole('seller|Super Admin')
                 <li class="dropdown-item">
                     <a href="{{ route('myitem.page', ['username' => $userpage->userdetail->username]) }}">Author's Items</a>
                 </li>
-
-                @endif
+                @endhasanyrole
 
                 <li class="dropdown-item">
                     <a >Followers ({{ $userdetail->user->followers()->count() }})</a>
@@ -125,9 +124,7 @@
                 <li class="dropdown-item">
                     <a >Following ({{ $userdetail->user->followings()->count() }})</a>
                 </li>
-                <li class="dropdown-item">
-                    <a href="#">Author Badges </a>
-                </li>
+
             </ul>
             <!-- /DROPDOWN -->
 
@@ -137,9 +134,11 @@
                 <li class="dropdown-item {{ request()->is('user/*/') ? 'active' : '' }}">
                     <a href="{{ route('account.page', ['username'=> auth()->user()->userdetail->username] ) }}">Profile Page</a>
                 </li>
+                @if ($userdetail->user->getRoleNames()->first() == 'seller')
                 <li class="dropdown-item {{ request()->is('user/*/myitem') ? 'active' : '' }}">
                     <a href="{{ route('myitem.page', ['username' => $userpage->userdetail->username]) }}">Author's Items</a>
                 </li>
+                @endif
                 <li class="dropdown-item {{ request()->is('user/*/followers') ? 'active' : '' }}">
                     <a href="{{ route('followers.page', ['username'=> auth()->user()->userdetail->username]) }}">Followers ({{ auth()->user()->followers()->count() }})</a>
                 </li>
@@ -189,9 +188,7 @@
                 <li class="dropdown-item">
                     <a href="{{ route('following.page', ['username'=> request()->route('username')]) }}">Following ({{ $userdetail->user->followings()->count() }})</a>
                 </li>
-                <li class="dropdown-item">
-                    <a href="author-badges.html">Author Badges (16)</a>
-                </li>
+
             </ul>
             <!-- /DROPDOWN -->
 
@@ -201,7 +198,7 @@
 
 
 
-
+            @hasanyrole('seller|Super Admin')
             <!-- SIDEBAR ITEM -->
             <div class="sidebar-item author-reputation full">
                 <h4>Author's Reputation</h4>
@@ -254,5 +251,6 @@
                 <a href="#" class="button mid dark-light">Read all the Customer Reviews</a>
             </div>
             <!-- /SIDEBAR ITEM -->
+            @endhasanyrole
         </div>
         <!-- /SIDEBAR -->

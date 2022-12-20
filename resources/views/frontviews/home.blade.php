@@ -53,66 +53,50 @@
     </section>
 </div>
 <!-- /BANNER -->
+<div class="clearfix"></div>
 
-<!-- SERVICES -->
-<div id="services-wrap">
-    <section id="services">
-        <!-- SERVICE LIST -->
-        <div class="service-list column4-wrap">
-            <!-- SERVICE ITEM -->
-            <div class="service-item column">
-                <div class="circle medium gradient"></div>
-                <div class="circle white-cover"></div>
-                <div class="circle dark">
-                    <span class="icon-present"></span>
+<div id="product-sideshow-wrap">
+    <div id="product-sideshow">
+        <div class="product-showcase">
+            <!-- HEADLINE -->
+            <div class="headline primary">
+                <h4>Latest Online Products</h4>
+                <!-- SLIDE CONTROLS -->
+                <div class="slide-control-wrap">
+                    <div class="slide-control left">
+                        <!-- SVG ARROW -->
+                        <svg class="svg-arrow">
+                            <use xlink:href="#svg-arrow"></use>
+                        </svg>
+                        <!-- /SVG ARROW -->
+                    </div>
+
+                    <div class="slide-control right">
+                        <!-- SVG ARROW -->
+                        <svg class="svg-arrow">
+                            <use xlink:href="#svg-arrow"></use>
+                        </svg>
+                        <!-- /SVG ARROW -->
+                    </div>
                 </div>
-                <h3>Great Deals</h3>
-                <p>Get great deals on web apps and great online tools you love.</p>
-
+                <!-- /SLIDE CONTROLS -->
             </div>
-            <!-- /SERVICE ITEM -->
-
-            <!-- SERVICE ITEM -->
-            <div class="service-item column">
-                <div class="circle medium gradient"></div>
-                <div class="circle white-cover"></div>
-                <div class="circle dark">
-                    <span class="icon-lock"></span>
-                </div>
-                <h3>Secure Transaction</h3>
-                <p>All transactions are secured by trusted 3rd party gateways.</p>
+            <!-- /HEADLINE -->
+            <!-- PRODUCT LIST -->
+            <div id="pl-1" class="product-list grid column4-wrap owl-carousel">
+                @foreach ($products->slice(5, 11) as $product )
+                    @include('frontviews.justproduct')
+                @endforeach
             </div>
-            <!-- /SERVICE ITEM -->
+            <!-- /PRODUCT LIST -->
+                <!-- /PRODUCT ITEM -->
 
-            <!-- SERVICE ITEM -->
-            <div class="service-item column">
-                <div class="circle medium gradient"></div>
-                <div class="circle white-cover"></div>
-                <div class="circle dark">
-                    <span class="icon-like"></span>
-                </div>
-                <h3>Products Control</h3>
-                <p>Downloads and Saas items are secured and safe for use.</p>
-            </div>
-            <!-- /SERVICE ITEM -->
 
-            <!-- SERVICE ITEM -->
-            <div class="service-item column">
-                <div class="circle medium gradient"></div>
-                <div class="circle white-cover"></div>
-                <div class="circle dark">
-                    <span class="icon-diamond"></span>
-                </div>
-                <h3>Quality Platform</h3>
-                <p>Acarty is always improving, you will notice when you join us.</p>
-            </div>
-            <!-- /SERVICE ITEM -->
         </div>
-        <!-- /SERVICE LIST -->
-        <div class="clearfix"></div>
-    </section>
+        <!-- /PRODUCT SHOWCASE -->
+    </div>
 </div>
-<!-- /SERVICES -->
+
 
 <!-- PROMO -->
 <div class="promo-banner dark left">
