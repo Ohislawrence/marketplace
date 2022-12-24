@@ -214,8 +214,10 @@
                     <label for="sv" class="rl-label required">Access (How long will user get access)</label>
                     <label for="sv" class="select-block">
                         <select name="access" id="sv">
-                            <option value="lifetime">Life Time</option>
-                            <option value="monthly">Monthly</option>
+                            @foreach ( \App\Models\Access::all() as $access )
+                                <option value="{{ $access->id }}">{{ $access->name }}</option>
+                            @endforeach
+
                         </select>
                         <!-- SVG ARROW -->
                         <svg class="svg-arrow">
@@ -231,8 +233,9 @@
                     <label for="sv" class="rl-label required">Who is the ideal user?</label>
                     <label for="sv" class="select-block">
                         <select name="ideal_for" id="sv">
-                            <option value="developers">Developers</option>
-                            <option value="creators">Creators</option>
+                            @foreach ( \App\Models\Idealfor::all() as $forwho )
+                                <option value="{{ $forwho->id }}">{{ $forwho->name }}</option>
+                            @endforeach
                         </select>
                         <!-- SVG ARROW -->
                         <svg class="svg-arrow">
@@ -255,7 +258,18 @@
                 <!-- INPUT CONTAINER -->
                 <div class="input-container half">
                     <label for="files_included" class="rl-label required">This is an alternative to?</label>
-                    <input type="text" id="qty" name="alternative_to" placeholder="e.g canlendarly">
+                    <label for="sv" class="select-block">
+                        <select name="alternative_to" id="sv">
+                            @foreach ( \App\Models\Alternativeto::all() as $alternativeto )
+                                <option value="{{ $alternativeto->id }}">{{ $alternativeto->name }}</option>
+                            @endforeach
+                        </select>
+                        <!-- SVG ARROW -->
+                        <svg class="svg-arrow">
+                            <use xlink:href="#svg-arrow"></use>
+                        </svg>
+                        <!-- /SVG ARROW -->
+                    </label>
                 </div>
                 <!-- /INPUT CONTAINER -->
 

@@ -78,7 +78,15 @@
                 </a>
                 <!-- /USER AVATAR -->
                 <p class="text-header">{{ $userdetail->user->name }}</p>
-                <p class="text-oneline">{{ $userdetail->user->getRoleNames()->first() }}<br>{{ $userdetail->location }}</p>
+                    @if ( Auth::user()->getRoleNames()->first() == 'general' )
+                    <p class="text-oneline">Member</p>
+                @elseif (Auth::user()->getRoleNames()->first() == 'seller')
+                    <p class="text-oneline">Founder</p>
+                @elseif (Auth::user()->getRoleNames()->first() == 'Super Admin')
+                    <p class="text-oneline">Admin</p>
+                @endif
+
+                    <p class="text-oneline">{{ $userdetail->location }}</p>
                 <!-- SHARE LINKS -->
                 <ul class="share-links">
                     <li><a href="#" class="fb"></a></li>

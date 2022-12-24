@@ -3,8 +3,8 @@
 		RANGE
 	-----------*/
 	$('.price-range-slider').jRange({
-	    from: 0,
-	    to: 700,
+	    from: "{!! ($products->min('price')) !!}",
+	    to: 2000,
 	    step: 1,
 	    format: '$%s',
 	    width: 242,

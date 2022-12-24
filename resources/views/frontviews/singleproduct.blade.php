@@ -77,7 +77,7 @@
 
                 <p class="text" style="display: block;">{{ $product->short_summary }}</p>
                 @if ( $product->time_offer == 1)
-                <p class="text" style="display: block;">Hurry! Offer ends in {{ $product->time_offer_ends }}</p>
+                <p class="text" style="display: block;">Hurry! Offer ends in {{ $product->time_offer_ends->diffForHumans() }}</p>
                 @endif
 
                 <br/>
@@ -175,21 +175,21 @@
                     <!-- INFORMATION LAYOUT ITEM -->
                     <div class="information-layout-item">
                         <p class="text-header">Alternative to:</p>
-                        <p>{{ $product->alternative_to }}</p>
+                        <p>{{ $product->alternativeto->name }}</p>
                     </div>
                     <!-- /INFORMATION LAYOUT ITEM -->
 
                     <!-- INFORMATION LAYOUT ITEM -->
                     <div class="information-layout-item">
                         <p class="text-header">Ideal for:</p>
-                        <p>{{ $product->ideal_for }}</p>
+                        <p>{{ $product->idealfor->name}}</p>
                     </div>
                     <!-- /INFORMATION LAYOUT ITEM -->
 
                     <!-- INFORMATION LAYOUT ITEM -->
                     <div class="information-layout-item">
                         <p class="text-header">Access:</p>
-                        <p>{{ $product->access }}</p>
+                        <p>{{ $product->accessitem->name }}</p>
                     </div>
                     <!-- /INFORMATION LAYOUT ITEM -->
 

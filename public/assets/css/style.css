@@ -4834,7 +4834,8 @@ header {
 	FORM BOX
 --------------*/
 .form-box-items {
-  overflow: hidden; }
+  overflow: hidden;
+   }
   .form-box-items.right {
     float: right; }
   .form-box-items.left {

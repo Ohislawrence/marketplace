@@ -43,6 +43,10 @@ class Product extends Model
         'uniqueviews',
     ];
 
+    protected $dates = [
+        'time_offer_ends',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -72,6 +76,22 @@ class Product extends Model
     public function orderitem()
     {
         return $this->hasMany('App\Models\OrderItem');
+    }
+
+
+    public function accessitem()
+    {
+        return $this->belongsTo(\App\Models\Access::class, 'access' );
+    }
+
+    public function alternativeto()
+    {
+        return $this->belongsTo(\App\Models\Alternativeto::class, 'alternative_to' );
+    }
+
+    public function idealfor()
+    {
+        return $this->belongsTo(\App\Models\Idealfor::class, 'ideal_for' );
     }
 
 }

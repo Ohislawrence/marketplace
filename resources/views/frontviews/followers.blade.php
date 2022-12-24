@@ -126,10 +126,10 @@
 
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-button">
-                @if (auth()->user()->isFollowing($userpage))
-                    <a href="{{ route('unfollow.button', ['username'=> request()->route('username')]) }}" class="button mid-short primary follow-btn">Unfollow</a>
+                @if (auth()->user()->isFollowedBy($follower))
+                    <a href="{{ route('unfollow.button', ['username'=> $follower->userdetail->username]) }}" class="button mid-short primary follow-btn">Unfollow</a>
                     @else
-                    <a href="{{ route('follow.button', ['username'=> request()->route('username')]) }}" class="button mid-short dark">Follow</a>
+                    <a href="{{ route('follow.button', ['username'=> $follower->userdetail->username]) }}" class="button mid-short dark">Follow</a>
                     @endif
             </div>
             <!-- /FL ITEM INFO -->

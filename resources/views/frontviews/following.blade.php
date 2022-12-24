@@ -28,6 +28,7 @@
 @section('body')
 @include('frontviews.accountsidebar')
 
+
 <!-- CONTENT -->
 <div class="content right">
     <!-- HEADLINE -->
@@ -35,7 +36,7 @@
         <h4>Following ({{ $userpage->followings()->count() }})</h4>
     </div>
     <!-- /HEADLINE -->
-    @forelse ( $userpage->followings as $following)
+    @forelse ( $userpage->followings as $followings)
 
 
     <!-- FOLLOW LIST -->
@@ -44,15 +45,15 @@
         <div class="follow-list-item">
             <a href="author-profile.html">
                 <figure class="user-avatar medium liquid">
-                    <img src="{{ asset('users/profileimages/'. $following->userdetail ) }}" alt="">
+                    <img src="{{ asset('users/profileimages/'. $followings->userdetail ) }}" alt="">
                 </figure>
             </a>
 
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-description">
-                <p class="text-header"><a href="author-profile.html">{{ $following->user->name }}</a></p>
-                <p>Member since {{ $following->user->created_at->diffForHumans() }}</p>
-                <p>{{ $following->user->userdetail->location }}</p>
+                <p class="text-header"><a href="author-profile.html">{{ $followings->userdetail }}</a></p>
+                <p>Member since {{ $followings->created_at->diffForHumans() }}</p>
+                <p>{{ $followings }}</p>
             </div>
             <!-- /FL ITEM INFO -->
 
@@ -125,16 +126,16 @@
 
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-button">
-                @if (auth()->user()->isFollowing($userpage))
-                    <a href="{{ route('unfollow.button', ['username'=> request()->route('username')]) }}" class="button mid-short primary follow-btn">Unfollow</a>
+                @if (auth()->user()->isFollowing($followings))
+                    <a href="" class="button mid-short primary follow-btn">Unfollow</a>
                     @else
-                    <a href="{{ route('follow.button', ['username'=> request()->route('username')]) }}" class="button mid dark spaced">Follow</a>
+                    <a href="" class="button mid dark spaced">Follow</a>
                 @endif
             </div>
             <!-- /FL ITEM INFO -->
         </div>
         <!-- /FOLLOW LIST ITEM -->
-
+    </div>
         @empty
         <div class="follow-list-item">
             <div class="fl-item-info fl-description">
@@ -148,7 +149,7 @@
 <!-- CONTENT -->
 
 <div class="clearfix"></div>
-</div>
+
 </div>
 <!-- /SECTION -->
 

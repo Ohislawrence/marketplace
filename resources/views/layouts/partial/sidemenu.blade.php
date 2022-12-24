@@ -82,7 +82,13 @@
 
             <!-- USER INFORMATION -->
             <p class="user-name">{{ Auth::user()->name }}</p>
-            <p class="user-money">{{ Auth::user()->getRoleNames()->first() }}</p>
+            @if ( Auth::user()->getRoleNames()->first() == 'general' )
+                    <p class="user-money">Member</p>
+                @elseif (Auth::user()->getRoleNames()->first() == 'seller')
+                    <p class="user-money">Founder</p>
+                @elseif (Auth::user()->getRoleNames()->first() == 'Super Admin')
+                    <p class="user-money">Admin</p>
+                @endif
             <!-- /USER INFORMATION -->
         </div>
         <!-- /USER QUICKVIEW -->

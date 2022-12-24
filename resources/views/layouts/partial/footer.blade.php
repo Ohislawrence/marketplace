@@ -102,7 +102,7 @@
                 <ul class="link-list">
                     <li class="link-item">
                         <div class="bullet"></div>
-                        <a href="{{ route('items.page') }}">List Products</a>
+                        <a href="{{ route('items.page') }}">All Items</a>
                     </li>
                     <li class="link-item">
                         <div class="bullet"></div>

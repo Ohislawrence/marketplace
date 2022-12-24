@@ -14,22 +14,6 @@
 <!-- Shop -->
 <script src="{{ asset('assets/js/shop.js') }}"></script>
 
-
-
-<script>
-    $('ul.pagination').hide();
-    $(function() {
-        $('.scrolling-pagination').jscroll({
-            autoTrigger: true,
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: 'div.scrolling-pagination',
-            callback: function() {
-                $('ul.pagination').remove();
-            }
-        });
-    });
-</script>
 @endsection
 
 @section('body')
@@ -48,7 +32,7 @@
         <div class="content">
             <!-- HEADLINE -->
             <div class="headline primary">
-                <h4>{{ $products->count() }} Items Found</h4>
+                <h4>{{ $products->total() }} Items Found</h4>
                 <!-- VIEW SELECTORS -->
                 <div class="view-selectors">
                     <a href="shop-gridview-v1.html" class="view-selector grid active"></a>
@@ -109,22 +93,18 @@
         <!-- SIDEBAR -->
         <div class="sidebar">
             <!-- DROPDOWN -->
+
             <ul class="dropdown hover-effect">
-                <li class="dropdown-item">
-                    <a href="#">Digital Graphics</a>
-                </li>
-                <li class="dropdown-item active">
-                    <a href="#">Illustration</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Web Design</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Stock Photography</a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#">Code and Plugins</a>
-                </li>
+
+                @forelse ( $products->groupby('productcategory_id') as $product => $yy)
+                    <li class="dropdown-item">
+                        @foreach (\App\Models\Productcategory::where('id', $product ) as $cate)
+                        <a href="#">{{ $cate->name}}</a>
+                        @endforeach
+
+                    </li>
+                @empty
+                @endforelse
             </ul>
             <!-- /DROPDOWN -->
 

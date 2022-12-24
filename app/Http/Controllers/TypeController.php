@@ -19,9 +19,62 @@ class TypeController extends Controller
 
     public function type(Request $request, $types) {
         $type= $request->types;
+        $price_filter = $request->price_filter;
+        $alternativetos = $request->alternativeto;
+        $pricerange = $request->pricerange;
         $Ptype = Type::where('slug', $type)->first();
-        $products = Product::where('plantype_id', $Ptype->id)->where('is_approved','=', '1')->orderBy('created_at')->paginate(12);
+        //dd($request->pricerange);
+
+
+        $products = Product::query()->where('plantype_id', $Ptype->id)->where('is_approved', '1');
+
+
+        if($alternativetos != null)
+        {
+            foreach($alternativetos as $alternativeto)
+            {
+                $products->where('alternative_to' , $alternativeto );
+            }
+        }
+
+        if($pricerange != null)
+        {
+            $pric = $pricerange;
+            $price = explode(',', $pricerange);
+            $minprice = number_format($price[0]);
+            $maxprice = number_format($price[1]);
+            $products->where('price', '>=', $minprice)->where('price', '<=', $maxprice);
+        }
+
+
+
+
         $category = Productcategory::all();
+        if($request->category != null)
+        {
+            $catID = $category->where('slug', $request->category)->first();
+            $catID = $catID->id;
+            $products->where('productcategory_id', $catID );
+
+        }
+
+
+        //prices
+        if( $price_filter =='desc' )
+        {
+            $products->orderBy('price' , 'desc' );
+        }
+        elseif($price_filter =='asc')
+        {
+            $products->orderBy('price' , 'asc' );
+        }
+        else{
+            $products->orderBy('created_at' );
+        }
+
+        $products = $products->paginate(12);
+
+
         return view('frontviews.types' , compact('products', 'Ptype', 'category'));
 
     }
