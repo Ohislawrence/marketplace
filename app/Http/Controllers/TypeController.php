@@ -21,12 +21,21 @@ class TypeController extends Controller
         $type= $request->types;
         $price_filter = $request->price_filter;
         $alternativetos = $request->alternativeto;
+        $idealfor = $request->idealfor;
+        $access = $request->access;
         $pricerange = $request->pricerange;
         $Ptype = Type::where('slug', $type)->first();
         //dd($request->pricerange);
 
+        $allproducts = Product::where('plantype_id', $Ptype->id)->where('is_approved', '1');
 
-        $products = Product::query()->where('plantype_id', $Ptype->id)->where('is_approved', '1');
+        if($request->shop_search_form == 'submit')
+        {
+            $products = $allproducts->query();
+        }else{
+            $products = $allproducts;
+        }
+
 
 
         if($alternativetos != null)
@@ -34,6 +43,22 @@ class TypeController extends Controller
             foreach($alternativetos as $alternativeto)
             {
                 $products->where('alternative_to' , $alternativeto );
+            }
+        }
+
+        if($idealfor != null)
+        {
+            foreach($idealfor as $ideal)
+            {
+                $products->where('ideal_for' , $ideal );
+            }
+        }
+
+        if($access != null)
+        {
+            foreach($access as $accesses)
+            {
+                $products->where('access' , $accesses );
             }
         }
 
@@ -75,7 +100,7 @@ class TypeController extends Controller
         $products = $products->paginate(12);
 
 
-        return view('frontviews.types' , compact('products', 'Ptype', 'category'));
+        return view('frontviews.types' , compact('products', 'Ptype', 'category','allproducts'));
 
     }
 

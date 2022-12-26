@@ -38,6 +38,35 @@
 })(jQuery);
 
 </script>
+<script>
+    function getIds(checkboxName) {
+        let checkBoxes = document.getElementsByName(checkboxName);
+        let ids = Array.prototype.slice.call(checkBoxes)
+                        .filter(ch => ch.checked==true)
+                        .map(ch => ch.value);
+        return ids;
+    }
+
+    function filterResults () {
+        let brandIds = getIds("alternativeto");
+
+        let catagoryIds = getIds("idealfor");
+
+        let href = 'products?';
+
+        if(brandIds.length) {
+            href += 'filter[alternativeto]=' + alternativetoIds;
+        }
+
+        if(catagoryIds.length) {
+            href += '&filter[idealfor]=' + idealforIds;
+        }
+
+        document.location.href=href;
+    }
+
+    document.getElementById("filter").addEventListener("click", filterResults);
+</script>
 @endsection
 
 @section('body')
@@ -66,7 +95,6 @@
                 </div>
                 <!-- /VIEW SELECTORS -->
                 <form id="shop_search_form" name="shop_search_form" method="GET" action="{{ route('type.page', ['types' => request('types')]) }}">
-                    @method('get')
 
                     <label for="price_filter" class="select-block">
                         <select name="price_filter" id="price_filter">
@@ -111,14 +139,19 @@
         <div class="sidebar">
             <!-- DROPDOWN -->
             <ul class="dropdown hover-effect">
-                @forelse ( $products->groupby('productcategory_id') as $product => $yy)
-                    <li class="dropdown-item">
-                        @foreach ($category->where('id', $product )  as $cate)
+                @php
+                    $pageproduct = \App\Models\Product::where('plantype_id', $Ptype->id)->where('is_approved', '1')->get();
+                @endphp
+                    @foreach ( $pageproduct->groupby('productcategory_id') as $product => $yy)
+                     @foreach ($category->where('id', $product )  as $cate)
+                            <li class="dropdown-item {{ request('category') == $cate->slug ? 'active': '' }}">
+
                                 <a href="{{ route('type.page', ['types' => request('types'), 'category' => $cate->slug]) }}">{{ $cate->name}} ({{ $yy->count() }})</a>
-                        @endforeach
-                    </li>
-                @empty
-                @endforelse
+                            </li>
+                            @endforeach
+
+                    @endforeach
+
             </ul>
             <!-- /DROPDOWN -->
 
@@ -127,10 +160,10 @@
                 <h4>Alternative to</h4>
                 <hr class="line-separator">
 
-                    @foreach ( $products->groupby('alternative_to') as $alt => $altthis )
+                    @foreach ( $pageproduct->groupby('alternative_to') as $alt => $altthis )
                         @foreach (\App\Models\Alternativeto::where('id', $alt)->get() as $altthis2)
                             <!-- CHECKBOX -->
-                            <input type="checkbox" id="{{ $altthis2->slug }}" name="alternativeto[]" value="{{ $altthis2->id }}" >
+                            <input type="checkbox" id="{{ $altthis2->slug }}" name="alternativeto[]" value="{{ $altthis2->id }}" form="shop_search_form" @if(request('alternativeto') != null) @if(in_array($altthis2->id, request('alternativeto')))  checked @endif @endif>
                             <label for="{{ $altthis2->slug }}">
                                 <span class="checkbox primary primary"><span></span></span>
                                 {{ $altthis2->name }}
@@ -150,11 +183,11 @@
                 <h4>Ideal for</h4>
                 <hr class="line-separator">
 
-                    @foreach ( $products->groupby('alternative_to') as $ideal => $idealthis )
+                    @foreach ( $pageproduct->groupby('ideal_for') as $ideal => $idealthis )
 
                         @foreach (\App\Models\Idealfor::where('id', $ideal)->get() as $idealthis2)
                             <!-- CHECKBOX -->
-                            <input type="checkbox" id="{{ $idealthis2->slug }}" name="idealfor[]" value="{{ $idealthis2->id }}" >
+                            <input type="checkbox" id="{{ $idealthis2->slug }}" name="idealfor[]" value="{{ $idealthis2->id }}" form="shop_search_form" @if(request('ideafor') != null) @if(in_array($idealthis2->id, request('idealfor')))  checked @endif @endif>
                             <label for="{{ $idealthis2->slug }}">
                                 <span class="checkbox primary primary"><span></span></span>
                                 {{ $idealthis2->name }}
@@ -163,9 +196,6 @@
                             <!-- /CHECKBOX -->
                         @endforeach
                     @endforeach
-
-
-
             </div>
             <!-- /SIDEBAR ITEM -->
 
@@ -175,10 +205,10 @@
                 <h4>Plan Type</h4>
                 <hr class="line-separator">
 
-                @foreach ( $products->groupby('access') as $access => $accessthis )
+                @foreach ( $pageproduct->groupby('access') as $access => $accessthis )
                     @foreach (\App\Models\Access::where('id', $access)->get() as $accessthis2)
                     <!-- CHECKBOX -->
-                        <input type="checkbox" id="{{ $accessthis2->slug }}" name="plantype[]" value="{{ $accessthis2->id }}" form="shop_search_form" checked>
+                        <input type="checkbox" id="{{ $accessthis2->slug }}" name="access[]" value="{{ $accessthis2->id }}" form="shop_search_form" @if(request('access') != null) @if(in_array($accessthis2->id, request('access')))  checked @endif @endif>
                         <label for="{{ $accessthis2->slug }}">
                             <span class="checkbox primary"><span></span></span>
                             {{ $accessthis2->name }}
@@ -195,7 +225,11 @@
             <div class="sidebar-item range-feature">
                 <h4>Price Range</h4>
                 <hr class="line-separator spaced">
-                <input type="hidden" class="price-range-slider" name="pricerange" form="shop_search_form">
+                @if (request('pricerange') == null)
+                    <input type="hidden" class="price-range-slider" value="{{ $products->min('price') }},{{ $products->max('price') }}" name="pricerange" form="shop_search_form">
+                @else
+                    <input type="hidden" class="price-range-slider" value="{{ request('pricerange') }}" name="pricerange" form="shop_search_form">
+                @endif
                 <button type="submit" form="shop_search_form" class="button mid primary">Update your Search</button>
 
             </div>

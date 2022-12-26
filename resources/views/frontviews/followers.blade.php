@@ -41,6 +41,7 @@
         @forelse ( $userpage->followers as $follower )
 
 
+
         <!-- FOLLOW LIST ITEM -->
         <div class="follow-list-item">
             <a href="author-profile.html">
@@ -127,9 +128,9 @@
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-button">
                 @if (auth()->user()->isFollowedBy($follower))
-                    <a href="{{ route('unfollow.button', ['username'=> $follower->userdetail->username]) }}" class="button mid-short primary follow-btn">Unfollow</a>
+                    <a href="{{ route('follow.button', ['username'=> $follower->userdetail->username]) }}" class="button mid-short primary follow-btn">Follow</a>
                     @else
-                    <a href="{{ route('follow.button', ['username'=> $follower->userdetail->username]) }}" class="button mid-short dark">Follow</a>
+                    <a href="{{ route('unfollow.button', ['username'=> $follower->userdetail->username]) }}" class="button mid-short dark follow-btn">Unfollow</a>
                     @endif
             </div>
             <!-- /FL ITEM INFO -->
@@ -138,7 +139,7 @@
         @empty
         <div class="follow-list-item">
             <div class="fl-item-info fl-description">
-                <p class="text-header"><a href="author-profile.html">Not following anyone yet.</a></p>
+                <p class="text-header"><a href="author-profile.html">You do not have any follower(s), yet.</a></p>
             </div>
         </div>
 

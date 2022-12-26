@@ -36,7 +36,7 @@
         <h4>Following ({{ $userpage->followings()->count() }})</h4>
     </div>
     <!-- /HEADLINE -->
-    @forelse ( $userpage->followings as $followings)
+    @forelse ( $userpage->followings()->with('followable')->get() as $following)
 
 
     <!-- FOLLOW LIST -->
@@ -45,15 +45,15 @@
         <div class="follow-list-item">
             <a href="author-profile.html">
                 <figure class="user-avatar medium liquid">
-                    <img src="{{ asset('users/profileimages/'. $followings->userdetail ) }}" alt="">
+                    <img src="{{ asset('users/profileimages/'. $following->followable->userdetail->profileimage ) }}" alt="">
                 </figure>
             </a>
 
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-description">
-                <p class="text-header"><a href="author-profile.html">{{ $followings->userdetail }}</a></p>
-                <p>Member since {{ $followings->created_at->diffForHumans() }}</p>
-                <p>{{ $followings }}</p>
+                <p class="text-header"><a href="author-profile.html">{{ $following->followable->userdetail->username }}</a></p>
+                <p>Member since {{ $following->followable->created_at->diffForHumans() }}</p>
+                <p>{{ $following->followable->userdetail->location  }}</p>
             </div>
             <!-- /FL ITEM INFO -->
 
@@ -126,10 +126,10 @@
 
             <!-- FL ITEM INFO -->
             <div class="fl-item-info fl-button">
-                @if (auth()->user()->isFollowing($followings))
-                    <a href="" class="button mid-short primary follow-btn">Unfollow</a>
+                @if (auth()->user()->isFollowing($following->followable))
+                    <a href="{{ route('unfollow.button', ['username'=> $following->followable->userdetail->username]) }}" class="button mid-short primary follow-btn">Unfollow</a>
                     @else
-                    <a href="" class="button mid dark spaced">Follow</a>
+                    <a href="{{ route('follow.button', ['username'=> $following->followable->userdetail->username ]) }}" class="button mid dark spaced">Follow</a>
                 @endif
             </div>
             <!-- /FL ITEM INFO -->
