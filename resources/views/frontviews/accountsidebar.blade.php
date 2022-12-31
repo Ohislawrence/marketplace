@@ -78,13 +78,13 @@
                 </a>
                 <!-- /USER AVATAR -->
                 <p class="text-header">{{ $userdetail->user->name }}</p>
-                    @if ( Auth::user()->getRoleNames()->first() == 'general' )
-                    <p class="text-oneline">Member</p>
-                @elseif (Auth::user()->getRoleNames()->first() == 'seller')
-                    <p class="text-oneline">Founder</p>
-                @elseif (Auth::user()->getRoleNames()->first() == 'Super Admin')
-                    <p class="text-oneline">Admin</p>
-                @endif
+                    @if ( $userpage->getRoleNames()->first() == 'general' )
+                        <p class="text-oneline">Member</p>
+                    @elseif ($userpage->getRoleNames()->first() == 'seller')
+                        <p class="text-oneline">Founder</p>
+                    @elseif ($userpage->getRoleNames()->first() == 'Super Admin')
+                        <p class="text-oneline">Admin</p>
+                    @endif
 
                     <p class="text-oneline">{{ $userdetail->location }}</p>
                 <!-- SHARE LINKS -->
@@ -93,9 +93,9 @@
                     <li><a href="#" class="twt"></a></li>
                     <li><a href="#" class="db"></a></li>
                 </ul>
-                @guest()
+                @guest
 
-                <button id="myBtn" class="button mid dark spaced">Log in to Follow</button>
+                <button href="#login" class="button mid dark spaced modal-button">Log in to Follow</button>
                 @include('frontviews.loginmodal')
 
                 @else
