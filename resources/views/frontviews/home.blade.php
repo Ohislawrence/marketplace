@@ -14,6 +14,8 @@
 
 
 @section('footer')
+@endsection
+
 
 @section('body')
 @include('frontviews.loginmodal')

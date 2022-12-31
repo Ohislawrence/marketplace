@@ -26,6 +26,17 @@
 
 
     </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D8JLRLQBNY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D8JLRLQBNY');
+</script>
+
     <body>
         @include('layouts.partial.header')
         @include('layouts.partial.sidemenu')

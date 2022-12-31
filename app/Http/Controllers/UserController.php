@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\DataTables\UsersDataTable;
 
 class UserController extends Controller
 {
@@ -12,10 +13,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UsersDataTable $dataTable)
     {
         $users = User::latest()->paginate(10);
-        return view('application.users', compact('users'));
+        return $dataTable->render('application.users', compact('users'));
     }
 
     /**

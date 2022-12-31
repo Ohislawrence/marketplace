@@ -3,23 +3,14 @@
 @section('tittletop', 'All Products')
 
 @section('header')
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+
 @endsection
 
 
 @section('footer')
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
-<script type="text/javascript">
-    CKEDITOR.replace('wysiwyg-editor', {
-        filebrowserUploadUrl: "{{route('ckeditor.product', ['_token' => csrf_token() ])}}",
-        filebrowserUploadMethod: 'form'
-    });
-</script>
+
+
 
 
 <!-- Dashboard UploadItem -->
@@ -76,7 +67,7 @@
         <!-- SALE DATA ITEM -->
         <div class="sale-data-item">
             <span class="sl-icon icon-present"></span>
-            <p class="text-header big">{{ App\Models\Order::count(); }}</p>
+            <p class="text-header big">{{ $products->total(); }}</p>
             <div class="sale-data-item-info">
                 <p class="text-header">Total Products</p>
                 <p>In all Time</p>
@@ -87,7 +78,7 @@
         <!-- SALE DATA ITEM -->
         <div class="sale-data-item">
             <span class="sl-icon icon-present"></span>
-            <p class="text-header big">333</p>
+            <p class="text-header big">{{$products->where('is_approved', '!=', 1)->count()}}</p>
             <div class="sale-data-item-info">
                 <p class="text-header">Pending Approval</p>
                 <p>In all Time</p>
@@ -121,88 +112,43 @@
 
     <!-- TRANSACTION LIST -->
     <div class="transaction-list">
-        <!-- TRANSACTION LIST HEADER -->
-        <div class="transaction-list-header">
-            <div class="transaction-list-header-date">
-                <p class="text-header small">Product Name</p>
-            </div>
-            <div class="transaction-list-header-author">
-                <p class="text-header small">Qty</p>
-            </div>
-            <div class="transaction-list-header-item">
-                <p class="text-header small">Cost</p>
-            </div>
-            <div class="transaction-list-header-detail">
-                <p class="text-header small">Marchart</p>
-            </div>
-            <div class="transaction-list-header-code">
-                <p class="text-header small">Date</p>
-            </div>
-            <div class="transaction-list-header-price">
-                <p class="text-header small">Invoice No</p>
-            </div>
-            <div class="transaction-list-header-cut">
-                <p class="text-header small">Earnings</p>
-            </div>
-            <div class="transaction-list-header-earnings">
-                <p class="text-header small">Withdrawals</p>
-            </div>
-            <div class="transaction-list-header-icon"></div>
-        </div>
-        <!-- /TRANSACTION LIST HEADER -->
+        <table class="table" id="customers">
+            <thead>
+                <tr>
 
+                    <th>Product Name</th>
+                    <th>Cost ($)</th>
+                    <th>Marchart</th>
+                    <th>Product ID</th>
+                    <th>Earnings</th>
+                    <th>Views</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
         <!-- TRANSACTION LIST ITEM -->
         @forelse ($products as $product)
-        <div class="transaction-list-item">
-            <div class="transaction-list-item-date">
-                <p>{{$product->name}}</p>
-            </div>
-            <div class="transaction-list-item-author">
-                <p class="text-header"><a href=""></a></p>
-            </div>
-            <div class="transaction-list-item-item">
-                <p class="category primary"><a href=""></a></p>
-            </div>
-            <div class="transaction-list-item-detail">
-                <p></p>
-            </div>
-            <div class="transaction-list-item-code">
-                <p><span class="light"></span></p>
-            </div>
-            <div class="transaction-list-item-price">
-                <p></p>
-            </div>
-            <div class="transaction-list-item-cut">
-                <p><span class="light"></span></p>
-            </div>
-            <div class="transaction-list-item-earnings">
-                <p class="text-header">$ 6</p>
-            </div>
-            <div class="transaction-list-item-icon">
-                <div class="transaction-icon primary">
-                    <!-- SVG PLUS -->
-                    <svg class="svg-plus">
-                        <use xlink:href="#svg-plus"></use>
-                    </svg>
-                    <!-- /SVG PLUS -->
-                </div>
-            </div>
-        </div>
-            
+                <tr>
+
+                    <td>{{$product->name}}</td>
+                    <td>{{$product->price}}</td>
+                    <td>{{$product->user->userdetail->username}}</td>
+                    <td>{{$product->uniqueId}}</td>
+                    <td>{{$product->price}}</td>
+                    <td>{{$product->views}}</td>
+                    <td></td>
+                </tr>
         @empty
-            
+
         @endforelse
-        
+        </tbody>
+        </table>
         <!-- /TRANSACTION LIST ITEM -->
-
-        
-
-        
 
         <!-- PAGER -->
         <div class="pager-wrap">
             <div class="pager primary">
-                {{ $products->links()}}
+                {{ $products->links() }}
             </div>
         </div>
         <!-- /PAGER -->

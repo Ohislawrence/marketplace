@@ -66,7 +66,7 @@
                 <div class="input-container">
                     <label for="category" class="rl-label required">Is affiliate link?</label>
                     <label for="category" class="select-block">
-                        <select name="category" id="category">
+                        <select name="link" id="link">
                             <option value="">No</option>
                             <option value="link">Yes</option>
                         </select>

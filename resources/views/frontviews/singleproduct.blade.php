@@ -8,6 +8,7 @@
 
 @section('header')
 <link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}">
+
 <link rel="stylesheet" href="{{ asset('assets/css/rating.css') }}">
 @endsection
 
@@ -38,6 +39,7 @@
 
 @section('body')
 @include('frontviews.loginmodal')
+@include('frontviews.registermodal')
 <!-- SECTION HEADLINE -->
 <div class="section-headline-wrap">
     <div class="section-headline">
@@ -91,7 +93,8 @@
                 </form>
                 @else
 
-                <button id="myBtn" class="button mid dark spaced"><span class="primary">Get it Now!</span></buttom>
+                <button href="#login" class="button mid dark spaced modal-button"><span class="primary">Get it Now!</span></buttom>
+
 
                 @endauth
                 @endif

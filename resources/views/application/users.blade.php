@@ -121,6 +121,7 @@
 
     <!-- TRANSACTION LIST -->
     <div class="transaction-list">
+        {{$dataTable->table()}}
         <!-- TRANSACTION LIST HEADER -->
         <div class="transaction-list-header">
             <div class="transaction-list-header-date">
@@ -188,16 +189,16 @@
                 </div>
             </div>
         </div>
-            
+
         @empty
-            
+
         @endforelse
-        
+
         <!-- /TRANSACTION LIST ITEM -->
 
-        
 
-        
+
+
 
         <!-- PAGER -->
         <div class="pager-wrap">
@@ -215,3 +216,8 @@
 
 <div class="shadow-film closed"></div>
 @endsection
+
+
+@push('scripts')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+@endpush

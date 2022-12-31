@@ -11,10 +11,12 @@
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/tooltipster.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/vendor/owl.carousel.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/table.css') }}">
         <!-- favicon -->
         <link rel="icon" href="{{ asset('favicon.png') }}">
 
         <title>@yield('tittletop') | {{ config('app.name') }}</title>
+
 
 
         @yield('header')
@@ -57,5 +59,6 @@
         <script src="{{ asset('assets/js/side-menu.js') }}"></script>
         <!-- Dashboard Header -->
         <script src="{{ asset('assets/js/dashboard-header.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     </body>
 </html>
